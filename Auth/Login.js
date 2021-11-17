@@ -1,10 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+import { theme } from "../assets/Theme";
+
+import "firebase/auth";
+
 export default function Login() {
   return (
     <View style={styles.container}>
-      <Text>Hey</Text>
+      <Text>LOGIN</Text>
     </View>
   );
 }
@@ -12,7 +16,7 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "red",
+    backgroundColor: theme.colors.background,
     alignItems: "center",
     justifyContent: "center",
   },
