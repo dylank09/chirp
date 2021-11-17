@@ -1,15 +1,12 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { theme } from "../assets/Theme";
 
-export default function Button(text, onPress) {
+export default function Button(props) {
   return (
-    <TouchableOpacity
-      onPress={() => alert("Hello, world!")}
-      style={styles.button}
-    >
-      <Text style={styles.buttonText}>{text ? text : "NO TEXT PASSED"}</Text>
+    <TouchableOpacity onPress={props.onPress} style={styles.button}>
+      <Text style={styles.buttonText}>{props.text ? props.text : "  "} </Text>
     </TouchableOpacity>
   );
 }
@@ -17,11 +14,14 @@ export default function Button(text, onPress) {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: theme.colors.button,
-    padding: 20,
-    borderRadius: 5,
+    padding: 10,
+    borderRadius: 9,
+    width: theme.dimensions.buttonWidth,
+    alignItems: "center",
+    // height: theme.dimensions.buttonHeight,
   },
   buttonText: {
-    color: theme.buttonText,
-    fontSize: 20,
+    color: theme.colors.buttonText,
+    fontSize: 18,
   },
 });
