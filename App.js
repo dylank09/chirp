@@ -14,7 +14,7 @@ export default function App() {
   return (
     <NavigationContainer theme={theme}>
       <View style={styles.container}>
-        <Text>HEY</Text>
+        <Text style={styles.text}>HEY</Text>
       </View>
     </NavigationContainer>
   );
@@ -26,5 +26,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
     alignItems: "center",
     justifyContent: "center",
+  },
+  text: {
+    color: theme.colors.text,
   },
 });
