@@ -9,10 +9,10 @@ const theme = {
     authTextBox: "rgb(255, 255, 255)",
     buttonText: "rgb(255, 255, 255)",
     jet: "rgb(45, 45, 42)",
+    alertText: "rgb(193, 73, 83)",
   },
   dimensions: {
-    authTextBoxWidth: "80%",
-    buttonWidth: "45%",
+    buttonWidth: "40%",
     buttonHeight: "",
     inputHeight: "",
   },

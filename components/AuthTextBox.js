@@ -9,7 +9,7 @@ export default function AuthTextBox(props) {
       style={styles.textBox}
       //   {...props}
       maxLength={40}
-      onChangeText={props.onChange}
+      onChangeText={props.onChangeText}
       blurOnSubmit={true}
       placeholder={props.placeholder}
     ></TextInput>
@@ -20,12 +20,13 @@ const styles = StyleSheet.create({
   textBox: {
     // backgroundColor: theme.colors.button,
     padding: 6,
-    width: "80%",
+    width: "70%",
     color: theme.colors.text,
     fontSize: 15,
     // borderRadius: 9,
     borderBottomColor: theme.colors.authTextBox,
     borderBottomWidth: 1,
-    margin: 10,
+    marginTop: 15,
+    marginBottom: 5,
   },
 });

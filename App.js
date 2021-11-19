@@ -6,8 +6,8 @@ import Login from "./auth/Login";
 //import ChirpChat from "./chat/ChirpChat"...
 
 import firebase from "firebase/app";
+import "firebase/auth";
 import { firebaseConfig } from "./config/FirebaseConfig";
-import AuthTextBox from "./components/AuthTextBox";
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);

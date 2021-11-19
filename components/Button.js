@@ -15,13 +15,13 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: theme.colors.button,
     padding: 10,
-    borderRadius: 9,
+    borderRadius: 18,
     width: theme.dimensions.buttonWidth,
     alignItems: "center",
-    // height: theme.dimensions.buttonHeight,
+    height: theme.dimensions.buttonHeight,
   },
   buttonText: {
     color: theme.colors.buttonText,
-    fontSize: 18,
+    fontSize: 15,
   },
 });
