@@ -19,7 +19,7 @@ console.log("Current user: " + user);
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      {user ? console.log("User logged in") : <Login />}
+      {user ? console.log("User logged in") : <Register />}
     </SafeAreaView>
   );
 }

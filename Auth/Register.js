@@ -9,6 +9,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import AuthTextBox from "../components/AuthTextBox";
 import AuthAlert from "../components/AuthAlert";
+import GoogleButton from "../components/GoogleButton";
 
 export default function Register() {
   const [fullName, setFullName] = useState("");
@@ -27,44 +28,75 @@ export default function Register() {
         .then((userCredential) => {
           setEmailError("");
           // Signed in
-          var user = userCredential.user;
+          // var user = userCredential.user;
 
           // set currentUser in the App to some value in order to render the main screen?
         })
         .catch((error) => {
           console.log(error);
-          if (error.code == "auth/invalid-email")
-            setEmailError("Email address is not valid.");
-          else if (error.code == "auth/user-not-found")
-            setEmailError("User not found.");
-          else {
-            setEmailError("Incorrect details. Try again.");
+          switch (error.code) {
+            case "auth/invalid-email":
+              setEmailError("Email address is not valid.");
+              break;
+            case "auth/blablabla":
+              setEmailError("User already exists.");
+              break;
+            default:
+              setEmailError("Incorrect details. Try again.");
           }
         });
     }
+  }
 
-    function validatePassword() {
-      var check = false;
-      if (password.length < 8) {
-        setPasswordError("Password is too short.");
-      } else if (password != confirmPassword) {
-        setPasswordError("Passwords don't match.");
-      } else {
-        setPasswordError("");
-        check = true;
-      }
-      return check;
+  function validatePassword() {
+    var check = false;
+    if (password.length < 8) {
+      setPasswordError("Password is too short.");
+    } else if (!(/[A-Z]/.test(password) && /[0-9]/.test(password))) {
+      setPasswordError("Password must include a capital and a number.");
+    } else if (password != confirmPassword) {
+      setPasswordError("Passwords don't match.");
+    } else {
+      setPasswordError("");
+      check = true;
     }
+    return check;
+  }
 
-    function validateName() {
-      if (fullName.length < 2) {
-        setNameError("Name is too short.");
-        return false;
-      } else {
-        setNameError("");
-        return true;
-      }
+  function validateName() {
+    if (fullName.length < 2) {
+      setNameError("Name is too short.");
+      return false;
+    } else {
+      setNameError("");
+      return true;
     }
+  }
+
+  function createUserGoogle() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        /** @type {firebase.auth.OAuthCredential} */
+        var credential = result.credential;
+
+        // This gives you a Google Access Token use it to access the Google API
+        var token = credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+      })
+      .catch((error) => {
+        console.log(error);
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        // var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        // var credential = error.credential;
+        // ...
+      });
   }
 
   return (
@@ -87,10 +119,14 @@ export default function Register() {
         placeholder="Confirm password"
         onChangeText={setConfirmPassword}
       ></AuthTextBox>
-      <AuthAlert text={passwordError}></AuthAlert>
-      <Button text="Continue" onPress={createUserEmailPass}></Button>
+      <Button
+        style={styles.continueButton}
+        text="Continue"
+        onPress={createUserEmailPass}
+      ></Button>
       <Text style={styles.orText}>or</Text>
       <View style={styles.line} />
+      <GoogleButton onPress={createUserGoogle}></GoogleButton>
     </View>
   );
 }
@@ -109,7 +145,7 @@ const styles = StyleSheet.create({
     marginBottom: 70,
   },
   orText: {
-    fontSize: 16,
+    fontSize: theme.dimensions.standardFontSize,
     color: theme.colors.text,
     marginTop: 20,
   },

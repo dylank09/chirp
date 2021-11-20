@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: theme.colors.button,
     padding: 10,
+    margin: 10,
     borderRadius: 18,
     width: theme.dimensions.buttonWidth,
     alignItems: "center",
@@ -22,6 +23,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: theme.colors.buttonText,
-    fontSize: 15,
+    fontSize: theme.dimensions.standardFontSize,
   },
 });

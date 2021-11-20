@@ -9,6 +9,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import AuthTextBox from "../components/AuthTextBox";
 import AuthAlert from "../components/AuthAlert";
+import GoogleButton from "../components/GoogleButton";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -54,6 +55,7 @@ export default function Login() {
       <Button text="Continue" onPress={signInEmailPass}></Button>
       <Text style={styles.orText}>or</Text>
       <View style={styles.line} />
+      <GoogleButton></GoogleButton>
     </View>
   );
 }
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
     marginBottom: 70,
   },
   orText: {
-    fontSize: 16,
+    fontSize: theme.dimensions.standardFontSize,
     color: theme.colors.text,
     marginTop: 20,
   },

@@ -1,16 +1,25 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
+import { useState } from "react";
 
 import { theme } from "../assets/Theme";
 
 export default function AuthAlert(props) {
-  return <Text style={styles.alert}>{props.text ? props.text : " "}</Text>;
+  function bla(event) {
+    console.log(event);
+  }
+
+  return (
+    <Text style={styles.alert} onLayout={(event) => bla}>
+      {props.text ? props.text : " "}
+    </Text>
+  );
 }
 
 const styles = StyleSheet.create({
   alert: {
-    paddingLeft: 6,
-    width: "70%",
+    paddingLeft: 5,
+    width: theme.dimensions.authWidth,
     height: 15,
     color: theme.colors.alertText,
     fontSize: 12,

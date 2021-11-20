@@ -12,6 +12,8 @@ const theme = {
     alertText: "rgb(193, 73, 83)",
   },
   dimensions: {
+    authWidth: "75%",
+    standardFontSize: 15,
     buttonWidth: "40%",
     buttonHeight: "",
     inputHeight: "",

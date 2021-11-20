@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
   textBox: {
     // backgroundColor: theme.colors.button,
     padding: 6,
-    width: "70%",
+    width: theme.dimensions.authWidth,
     color: theme.colors.text,
-    fontSize: 15,
+    fontSize: theme.dimensions.standardFontSize,
     // borderRadius: 9,
     borderBottomColor: theme.colors.authTextBox,
     borderBottomWidth: 1,
-    marginTop: 15,
+    marginTop: 10,
     marginBottom: 5,
   },
 });
