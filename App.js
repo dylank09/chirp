@@ -3,6 +3,7 @@ import { StyleSheet, SafeAreaView } from "react-native";
 
 import { theme } from "./assets/Theme";
 import Login from "./auth/Login";
+import Register from "./auth/Register";
 //import ChirpChat from "./chat/ChirpChat"...
 
 import firebase from "firebase/app";

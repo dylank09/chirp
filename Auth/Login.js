@@ -16,7 +16,7 @@ export default function Login() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  function createUserEmailandPass() {
+  function signInEmailPass() {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -51,7 +51,7 @@ export default function Login() {
         onChangeText={setPassword}
       ></AuthTextBox>
       <AuthAlert text={passwordError}></AuthAlert>
-      <Button text="Continue" onPress={createUserEmailandPass}></Button>
+      <Button text="Continue" onPress={signInEmailPass}></Button>
       <Text style={styles.orText}>or</Text>
       <View style={styles.line} />
     </View>
