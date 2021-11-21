@@ -6,7 +6,7 @@ import logo from "../assets/logo.png";
 import ChirpButton from "../components/ChirpButton";
 import AuthTextBox from "../components/AuthTextBox";
 import AuthAlert from "../components/AuthAlert";
-import GoogleButton from "../components/GoogleButton";
+import AuthProviderButton from "../components/AuthProviderButton";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -106,9 +106,16 @@ export default function Register({ navigation }) {
       ></ChirpButton>
       <Text style={styles.orText}>or</Text>
       <View style={styles.line} />
-      <GoogleButton
+      <AuthProviderButton
+        text="Sign in with Google"
+        type="google"
         onPress={() => GoogleSignIn(navigation, "Login")}
-      ></GoogleButton>
+      ></AuthProviderButton>
+      <AuthProviderButton
+        text="Sign in with Microsoft"
+        type="microsoft"
+        // onPress={() => GoogleSignIn(navigation, "Register")}
+      ></AuthProviderButton>
       <Text style={styles.loginText} onPress={navToLogin}>
         Already have an account? Sign in
       </Text>
@@ -133,7 +140,6 @@ const styles = StyleSheet.create({
   orText: {
     fontSize: theme.dimensions.standardFontSize,
     color: theme.colors.text,
-    marginTop: 20,
   },
   logo: {
     width: 130,
@@ -145,6 +151,7 @@ const styles = StyleSheet.create({
   line: {
     borderBottomColor: theme.colors.text,
     borderBottomWidth: 1,
+    marginBottom: 15,
     width: "50%",
   },
   loginText: {

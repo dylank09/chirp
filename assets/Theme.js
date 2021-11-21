@@ -16,6 +16,7 @@ const theme = {
     authWidth: "75%",
     standardFontSize: 15,
     buttonWidth: "40%",
+    authButtonWidth: "70%",
     buttonHeight: "",
     inputHeight: "",
   },

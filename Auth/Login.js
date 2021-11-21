@@ -6,7 +6,7 @@ import logo from "../assets/logo.png";
 import ChirpButton from "../components/ChirpButton";
 import AuthTextBox from "../components/AuthTextBox";
 import AuthAlert from "../components/AuthAlert";
-import GoogleButton from "../components/GoogleButton";
+import AuthProviderButton from "../components/AuthProviderButton";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -62,9 +62,16 @@ export default function Login({ navigation }) {
         <Text style={styles.orText}>or</Text>
         <View style={styles.line} />
       </View>
-      <GoogleButton
+      <AuthProviderButton
+        text="Sign in with Google"
+        type="google"
         onPress={() => GoogleSignIn(navigation, "Register")}
-      ></GoogleButton>
+      ></AuthProviderButton>
+      <AuthProviderButton
+        text="Sign in with Microsoft"
+        type="microsoft"
+        // onPress={() => GoogleSignIn(navigation, "Register")}
+      ></AuthProviderButton>
       <Text style={styles.registerText} onPress={navToRegister}>
         Register new account
       </Text>
