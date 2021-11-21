@@ -24,7 +24,7 @@ export default function Login({ navigation }) {
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Signed in
-        var user = userCredential.user;
+        // var user = userCredential.user;
         navigation.navigate("Register");
         // set currentUser in the App to some value in order to render the main screen?
       })
@@ -42,6 +42,10 @@ export default function Login({ navigation }) {
       });
   }
 
+  function navToRegister() {
+    navigation.navigate("Register");
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={logo}></Image>
@@ -54,11 +58,16 @@ export default function Login({ navigation }) {
       ></AuthTextBox>
       <AuthAlert text={passwordError}></AuthAlert>
       <ChirpButton text="Continue" onPress={signInEmailPass}></ChirpButton>
-      <Text style={styles.orText}>or</Text>
-      <View style={styles.line} />
+      <View style={styles.or}>
+        <Text style={styles.orText}>or</Text>
+        <View style={styles.line} />
+      </View>
       <GoogleButton
         onPress={() => GoogleSignIn(navigation, "Register")}
       ></GoogleButton>
+      <Text style={styles.registerText} onPress={navToRegister}>
+        Register new account
+      </Text>
     </SafeAreaView>
   );
 }
@@ -72,25 +81,40 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   headingText: {
+    flex: 1,
     fontSize: 28,
     color: theme.colors.text,
-    marginBottom: 70,
-  },
-  orText: {
-    fontSize: theme.dimensions.standardFontSize,
-    color: theme.colors.text,
-    marginTop: 20,
+    marginBottom: 25,
   },
   logo: {
     width: 130,
     height: 130,
     padding: 0,
-    marginTop: 0,
-    marginBottom: 40,
+    marginTop: 10,
+    marginBottom: 15,
+  },
+  orText: {
+    fontSize: theme.dimensions.standardFontSize,
+    color: theme.colors.text,
   },
   line: {
     borderBottomColor: theme.colors.text,
     borderBottomWidth: 1,
+    width: "100%",
+  },
+  or: {
+    margin: 10,
+    marginBottom: 20,
+    flex: 1,
     width: "50%",
+    alignItems: "center",
+  },
+  registerText: {
+    flex: 1,
+    color: theme.colors.placeholderColor,
+    fontSize: theme.dimensions.standardFontSize,
+    marginTop: 10,
+    marginBottom: 10,
+    textDecorationLine: "underline",
   },
 });

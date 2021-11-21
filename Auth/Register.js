@@ -75,6 +75,10 @@ export default function Register({ navigation }) {
     }
   }
 
+  function navToLogin() {
+    navigation.navigate("Login");
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={logo}></Image>
@@ -105,6 +109,9 @@ export default function Register({ navigation }) {
       <GoogleButton
         onPress={() => GoogleSignIn(navigation, "Login")}
       ></GoogleButton>
+      <Text style={styles.loginText} onPress={navToLogin}>
+        Already have an account? Sign in
+      </Text>
     </SafeAreaView>
   );
 }
@@ -118,9 +125,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   headingText: {
+    flex: 1,
     fontSize: 28,
     color: theme.colors.text,
-    marginBottom: 70,
+    marginBottom: 15,
   },
   orText: {
     fontSize: theme.dimensions.standardFontSize,
@@ -131,12 +139,19 @@ const styles = StyleSheet.create({
     width: 130,
     height: 130,
     padding: 0,
-    marginTop: 0,
-    marginBottom: 40,
+    marginTop: 10,
+    marginBottom: 15,
   },
   line: {
     borderBottomColor: theme.colors.text,
     borderBottomWidth: 1,
     width: "50%",
+  },
+  loginText: {
+    flex: 1,
+    color: theme.colors.placeholderColor,
+    fontSize: theme.dimensions.standardFontSize,
+    marginTop: 10,
+    textDecorationLine: "underline",
   },
 });
