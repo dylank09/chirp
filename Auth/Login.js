@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { StyleSheet, Image, Text, View } from "react-native";
+import { StyleSheet, Image, Text, View, SafeAreaView } from "react-native";
 
 import { theme } from "../assets/Theme";
 import logo from "../assets/logo.png";
-import Button from "../components/Button";
-
-import firebase from "firebase/app";
-import "firebase/auth";
+import ChirpButton from "../components/ChirpButton";
 import AuthTextBox from "../components/AuthTextBox";
 import AuthAlert from "../components/AuthAlert";
 import GoogleButton from "../components/GoogleButton";
 
-export default function Login() {
+import firebase from "firebase/app";
+import "firebase/auth";
+import GoogleSignIn from "./GoogleSignIn";
+
+export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -24,7 +25,7 @@ export default function Login() {
       .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
-
+        navigation.navigate("Register");
         // set currentUser in the App to some value in order to render the main screen?
       })
       .catch((error) => {
@@ -42,7 +43,7 @@ export default function Login() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={logo}></Image>
       <Text style={styles.headingText}>Sign In</Text>
       <AuthTextBox placeholder="Email" onChangeText={setEmail}></AuthTextBox>
@@ -52,11 +53,13 @@ export default function Login() {
         onChangeText={setPassword}
       ></AuthTextBox>
       <AuthAlert text={passwordError}></AuthAlert>
-      <Button text="Continue" onPress={signInEmailPass}></Button>
+      <ChirpButton text="Continue" onPress={signInEmailPass}></ChirpButton>
       <Text style={styles.orText}>or</Text>
       <View style={styles.line} />
-      <GoogleButton></GoogleButton>
-    </View>
+      <GoogleButton
+        onPress={() => GoogleSignIn(navigation, "Register")}
+      ></GoogleButton>
+    </SafeAreaView>
   );
 }
 

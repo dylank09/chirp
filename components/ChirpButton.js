@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { theme } from "../assets/Theme";
 
-export default function Button(props) {
+export default function ChirpButton(props) {
   return (
     <TouchableOpacity onPress={props.onPress} style={styles.button}>
       <Text style={styles.buttonText}>{props.text ? props.text : "  "} </Text>

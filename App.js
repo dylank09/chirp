@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { theme } from "./assets/Theme";
 import Login from "./auth/Login";
@@ -16,11 +18,26 @@ const auth = firebase.auth(app);
 var user = auth.currentUser;
 console.log("Current user: " + user);
 
+const Stack = createNativeStackNavigator();
+
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      {user ? console.log("User logged in") : <Register />}
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName={user ? console.log("we went to the route") : "Login"}
+      >
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

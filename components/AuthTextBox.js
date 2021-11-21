@@ -18,15 +18,14 @@ export default function AuthTextBox(props) {
 
 const styles = StyleSheet.create({
   textBox: {
-    // backgroundColor: theme.colors.button,
     padding: 6,
     width: theme.dimensions.authWidth,
     color: theme.colors.text,
     fontSize: theme.dimensions.standardFontSize,
-    // borderRadius: 9,
     borderBottomColor: theme.colors.authTextBox,
     borderBottomWidth: 1,
     marginTop: 10,
     marginBottom: 5,
+    placeholderTextColor: theme.colors.placeholderColor,
   },
 });

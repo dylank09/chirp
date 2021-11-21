@@ -7,6 +7,7 @@ const theme = {
     button: "rgb(193, 73, 83)",
     text: "rgb(255, 255, 255)",
     authTextBox: "rgb(255, 255, 255)",
+    placeholderColor: "#9e9e9e",
     buttonText: "rgb(255, 255, 255)",
     jet: "rgb(45, 45, 42)",
     alertText: "rgb(193, 73, 83)",

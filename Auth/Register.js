@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { StyleSheet, Image, Text, View } from "react-native";
+import { StyleSheet, Image, Text, View, SafeAreaView } from "react-native";
 
 import { theme } from "../assets/Theme";
 import logo from "../assets/logo.png";
-import Button from "../components/Button";
-
-import firebase from "firebase/app";
-import "firebase/auth";
+import ChirpButton from "../components/ChirpButton";
 import AuthTextBox from "../components/AuthTextBox";
 import AuthAlert from "../components/AuthAlert";
 import GoogleButton from "../components/GoogleButton";
 
-export default function Register() {
+import firebase from "firebase/app";
+import "firebase/auth";
+import GoogleSignIn from "./GoogleSignIn";
+
+export default function Register({ navigation }) {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,6 +31,7 @@ export default function Register() {
           // Signed in
           // var user = userCredential.user;
 
+          navigation.navigate("Login");
           // set currentUser in the App to some value in order to render the main screen?
         })
         .catch((error) => {
@@ -73,34 +75,8 @@ export default function Register() {
     }
   }
 
-  function createUserGoogle() {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then((result) => {
-        /** @type {firebase.auth.OAuthCredential} */
-        var credential = result.credential;
-
-        // This gives you a Google Access Token use it to access the Google API
-        var token = credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
-      })
-      .catch((error) => {
-        console.log(error);
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        // var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        // var credential = error.credential;
-        // ...
-      });
-  }
-
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={logo}></Image>
       <Text style={styles.headingText}>Register</Text>
       <AuthTextBox
@@ -119,15 +95,17 @@ export default function Register() {
         placeholder="Confirm password"
         onChangeText={setConfirmPassword}
       ></AuthTextBox>
-      <Button
+      <ChirpButton
         style={styles.continueButton}
         text="Continue"
         onPress={createUserEmailPass}
-      ></Button>
+      ></ChirpButton>
       <Text style={styles.orText}>or</Text>
       <View style={styles.line} />
-      <GoogleButton onPress={createUserGoogle}></GoogleButton>
-    </View>
+      <GoogleButton
+        onPress={() => GoogleSignIn(navigation, "Login")}
+      ></GoogleButton>
+    </SafeAreaView>
   );
 }
 
