@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Image, Text, View, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  SafeAreaView,
+  KeyboardAvoidingView,
+} from "react-native";
 
 import { theme } from "../assets/Theme";
 import logo from "../assets/logo.png";
@@ -11,6 +18,7 @@ import AuthProviderButton from "../components/AuthProviderButton";
 import firebase from "firebase/app";
 import "firebase/auth";
 import GoogleSignIn from "./GoogleSignIn";
+import MicrosoftSignIn from "./MicrosoftSignIn";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -50,18 +58,19 @@ export default function Login({ navigation }) {
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={logo}></Image>
       <Text style={styles.headingText}>Sign In</Text>
-      <AuthTextBox placeholder="Email" onChangeText={setEmail}></AuthTextBox>
-      <AuthAlert text={emailError}></AuthAlert>
-      <AuthTextBox
-        placeholder="Password"
-        onChangeText={setPassword}
-      ></AuthTextBox>
-      <AuthAlert text={passwordError}></AuthAlert>
-      <ChirpButton text="Continue" onPress={signInEmailPass}></ChirpButton>
-      <View style={styles.or}>
-        <Text style={styles.orText}>or</Text>
-        <View style={styles.line} />
-      </View>
+
+      <KeyboardAvoidingView style={styles.inputContainer} behavior="padding">
+        <AuthTextBox placeholder="Email" onChangeText={setEmail}></AuthTextBox>
+        <AuthAlert text={emailError}></AuthAlert>
+        <AuthTextBox
+          placeholder="Password"
+          onChangeText={setPassword}
+        ></AuthTextBox>
+        <AuthAlert text={passwordError}></AuthAlert>
+        <ChirpButton text="Continue" onPress={signInEmailPass}></ChirpButton>
+      </KeyboardAvoidingView>
+      <Text style={styles.orText}>or</Text>
+      <View style={styles.line} />
       <AuthProviderButton
         text="Sign in with Google"
         type="google"
@@ -70,7 +79,7 @@ export default function Login({ navigation }) {
       <AuthProviderButton
         text="Sign in with Microsoft"
         type="microsoft"
-        // onPress={() => GoogleSignIn(navigation, "Register")}
+        onPress={() => MicrosoftSignIn(navigation, "Register")}
       ></AuthProviderButton>
       <Text style={styles.registerText} onPress={navToRegister}>
         Register new account
@@ -87,11 +96,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  inputContainer: {
+    flex: 2,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 20,
+  },
   headingText: {
     flex: 1,
     fontSize: 28,
     color: theme.colors.text,
     marginBottom: 25,
+    marginTop: 10,
   },
   logo: {
     width: 130,
@@ -107,17 +124,11 @@ const styles = StyleSheet.create({
   line: {
     borderBottomColor: theme.colors.text,
     borderBottomWidth: 1,
-    width: "100%",
-  },
-  or: {
-    margin: 10,
-    marginBottom: 20,
-    flex: 1,
+    marginBottom: 15,
     width: "50%",
-    alignItems: "center",
   },
   registerText: {
-    flex: 1,
+    flex: 0.3,
     color: theme.colors.placeholderColor,
     fontSize: theme.dimensions.standardFontSize,
     marginTop: 10,

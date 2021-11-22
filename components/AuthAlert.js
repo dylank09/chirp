@@ -18,11 +18,11 @@ export default function AuthAlert(props) {
 
 const styles = StyleSheet.create({
   alert: {
-    paddingLeft: 5,
+    paddingLeft: 3,
     width: theme.dimensions.authWidth,
     height: 15,
     color: theme.colors.alertText,
-    fontSize: 12,
+    fontSize: 11,
     margin: 0,
   },
 });

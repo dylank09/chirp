@@ -2,27 +2,29 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 export default function MicrosoftSignIn(navigation, next) {
-  //   var provider = new firebase.auth.GoogleAuthProvider();
-  //   firebase
-  //     .auth()
-  //     .signInWithPopup(provider)
-  //     .then((result) => {
-  //       /** @type {firebase.auth.OAuthCredential} */
-  //       //   var credential = result.credential;
-  //       // This gives you a Google Access Token use it to access the Google API
-  //       //   var token = credential.accessToken;
-  //       // The signed-in user info.
-  //       //   var user = result.user;
-  //       navigation.navigate(next);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       //   var errorCode = error.code;
-  //       //   var errorMessage = error.message;
-  //       // The email of the user's account used.
-  //       // var email = error.email;
-  //       // The firebase.auth.AuthCredential type that was used.
-  //       // var credential = error.credential;
-  //       // ...
-  //     });
+  var provider = new firebase.auth.OAuthProvider("microsoft.com");
+  provider.setCustomParameters({
+    // prompt: "consent",
+    // audience: "common",
+    // tenant: "f8cdef31-a31e-4b4a-93e4-5f571e91255a",
+  });
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then((result) => {
+      // IdP data available in result.additionalUserInfo.profile.
+      // ...
+
+      /** @type {firebase.auth.OAuthCredential} */
+      var credential = result.credential;
+
+      // OAuth access and id tokens can also be retrieved:
+      //   var accessToken = credential.accessToken;
+      //   var idToken = credential.idToken;
+      navigation.navigate(next);
+    })
+    .catch((error) => {
+      // Handle error.
+      console.log(error);
+    });
 }
