@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import { StyleSheet, Image, Text, View, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  KeyboardAvoidingView,
+} from "react-native";
 
 import { theme } from "../assets/Theme";
-import logo from "../assets/logo.png";
+import textLogo from "../assets/logo-text.png";
 import ChirpButton from "../components/ChirpButton";
 import AuthTextBox from "../components/AuthTextBox";
 import AuthAlert from "../components/AuthAlert";
@@ -81,24 +87,25 @@ export default function Register({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image style={styles.logo} source={logo}></Image>
       <Text style={styles.headingText}>Register</Text>
-      <AuthTextBox
-        placeholder="Full name"
-        onChangeText={setFullName}
-      ></AuthTextBox>
-      <AuthAlert text={nameError}></AuthAlert>
-      <AuthTextBox placeholder="Email" onChangeText={setEmail}></AuthTextBox>
-      <AuthAlert text={emailError}></AuthAlert>
-      <AuthTextBox
-        placeholder="Password"
-        onChangeText={setPassword}
-      ></AuthTextBox>
-      <AuthAlert text={passwordError}></AuthAlert>
-      <AuthTextBox
-        placeholder="Confirm password"
-        onChangeText={setConfirmPassword}
-      ></AuthTextBox>
+      <KeyboardAvoidingView style={styles.inputContainer} behavior="padding">
+        <AuthTextBox
+          placeholder="Full name"
+          onChangeText={setFullName}
+        ></AuthTextBox>
+        <AuthAlert text={nameError}></AuthAlert>
+        <AuthTextBox placeholder="Email" onChangeText={setEmail}></AuthTextBox>
+        <AuthAlert text={emailError}></AuthAlert>
+        <AuthTextBox
+          placeholder="Password"
+          onChangeText={setPassword}
+        ></AuthTextBox>
+        <AuthAlert text={passwordError}></AuthAlert>
+        <AuthTextBox
+          placeholder="Confirm password"
+          onChangeText={setConfirmPassword}
+        ></AuthTextBox>
+      </KeyboardAvoidingView>
       <ChirpButton
         style={styles.continueButton}
         text="Continue"
@@ -131,22 +138,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  inputContainer: {
+    flex: 2,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 20,
+  },
   headingText: {
     flex: 0.5,
     fontSize: 24,
     color: theme.colors.text,
+    marginTop: 15,
     marginBottom: 10,
   },
   orText: {
     fontSize: theme.dimensions.standardFontSize,
     color: theme.colors.text,
-  },
-  logo: {
-    width: 100,
-    height: 100,
-    padding: 0,
-    marginTop: 8,
-    marginBottom: 13,
   },
   line: {
     borderBottomColor: theme.colors.text,
