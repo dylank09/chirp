@@ -8,7 +8,7 @@ export default function SearchBar() {
   return (
     <View style={styles.container}>
       <Image></Image>
-      <TextInput placeholder="Search"></TextInput>
+      <TextInput style={styles.searchBox} placeholder="Search"></TextInput>
     </View>
   );
 }
@@ -21,8 +21,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     backgroundColor: theme.colors.primary,
-    color: "black",
     alignItems: "center",
     justifyContent: "center",
+  },
+  searchBox: {
+    color: "black",
+    placeholderTextColor: "black",
   },
 });

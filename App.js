@@ -6,25 +6,34 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { theme } from "./assets/Theme";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-//import ChirpChat from "./chat/ChirpChat"...
+import ChirpGroups from "./chat/ChirpGroups";
 
 import firebase from "firebase/app";
 import "firebase/auth";
-import { firebaseConfig } from "./config/FirebaseConfig";
-import ChirpGroups from "./chat/ChirpGroups";
+import app from "./config/Firebase";
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+
 const auth = firebase.auth(app);
-var user = auth.currentUser;
-console.log("Current user: " + user);
+var currentUser = null;
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    currentUser = user.email;
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName={user ? "ChirpGroups" : "Login"}>
+      <Stack.Navigator initialRouteName={currentUser ? "ChirpGroups" : "Login"}>
         <Stack.Screen
           name="Login"
           component={Login}

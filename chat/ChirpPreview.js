@@ -12,7 +12,9 @@ export default function ChirpPreview({
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.chatLogo}>
-        <Text style={{ fontSize: 10, textAlign: "center" }}>C</Text>
+        <Text style={{ fontSize: 10, textAlign: "center", fontWeight: "600" }}>
+          C
+        </Text>
       </View>
       <Text>This is the a preview of a chat</Text>
     </SafeAreaView>

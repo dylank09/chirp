@@ -13,6 +13,7 @@ export default function GoogleSignIn(navigation, next) {
       //   var token = credential.accessToken;
       // The signed-in user info.
       //   var user = result.user;
+      // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
       navigation.navigate(next);
     })
     .catch((error) => {
