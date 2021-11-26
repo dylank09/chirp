@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import { useState } from "react";
 
 import { theme } from "../assets/Theme";
 

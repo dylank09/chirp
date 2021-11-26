@@ -11,6 +11,7 @@ import Register from "./auth/Register";
 import firebase from "firebase/app";
 import "firebase/auth";
 import { firebaseConfig } from "./config/FirebaseConfig";
+import ChirpGroups from "./chat/ChirpGroups";
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
@@ -23,9 +24,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator
-        initialRouteName={user ? console.log("we went to the route") : "Login"}
-      >
+      <Stack.Navigator initialRouteName={user ? "ChirpGroups" : "Login"}>
         <Stack.Screen
           name="Login"
           component={Login}
@@ -34,6 +33,11 @@ export default function App() {
         <Stack.Screen
           name="Register"
           component={Register}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ChirpGroups"
+          component={ChirpGroups}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

@@ -4,9 +4,9 @@ import "firebase/auth";
 export default function MicrosoftSignIn(navigation, next) {
   var provider = new firebase.auth.OAuthProvider("microsoft.com");
   provider.setCustomParameters({
-    // prompt: "consent",
+    prompt: "consent",
     // audience: "common",
-    // tenant: "f8cdef31-a31e-4b4a-93e4-5f571e91255a",
+    tenant: "common",
   });
   firebase
     .auth()

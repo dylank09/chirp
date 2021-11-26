@@ -27,6 +27,8 @@ export default function Register({ navigation }) {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  const next = "ChirpGroups";
+
   function createUserEmailPass() {
     if (validateName() && validatePassword()) {
       firebase
@@ -37,7 +39,7 @@ export default function Register({ navigation }) {
           // Signed in
           // var user = userCredential.user;
 
-          navigation.navigate("Login");
+          navigation.navigate(next);
           // set currentUser in the App to some value in order to render the main screen?
         })
         .catch((error) => {
@@ -116,12 +118,12 @@ export default function Register({ navigation }) {
       <AuthProviderButton
         text="Sign in with Google"
         type="google"
-        onPress={() => GoogleSignIn(navigation, "Login")}
+        onPress={() => GoogleSignIn(navigation, next)}
       ></AuthProviderButton>
       <AuthProviderButton
         text="Sign in with Microsoft"
         type="microsoft"
-        // onPress={() => GoogleSignIn(navigation, "Register")}
+        onPress={() => GoogleSignIn(navigation, next)}
       ></AuthProviderButton>
       <Text style={styles.loginText} onPress={navToLogin}>
         Already have an account? Sign in
