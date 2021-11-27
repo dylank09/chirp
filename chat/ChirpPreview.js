@@ -12,7 +12,7 @@ export default function ChirpPreview({
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.chatLogo}>
-        <Text style={{ fontSize: 10, textAlign: "center", fontWeight: "600" }}>
+        <Text style={{ fontSize: 20, textAlign: "center", fontWeight: "500" }}>
           C
         </Text>
       </View>
@@ -24,6 +24,7 @@ export default function ChirpPreview({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "row",
     width: "100%",
     height: 50,
     borderBottomColor: theme.colors.text,
@@ -32,9 +33,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   chatLogo: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
+    width: 40,
+    height: 40,
+    margin: 7,
+    borderRadius: 20,
     backgroundColor: "#8487A5",
     justifyContent: "center",
   },

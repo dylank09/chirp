@@ -15,17 +15,18 @@ export default function SearchBar() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    padding: 10,
+    margin: 10,
+    borderRadius: 18,
     width: "90%",
-    padding: 5,
-    marginTop: 5,
-    marginBottom: 5,
-    backgroundColor: theme.colors.primary,
     alignItems: "center",
+    height: theme.dimensions.buttonHeight,
+    backgroundColor: theme.colors.primary,
     justifyContent: "center",
   },
   searchBox: {
     color: "black",
     placeholderTextColor: "black",
+    fontSize: theme.dimensions.standardFontSize + 2,
   },
 });
