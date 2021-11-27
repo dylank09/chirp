@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Image, View, TextInput } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 // import searchIcon from "../assets/logo.png";
@@ -7,7 +8,7 @@ import { theme } from "../assets/Theme";
 export default function SearchBar() {
   return (
     <View style={styles.container}>
-      <Image></Image>
+      <Ionicons name="search" size={24} color="black" />
       <TextInput style={styles.searchBox} placeholder="Search"></TextInput>
     </View>
   );
@@ -15,18 +16,22 @@ export default function SearchBar() {
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: "row",
     padding: 10,
-    margin: 10,
-    borderRadius: 18,
+    marginTop: 20,
+    marginBottom: 25,
+    borderRadius: 23,
     width: "90%",
-    alignItems: "center",
-    height: theme.dimensions.buttonHeight,
+    // alignItems: "center",
+    height: theme.dimensions.buttonHeight + 10,
     backgroundColor: theme.colors.primary,
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
   searchBox: {
     color: "black",
+    marginLeft: 10,
     placeholderTextColor: "black",
     fontSize: theme.dimensions.standardFontSize + 2,
+    width: "80%",
   },
 });

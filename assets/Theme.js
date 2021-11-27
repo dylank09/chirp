@@ -19,7 +19,7 @@ const theme = {
     buttonWidth: "40%",
     authButtonWidth: "70%",
     buttonHeight: "",
-    inputHeight: "",
+    inputHeight: 50,
   },
 };
 

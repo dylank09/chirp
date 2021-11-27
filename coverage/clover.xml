@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1637911687658" clover="3.2.0">
-  <project timestamp="1637911687659" name="All files">
-    <metrics statements="90" coveredstatements="0" conditionals="33" coveredconditionals="0" methods="30" coveredmethods="0" elements="153" coveredelements="0" complexity="0" loc="90" ncloc="90" packages="6" files="12" classes="12"/>
+<coverage generated="1638032356543" clover="3.2.0">
+  <project timestamp="1638032356543" name="All files">
+    <metrics statements="103" coveredstatements="0" conditionals="35" coveredconditionals="0" methods="34" coveredmethods="0" elements="172" coveredelements="0" complexity="0" loc="103" ncloc="103" packages="6" files="17" classes="17"/>
     <package name="chirp">
-      <metrics statements="7" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="13" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="App.js" path="C:\Users\dylan\chirp\App.js">
-        <metrics statements="7" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="8" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="25" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+      </file>
+      <file name="AppContainer.js" path="C:\Users\dylan\chirp\AppContainer.js">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+      </file>
+      <file name="LoadingScreen.js" path="C:\Users\dylan\chirp\LoadingScreen.js">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
       </file>
     </package>
     <package name="chirp.assets">
@@ -23,13 +35,19 @@
       </file>
     </package>
     <package name="chirp.auth">
-      <metrics statements="69" coveredstatements="0" conditionals="23" coveredconditionals="0" methods="22" coveredmethods="0"/>
+      <metrics statements="72" coveredstatements="0" conditionals="23" coveredconditionals="0" methods="23" coveredmethods="0"/>
+      <file name="AuthContainer.js" path="C:\Users\dylan\chirp\auth\AuthContainer.js">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+      </file>
       <file name="GoogleSignIn.js" path="C:\Users\dylan\chirp\auth\GoogleSignIn.js">
         <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
       </file>
       <file name="Login.js" path="C:\Users\dylan\chirp\auth\Login.js">
         <metrics statements="20" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="7" coveredmethods="0"/>
@@ -107,15 +125,20 @@
       </file>
     </package>
     <package name="chirp.chat">
-      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="ChirpGroups.js" path="C:\Users\dylan\chirp\chat\ChirpGroups.js">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+      </file>
+      <file name="ChirpPreview.js" path="C:\Users\dylan\chirp\chat\ChirpPreview.js">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
       </file>
     </package>
     <package name="chirp.components">
-      <metrics statements="10" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <metrics statements="12" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="7" coveredmethods="0"/>
       <file name="AuthAlert.js" path="C:\Users\dylan\chirp\components\AuthAlert.js">
         <metrics statements="4" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="8" count="0" type="stmt"/>
@@ -138,12 +161,17 @@
         <line num="7" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
       </file>
+      <file name="SearchBar.js" path="C:\Users\dylan\chirp\components\SearchBar.js">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+      </file>
     </package>
     <package name="chirp.config">
       <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="FirebaseConfig.js" path="C:\Users\dylan\chirp\config\FirebaseConfig.js">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
+        <line num="1" count="0" type="stmt"/>
       </file>
     </package>
   </project>

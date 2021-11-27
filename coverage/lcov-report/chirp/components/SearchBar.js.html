@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for chirp/chat/ChirpGroups.js</title>
+    <title>Code coverage report for chirp/components/SearchBar.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">chirp/chat</a> ChirpGroups.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">chirp/components</a> SearchBar.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -85,10 +85,16 @@
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -105,6 +111,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -114,31 +132,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from "react";
-import { StyleSheet, Image, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, Image, View, TextInput } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 &nbsp;
 import { theme } from "../assets/Theme";
-// import logo from "../assets/logo.png";
+// import searchIcon from "../assets/logo.png";
 &nbsp;
-import firebase from "firebase/app";
-import ChirpPreview from "./ChirpPreview";
-import SearchBar from "../components/SearchBar";
-&nbsp;
-export default function <span class="fstat-no" title="function not covered" >ChirpGroups(</span>) {
+export default function <span class="fstat-no" title="function not covered" >SearchBar(</span>) {
 <span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;SafeAreaView style={styles.container}&gt;
-      &lt;SearchBar&gt;&lt;/SearchBar&gt;
-      &lt;ChirpPreview&gt;&lt;/ChirpPreview&gt;
-    &lt;/SafeAreaView&gt;
+    &lt;View style={styles.container}&gt;
+      &lt;Ionicons name="search" size={24} color="black" /&gt;
+      &lt;TextInput style={styles.searchBox} placeholder="Search"&gt;&lt;/TextInput&gt;
+    &lt;/View&gt;
   );
 }
 &nbsp;
 const styles = <span class="cstat-no" title="statement not covered" >StyleSheet.create({</span>
   container: {
-    flex: 1,
-    height: "100%",
-    width: "100%",
-    backgroundColor: theme.colors.background,
-    alignItems: "center",
+    flexDirection: "row",
+    padding: 10,
+    marginTop: 20,
+    marginBottom: 25,
+    borderRadius: 23,
+    width: "90%",
+    // alignItems: "center",
+    height: theme.dimensions.buttonHeight + 10,
+    backgroundColor: theme.colors.primary,
+    justifyContent: "flex-start",
+  },
+  searchBox: {
+    color: "black",
+    marginLeft: 10,
+    placeholderTextColor: "black",
+    fontSize: theme.dimensions.standardFontSize + 2,
+    width: "80%",
   },
 });
 &nbsp;</pre></td></tr></table></pre>
