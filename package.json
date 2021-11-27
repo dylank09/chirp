@@ -33,11 +33,15 @@
     "firebase": "8.2.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-firebase-hooks": "^3.0.4",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-elements": "^3.4.2",
+    "react-native-gesture-handler": "^1.10.3",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
-    "react-native-web": "^0.17.5"
+    "react-native-web": "^0.17.5",
+    "react-navigation": "^4.4.4",
+    "react-navigation-tabs": "^2.11.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
