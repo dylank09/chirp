@@ -14,9 +14,10 @@ import AuthTextBox from "../components/AuthTextBox";
 import AuthAlert from "../components/AuthAlert";
 import AuthProviderButton from "../components/AuthProviderButton";
 
-import firebase from "firebase/app";
+import firebase from "../config/FirebaseConfig";
 import "firebase/auth";
 import GoogleSignIn from "./GoogleSignIn";
+import AddUserToDB from "../userFunctions/AddUserToDB";
 
 export default function Register({ navigation }) {
   const [fullName, setFullName] = useState("");
@@ -38,7 +39,7 @@ export default function Register({ navigation }) {
           setEmailError("");
           // Signed in
           // var user = userCredential.user;
-
+          AddUserToDB(fullName);
           navigation.navigate(next);
           // set currentUser in the App to some value in order to render the main screen?
         })

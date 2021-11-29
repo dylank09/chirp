@@ -7,7 +7,7 @@ export default function SendText() {
   return (
     <View>
       <TextInput style={styles.textInput} placeholder="Message"></TextInput>
-      <TouchableOpacity></TouchableOpacity>;
+      <TouchableOpacity></TouchableOpacity>
     </View>
   );
 }

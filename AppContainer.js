@@ -2,7 +2,7 @@ import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Dimensions } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 
 import ChirpGroups from "./chat/ChirpGroups";
 import { theme } from "./assets/Theme";
@@ -15,15 +15,25 @@ const bottomTabNavigator = createBottomTabNavigator(
     Chat: {
       screen: ChirpGroups,
       navigationOptions: {
-        tabBarIcon: (
-          <Ionicons name="chatbubbles-sharp" size={24} color="white" />
+        tabBarIcon: ({ focused }) => (
+          <Ionicons
+            name={focused ? "chatbubbles-sharp" : "chatbubbles-outline"}
+            size={focused ? 27 : 24}
+            color="white"
+          />
         ),
       },
     },
     Login: {
       screen: Login,
       navigationOptions: {
-        tabBarIcon: <Ionicons name="search" size={24} color="white" />,
+        tabBarIcon: ({ focused }) => (
+          <FontAwesome5
+            name={focused ? "user-alt" : "user"}
+            size={focused ? 27 : 24}
+            color="white"
+          />
+        ),
       },
     },
   },

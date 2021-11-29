@@ -6,13 +6,9 @@ import AppContainer from "./AppContainer";
 import AuthContainer from "./auth/AuthContainer";
 import LoadingScreen from "./LoadingScreen";
 
-import firebase from "firebase/app";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "firebase/auth";
-import firebaseConfig from "./config/FirebaseConfig";
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+import firebase from "./config/FirebaseConfig";
 
 const auth = firebase.auth();
 
