@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, View, SafeAreaView } from "react-native";
 
-import firebase from "../config/FirebaseConfig";
+import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/auth";
 
 import { theme } from "../assets/Theme";
 import ChirpPreview from "./ChirpPreview";
@@ -16,21 +17,20 @@ export default function ChirpGroups() {
   const [chatId, setChatId] = useState();
   const [groups, setGroups] = useState();
 
-  function goToChat() {
-    console.log("hiiii");
-    setChatId(1);
+  const auth = firebase.auth();
+
+  function goToChat(id) {
+    setChatId(id);
     setClicked(true);
   }
 
   function getJoinedChatGroups() {
-    const messagesRef = firestore
-      .collection("chatGroups")
-      .doc(id)
-      .collection("messages");
+    const userRef = firestore.collection("users").doc(auth.currentUser.uid);
 
-    const query = messagesRef.orderBy("createdAt").limit(25);
+    const data = userRef.get();
 
-    const [messages] = useCollectionData(query, { idField: "id" });
+    console.log(data);
+    //setGroups(data)
   }
 
   function backToGroups() {
@@ -39,13 +39,13 @@ export default function ChirpGroups() {
   }
 
   return (
-    <View>
+    <View style={styles.outerContainer}>
       {clicked ? (
         <ChirpChat id={chatId} onBackPress={backToGroups} />
       ) : (
         <SafeAreaView style={styles.container}>
           <SearchBar></SearchBar>
-          <ChirpPreview onPress={goToChat}></ChirpPreview>
+          <ChirpPreview onPress={() => goToChat(1)}></ChirpPreview>
         </SafeAreaView>
       )}
     </View>
@@ -55,9 +55,11 @@ export default function ChirpGroups() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: "100%",
-    width: "100%",
     backgroundColor: theme.colors.background,
     alignItems: "center",
+  },
+  outerContainer: {
+    height: "100%",
+    width: "100%",
   },
 });

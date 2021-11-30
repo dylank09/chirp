@@ -18,7 +18,10 @@ const styles = StyleSheet.create({
     width: "85%",
     backgroundColor: theme.colors.secondary,
     alignItems: "center",
-    color: theme.colors.text,
+    placeholderTextColor: "#404040",
+    color: theme.colors.jet,
+    borderRadius: 24,
+    padding: 8,
   },
   send: {
     width: "10%",

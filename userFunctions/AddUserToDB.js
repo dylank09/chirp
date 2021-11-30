@@ -9,10 +9,9 @@ const auth = firebase.auth();
 
 async function AddUserToDB(name) {
   const usersRef = firestore.collection("users");
-  await usersRef.add({
+  await usersRef.doc(auth.currentUser.uid).set({
     email: auth.currentUser.email,
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    uid: auth.currentUser.uid,
     photoURL: auth.currentUser.photoURL,
     name: name ? name : auth.currentUser.displayName,
   });
