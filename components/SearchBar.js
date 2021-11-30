@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { StyleSheet, Image, View, TextInput } from "react-native";
+import React from "react";
+import { StyleSheet, View, TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
-// import searchIcon from "../assets/logo.png";
 
 export default function SearchBar() {
   return (

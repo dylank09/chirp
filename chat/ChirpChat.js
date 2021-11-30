@@ -70,19 +70,16 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   bottomBar: {
-    margin: 10,
+    width: "100%",
+    justifyContent: "center",
   },
   back: {
     marginLeft: 10,
   },
   chatName: {
-    // alignSelf: "flex-start",
     color: theme.colors.text,
     width: "100%",
     textAlign: "center",
     marginRight: 25,
-  },
-  sender: {
-    // alignSelf: "flex-end",
   },
 });

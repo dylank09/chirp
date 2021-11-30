@@ -7,53 +7,55 @@ import firebase from "firebase/app";
 
 export default function Message({ text, timestamp, user, me }) {
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        minWidth: "50",
-        maxWidth: "60%",
-        borderRadius: 24,
-        padding: 5,
-        marginLeft: 5,
-        marginRight: 5,
-        marginTop: 3,
-        height: theme.dimensions.inputHeight + 2,
-        backgroundColor: me ? theme.colors.primary : theme.colors.secondary,
-      }}
-    >
-      <View style={styles.userAndText}>
-        <Text style={styles.user}>{user ? user : "User Sample"}</Text>
+    <View style={styles.row}>
+      <View style={styles.messageBox}>
+        <View style={styles.userAndText}>
+          <Text style={styles.user}>{user ? user : "User Sample"}</Text>
 
-        <Text style={styles.text}>{text ? text : "Sample text"}</Text>
-      </View>
-      <View style={styles.ts}>
-        <Text>{timestamp ? timestamp : "16:01"} </Text>
+          <Text style={styles.text}>{text ? text : "Sample text"}</Text>
+        </View>
+        <Text style={styles.ts}>{timestamp ? timestamp : "16:01"} </Text>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  row: {
+    width: "100%",
+    alignContent: "flex-start",
+  },
+  messageBox: {
+    borderRadius: theme.dimensions.inputHeight / 2,
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    maxWidth: "60%",
+    padding: 6,
+    marginLeft: 4,
+    height: theme.dimensions.inputHeight,
+    backgroundColor: theme.colors.secondary,
+  },
   userAndText: {
-    flex: 1,
-    marginLeft: 5,
+    marginLeft: 4,
   },
   user: {
     padding: 2,
+    color: theme.colors.text,
     alignSelf: "flex-start",
     fontSize: theme.dimensions.standardFontSize - 3,
   },
   text: {
-    flex: 1,
     textAlign: "left",
     justifyContent: "flex-start",
-    padding: 3,
+    color: theme.colors.text,
+    padding: 2,
     alignSelf: "flex-start",
     fontSize: theme.dimensions.standardFontSize,
   },
   ts: {
-    alignSelf: "flex-end",
-    padding: 2,
+    alignSelf: "flex-start",
+    paddingTop: 2,
+    color: theme.colors.text,
     fontSize: theme.dimensions.standardFontSize - 4,
   },
 });
