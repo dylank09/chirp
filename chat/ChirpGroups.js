@@ -4,33 +4,32 @@ import { StyleSheet, View, SafeAreaView } from "react-native";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 import { theme } from "../assets/Theme";
 import ChirpPreview from "./ChirpPreview";
 import SearchBar from "../components/SearchBar";
 import ChirpChat from "./ChirpChat";
+import app from "../config/FirebaseConfig";
 
-const firestore = firebase.firestore();
+const firestore = firebase.firestore(app);
+const auth = firebase.auth();
 
 export default function ChirpGroups() {
-  const [clicked, setClicked] = useState(true);
+  const [clicked, setClicked] = useState(false);
   const [chatId, setChatId] = useState();
-  const [groups, setGroups] = useState();
 
-  const auth = firebase.auth();
+  const uid = auth.currentUser.uid;
+
+  const chatsRef = firestore.collection("chatGroups");
+  const query = chatsRef.where("members", "array-contains", uid);
+  const [groups, loading] = useCollectionData(query);
+
+  console.log(groups);
 
   function goToChat(id) {
     setChatId(id);
     setClicked(true);
-  }
-
-  function getJoinedChatGroups() {
-    const userRef = firestore.collection("users").doc(auth.currentUser.uid);
-
-    const data = userRef.get();
-
-    console.log(data);
-    //setGroups(data)
   }
 
   function backToGroups() {
@@ -45,7 +44,17 @@ export default function ChirpGroups() {
       ) : (
         <SafeAreaView style={styles.container}>
           <SearchBar></SearchBar>
-          <ChirpPreview onPress={() => goToChat(1)}></ChirpPreview>
+          {groups &&
+            groups.map((grp) => (
+              <ChirpPreview
+                key={grp.createdAt}
+                chatName={grp.name}
+                previewText={grp.lastMessage}
+                previewtimestamp={grp.lastMessageTimestamp}
+                opened={grp.membersUnseen && uid in grp.membersUnseen}
+                onPress={() => goToChat(1)}
+              />
+            ))}
         </SafeAreaView>
       )}
     </View>

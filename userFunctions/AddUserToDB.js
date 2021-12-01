@@ -14,6 +14,7 @@ async function AddUserToDB(name) {
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     photoURL: auth.currentUser.photoURL,
     name: name ? name : auth.currentUser.displayName,
+    joinedChats: null,
   });
 }
 

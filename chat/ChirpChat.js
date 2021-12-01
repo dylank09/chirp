@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Image, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
@@ -39,9 +39,10 @@ export default function ChirpChat({ id, onBackPress }) {
         />
         <Text style={styles.chatName}>Name of Chat, ID: {id} </Text>
       </View>
-      <View style={styles.messagesBox}>
-        <Message></Message>
-      </View>
+      <ScrollView style={styles.messagesBox}>
+        <Message me={true}></Message>
+        <Message me={false}></Message>
+      </ScrollView>
       <View style={styles.bottomBar}>
         <SendText></SendText>
       </View>
@@ -81,5 +82,6 @@ const styles = StyleSheet.create({
     width: "100%",
     textAlign: "center",
     marginRight: 25,
+    fontWeight: "500",
   },
 });
