@@ -25,8 +25,6 @@ export default function ChirpGroups() {
   const query = chatsRef.where("members", "array-contains", uid);
   const [groups, loading] = useCollectionData(query);
 
-  console.log(groups);
-
   function goToChat(id) {
     setChatId(id);
     setClicked(true);
@@ -51,7 +49,7 @@ export default function ChirpGroups() {
                 chatName={grp.name}
                 previewText={grp.lastMessage}
                 previewtimestamp={grp.lastMessageTimestamp}
-                opened={grp.membersUnseen && uid in grp.membersUnseen}
+                notOpened={grp.membersUnseen.includes(uid)}
                 onPress={() => goToChat(1)}
               />
             ))}

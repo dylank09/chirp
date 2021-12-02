@@ -6,27 +6,35 @@ import { theme } from "../assets/Theme";
 export default function ChirpPreview({
   chatName,
   previewText,
-  opened,
+  notOpened,
   previewtimestamp,
   onPress,
 }) {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.chatLogo}>
-        <Text style={{ fontSize: 20, textAlign: "center", fontWeight: "500" }}>
+        <Text
+          style={{
+            fontSize: 20,
+            textAlign: "center",
+            fontWeight: notOpened ? "500" : "400",
+          }}
+        >
           {chatName ? chatName[0] : "E"}
         </Text>
       </View>
       <View>
-        <Text style={styles.name}>{chatName ? chatName : "Name Err"}</Text>
+        <Text style={[styles.name, { fontWeight: notOpened ? "500" : "400" }]}>
+          {chatName ? chatName : "Name Err"}
+        </Text>
         <Text
-          style={[styles.message, { fontWeight: opened ? "bold" : "normal" }]}
+          style={[styles.message, { fontWeight: notOpened ? "500" : "400" }]}
         >
           {previewText ? previewText : "Preview text error"}
         </Text>
       </View>
       <Text
-        style={[styles.timestamp, { fontWeight: opened ? "bold" : "normal" }]}
+        style={[styles.timestamp, { fontWeight: notOpened ? "500" : "400" }]}
       >
         {previewtimestamp ? previewtimestamp : "err"}
       </Text>
@@ -41,7 +49,6 @@ const styles = StyleSheet.create({
     height: 65,
     borderColor: "white",
     borderBottomWidth: 1,
-    // backgroundColor: theme.colors.background,
     padding: 7,
     alignItems: "center",
   },

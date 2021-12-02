@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -12,20 +12,12 @@ import "firebase/firestore";
 const firestore = firebase.firestore();
 
 export default function ChirpChat({ id, onBackPress }) {
-  const [msgs, setMsgs] = useState();
-
-  function chatRoom() {
-    const messagesRef = firestore
-      .collection("chatGroups")
-      .doc(id)
-      .collection("messages");
-
-    const query = messagesRef.orderBy("createdAt").limit(25);
-
-    const [messages] = useCollectionData(query, { idField: "id" });
-
-    setMsgs(messages);
-  }
+  const messagesRef = firestore
+    .collection("chatGroups")
+    .doc(id)
+    .collection("messages");
+  const query = messagesRef.orderBy("createdAt").limit(50);
+  const [msgs, loading] = useCollectionData(query);
 
   return (
     <View style={styles.container}>
