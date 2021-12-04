@@ -4,6 +4,21 @@ import { StyleSheet, Text, View } from "react-native";
 import { theme } from "../assets/Theme";
 
 export default function Message({ text, timestamp, user, me }) {
+  if (timestamp) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(timestamp);
+    let today = new Date().toLocaleString() + "";
+    timestamp = t.toLocaleString() + "";
+
+    if (today.slice(0, 10) == timestamp.slice(0, 10)) {
+      timestamp = timestamp.slice(12, 17);
+    } else {
+      timestamp = timestamp.slice(0, 5);
+    }
+  } else {
+    timestamp = "";
+  }
+
   return (
     <View style={styles.row}>
       <View
@@ -16,14 +31,10 @@ export default function Message({ text, timestamp, user, me }) {
         ]}
       >
         <View style={styles.userAndTime}>
-          <Text style={styles.user}>{user ? user : "User Sample"}</Text>
-          <Text style={styles.ts}>{timestamp ? timestamp : "16:01"} </Text>
+          <Text style={styles.user}>{user ? user : ""}</Text>
+          <Text style={styles.ts}>{timestamp} </Text>
         </View>
-        <Text style={styles.text}>
-          {text
-            ? text
-            : "Sample text bla bla bla bla bla extra extra extra extra"}
-        </Text>
+        <Text style={styles.text}>{text ? text : ""}</Text>
       </View>
     </View>
   );

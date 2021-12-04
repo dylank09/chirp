@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, TextInput, View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 
-export default function SendText() {
+export default function SendText({ changeText, send }) {
+  // const [txt, setTxt] = useState("");
+
   return (
     <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-      <TextInput style={styles.textInput} placeholder="Message"></TextInput>
-      <TouchableOpacity style={styles.send}>
+      <TextInput
+        style={styles.textInput}
+        placeholder="Message"
+        onChange={changeText}
+      ></TextInput>
+      <TouchableOpacity style={styles.send} onPress={() => send()}>
         <Ionicons name="send" size={20} color={theme.colors.text} />
       </TouchableOpacity>
     </View>

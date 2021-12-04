@@ -1,23 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 import Message from "./Message";
 import SendText from "./SendText";
+import LoadingScreen from "../components/LoadingScreen";
 
-import firebase from "../config/FirebaseConfig";
+import firebase from "firebase/app";
 import "firebase/firestore";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import app from "../config/FirebaseConfig";
 
-const firestore = firebase.firestore();
+const firestore = firebase.firestore(app);
+const auth = firebase.auth();
 
-export default function ChirpChat({ id, onBackPress }) {
+export default function ChirpChat({ name, id, onBackPress }) {
+  const [text, setText] = useState("");
+
   const messagesRef = firestore
     .collection("chatGroups")
     .doc(id)
     .collection("messages");
   const query = messagesRef.orderBy("createdAt").limit(50);
-  const [msgs, loading] = useCollectionData(query);
+  const [msgs, loading] = useCollectionData(query, { idField: "msgId" });
+
+  console.log(msgs);
+
+  const { uid, displayName } = auth.currentUser;
+
+  const sendText = async () => {
+    await messagesRef.add({
+      text: text,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      uid,
+      user: displayName ? displayName : "",
+    });
+
+    setText("");
+  };
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <View style={styles.container}>
@@ -29,14 +54,22 @@ export default function ChirpChat({ id, onBackPress }) {
           color="white"
           onPress={onBackPress}
         />
-        <Text style={styles.chatName}>Name of Chat, ID: {id} </Text>
+        <Text style={styles.chatName}>{name}</Text>
       </View>
       <ScrollView style={styles.messagesBox}>
-        <Message me={true}></Message>
-        <Message me={false}></Message>
+        {msgs &&
+          msgs.map((msg) => (
+            <Message
+              key={msg.msgId}
+              text={msg.text}
+              timestamp={msg.createdAt.seconds}
+              me={msg.uid == uid}
+              user={msg.user}
+            />
+          ))}
       </ScrollView>
       <View style={styles.bottomBar}>
-        <SendText></SendText>
+        <SendText send={sendText} changeText={setText}></SendText>
       </View>
     </View>
   );

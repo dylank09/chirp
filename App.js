@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { theme } from "./assets/Theme";
 import AppContainer from "./AppContainer";
 import AuthContainer from "./auth/AuthContainer";
-import LoadingScreen from "./LoadingScreen";
+import LoadingScreen from "./components/LoadingScreen";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import "firebase/auth";
