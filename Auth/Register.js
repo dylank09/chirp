@@ -16,7 +16,7 @@ import AuthProviderButton from "../components/AuthProviderButton";
 import firebase from "../config/FirebaseConfig";
 import "firebase/auth";
 import GoogleSignIn from "./GoogleSignIn";
-import AddUserToDB from "../userFunctions/AddUserToDB";
+import AddUserToDB from "../functions/AddUserToDB";
 
 export default function Register({ navigation }) {
   const [fullName, setFullName] = useState("");

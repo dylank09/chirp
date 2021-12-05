@@ -2,22 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import { theme } from "../assets/Theme";
+import FormatTime from "../functions/FormatTime";
 
 export default function Message({ text, timestamp, user, me }) {
-  if (timestamp) {
-    var t = new Date(1970, 0, 1); // Epoch
-    t.setSeconds(timestamp);
-    let today = new Date().toLocaleString() + "";
-    timestamp = t.toLocaleString() + "";
-
-    if (today.slice(0, 10) == timestamp.slice(0, 10)) {
-      timestamp = timestamp.slice(12, 17);
-    } else {
-      timestamp = timestamp.slice(0, 5);
-    }
-  } else {
-    timestamp = "";
-  }
+  timestamp = FormatTime(timestamp);
 
   return (
     <View style={styles.row}>
@@ -35,7 +23,7 @@ export default function Message({ text, timestamp, user, me }) {
           <Text style={styles.user}>{user ? user : ""}</Text>
           <Text style={styles.ts}>{timestamp} </Text>
         </View>
-        <Text style={[styles.text, { textAlign: me ? "right" : "left" }]}>
+        <Text style={[styles.text, { textAlign: me ? "left" : "right" }]}>
           {text ? text : ""}
         </Text>
       </View>

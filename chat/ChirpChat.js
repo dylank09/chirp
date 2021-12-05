@@ -9,27 +9,26 @@ import LoadingScreen from "../components/LoadingScreen";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import {
+  useCollectionData,
+  useDocumentData,
+} from "react-firebase-hooks/firestore";
 import app from "../config/FirebaseConfig";
 
 const firestore = firebase.firestore(app);
 const auth = firebase.auth();
 
 export default function ChirpChat({ name, id, onBackPress }) {
+  const { uid } = auth.currentUser;
+  const userRef = firestore.collection("users").doc(uid);
+  const [user] = useDocumentData(userRef);
+
   const messagesRef = firestore
     .collection("chatGroups")
     .doc(id)
     .collection("messages");
   const query = messagesRef.orderBy("createdAt").limit(50);
   const [msgs, loading] = useCollectionData(query, { idField: "msgId" });
-
-  const { uid, displayName } = auth.currentUser;
-  const [user, setUser] = useState();
-  firestore
-    .collection("users")
-    .doc(uid)
-    .get()
-    .then((snapshot) => setUser(snapshot.data()));
 
   async function sendText(text) {
     await messagesRef.add({
@@ -38,6 +37,14 @@ export default function ChirpChat({ name, id, onBackPress }) {
       uid,
       user: user.name,
     });
+
+    firestore
+      .collection("chatGroups")
+      .doc(id)
+      .update({
+        lastMessage: text.slice(0, 30) + "...",
+        lastMessageTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
   }
 
   if (loading) {

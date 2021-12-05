@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 // import firebase from "../config/FirebaseConfig";
-import AddUserToDB from "../userFunctions/AddUserToDB";
+import AddUserToDB from "../functions/AddUserToDB";
 import "firebase/auth";
 
 export default function GoogleSignIn() {

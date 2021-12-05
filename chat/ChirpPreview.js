@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import FormatTime from "../functions/FormatTime";
 
 import { theme } from "../assets/Theme";
 
@@ -10,6 +11,8 @@ export default function ChirpPreview({
   previewtimestamp,
   onPress,
 }) {
+  previewtimestamp = FormatTime(previewtimestamp);
+
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.chatLogo}>
@@ -30,13 +33,13 @@ export default function ChirpPreview({
         <Text
           style={[styles.message, { fontWeight: notOpened ? "500" : "400" }]}
         >
-          {previewText ? previewText : "Preview text error"}
+          {previewText ? previewText : ""}
         </Text>
       </View>
       <Text
         style={[styles.timestamp, { fontWeight: notOpened ? "500" : "400" }]}
       >
-        {previewtimestamp ? previewtimestamp : "err"}
+        {previewtimestamp ? previewtimestamp : ""}
       </Text>
     </TouchableOpacity>
   );
