@@ -24,9 +24,7 @@ export default function ChirpGroups() {
 
   const chatsRef = firestore.collection("chatGroups");
   const query = chatsRef.where("members", "array-contains", uid);
-  const [groups, loading] = useCollectionData(query, { idField: "chatId" });
-
-  console.log(groups);
+  const [groups] = useCollectionData(query, { idField: "chatId" });
 
   function goToChat(id, name) {
     setChatId(id);

@@ -27,6 +27,7 @@ export default function Message({ text, timestamp, user, me }) {
           {
             alignSelf: me ? "flex-end" : "flex-start",
             backgroundColor: me ? theme.colors.primary : theme.colors.secondary,
+            textAlign: me ? "right" : "left",
           },
         ]}
       >
@@ -34,7 +35,9 @@ export default function Message({ text, timestamp, user, me }) {
           <Text style={styles.user}>{user ? user : ""}</Text>
           <Text style={styles.ts}>{timestamp} </Text>
         </View>
-        <Text style={styles.text}>{text ? text : ""}</Text>
+        <Text style={[styles.text, { textAlign: me ? "right" : "left" }]}>
+          {text ? text : ""}
+        </Text>
       </View>
     </View>
   );
@@ -61,17 +64,18 @@ const styles = StyleSheet.create({
   user: {
     color: theme.colors.jet,
     alignSelf: "flex-start",
+    marginRight: 2,
     fontWeight: "700",
     fontSize: theme.dimensions.standardFontSize - 4,
   },
   ts: {
     alignSelf: "flex-start",
+    marginLeft: 2,
     color: theme.colors.jet,
     fontWeight: "700",
     fontSize: theme.dimensions.standardFontSize - 4,
   },
   text: {
-    textAlign: "left",
     justifyContent: "flex-start",
     color: theme.colors.text,
     padding: 4,

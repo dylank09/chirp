@@ -16,8 +16,6 @@ const firestore = firebase.firestore(app);
 const auth = firebase.auth();
 
 export default function ChirpChat({ name, id, onBackPress }) {
-  const [text, setText] = useState("");
-
   const messagesRef = firestore
     .collection("chatGroups")
     .doc(id)
@@ -25,20 +23,22 @@ export default function ChirpChat({ name, id, onBackPress }) {
   const query = messagesRef.orderBy("createdAt").limit(50);
   const [msgs, loading] = useCollectionData(query, { idField: "msgId" });
 
-  console.log(msgs);
-
   const { uid, displayName } = auth.currentUser;
+  const [user, setUser] = useState();
+  firestore
+    .collection("users")
+    .doc(uid)
+    .get()
+    .then((snapshot) => setUser(snapshot.data()));
 
-  const sendText = async () => {
+  async function sendText(text) {
     await messagesRef.add({
-      text: text,
+      text: text ? text : "",
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
-      user: displayName ? displayName : "",
+      user: user.name,
     });
-
-    setText("");
-  };
+  }
 
   if (loading) {
     return <LoadingScreen />;
@@ -62,14 +62,14 @@ export default function ChirpChat({ name, id, onBackPress }) {
             <Message
               key={msg.msgId}
               text={msg.text}
-              timestamp={msg.createdAt.seconds}
+              timestamp={msg.createdAt ? msg.createdAt.seconds : "  "}
               me={msg.uid == uid}
               user={msg.user}
             />
           ))}
       </ScrollView>
       <View style={styles.bottomBar}>
-        <SendText send={sendText} changeText={setText}></SendText>
+        <SendText send={sendText}></SendText>
       </View>
     </View>
   );

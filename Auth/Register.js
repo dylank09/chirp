@@ -8,7 +8,6 @@ import {
 } from "react-native";
 
 import { theme } from "../assets/Theme";
-import textLogo from "../assets/logo-text.png";
 import ChirpButton from "../components/ChirpButton";
 import AuthTextBox from "../components/AuthTextBox";
 import AuthAlert from "../components/AuthAlert";
