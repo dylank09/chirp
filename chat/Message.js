@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   messageBox: {
     borderRadius: theme.dimensions.inputHeight / 2,
     flexDirection: "column",
-    maxWidth: "60%",
+    maxWidth: "62%",
     padding: 6,
     marginHorizontal: 4,
   },
@@ -64,10 +64,12 @@ const styles = StyleSheet.create({
     fontSize: theme.dimensions.standardFontSize - 4,
   },
   text: {
-    justifyContent: "flex-start",
+    width: "auto",
+    // justifyContent: "flex-start",
+    // textAlign: "right",
     color: theme.colors.text,
     padding: 4,
-    alignSelf: "flex-start",
+    // alignSelf: "flex-end",
     fontSize: theme.dimensions.standardFontSize,
   },
 });

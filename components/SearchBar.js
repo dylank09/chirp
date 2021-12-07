@@ -7,7 +7,12 @@ import { theme } from "../assets/Theme";
 export default function SearchBar() {
   return (
     <View style={styles.container}>
-      <Ionicons name="search" size={24} color="black" />
+      <Ionicons
+        name="search"
+        size={24}
+        color="white"
+        style={{ alignSelf: "center" }}
+      />
       <TextInput style={styles.searchBox} placeholder="Search"></TextInput>
     </View>
   );
@@ -17,19 +22,17 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     padding: 10,
-    marginTop: 20,
-    marginBottom: 25,
-    borderRadius: 23,
-    width: "90%",
+    borderRadius: (theme.dimensions.inputHeight + 2) / 2,
+    width: "80%",
     // alignItems: "center",
-    height: theme.dimensions.buttonHeight + 10,
+    height: theme.dimensions.inputHeight + 2,
     backgroundColor: theme.colors.primary,
     justifyContent: "flex-start",
   },
   searchBox: {
-    color: "black",
+    color: "white",
     marginLeft: 10,
-    placeholderTextColor: "black",
+    placeholderTextColor: "white",
     fontSize: theme.dimensions.standardFontSize + 2,
     width: "80%",
   },

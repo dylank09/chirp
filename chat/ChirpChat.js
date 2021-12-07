@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -23,10 +23,10 @@ export default function ChirpChat({ name, id, onBackPress }) {
   const userRef = firestore.collection("users").doc(uid);
   const [user] = useDocumentData(userRef);
 
-  const messagesRef = firestore
-    .collection("chatGroups")
-    .doc(id)
-    .collection("messages");
+  const chatRef = firestore.collection("chatGroups").doc(id);
+  const [chat] = useDocumentData(chatRef);
+
+  const messagesRef = chatRef.collection("messages");
   const query = messagesRef.orderBy("createdAt").limit(50);
   const [msgs, loading] = useCollectionData(query, { idField: "msgId" });
 
@@ -42,7 +42,8 @@ export default function ChirpChat({ name, id, onBackPress }) {
       .collection("chatGroups")
       .doc(id)
       .update({
-        lastMessage: text.slice(0, 30) + "...",
+        membersUnseen: chat.members,
+        lastMessage: text.length < 30 ? text : text.slice(0, 30) + "...",
         lastMessageTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
   }
@@ -115,5 +116,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginRight: 25,
     fontWeight: "500",
+    fontSize: theme.dimensions.standardFontSize,
   },
 });
