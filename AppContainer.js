@@ -6,7 +6,7 @@ import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 
 import ChirpGroups from "./chat/ChirpGroups";
 import { theme } from "./assets/Theme";
-import Login from "./auth/Login";
+import Profile from "./profile/Profile";
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -24,8 +24,8 @@ const bottomTabNavigator = createBottomTabNavigator(
         ),
       },
     },
-    Login: {
-      screen: Login,
+    Profile: {
+      screen: Profile,
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
           <FontAwesome5

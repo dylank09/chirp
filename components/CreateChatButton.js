@@ -4,7 +4,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 
-export default function ChirpButton(props) {
+export default function CreateChatButton(props) {
   return (
     <TouchableOpacity onPress={props.onPress} style={styles.button}>
       <MaterialIcons name="create" size={24} color="white" />
