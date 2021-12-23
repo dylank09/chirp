@@ -10,7 +10,7 @@ import {
 import { theme } from "../assets/Theme";
 import ChirpButton from "../components/ChirpButton";
 import AuthTextBox from "../components/AuthTextBox";
-import AuthAlert from "../components/AuthAlert";
+import TextAlert from "../components/TextAlert";
 import AuthProviderButton from "../components/AuthProviderButton";
 
 import firebase from "../config/FirebaseConfig";
@@ -95,14 +95,14 @@ export default function Register({ navigation }) {
           placeholder="Full name"
           onChangeText={setFullName}
         ></AuthTextBox>
-        <AuthAlert text={nameError}></AuthAlert>
+        <TextAlert text={nameError}></TextAlert>
         <AuthTextBox placeholder="Email" onChangeText={setEmail}></AuthTextBox>
-        <AuthAlert text={emailError}></AuthAlert>
+        <TextAlert text={emailError}></TextAlert>
         <AuthTextBox
           placeholder="Password"
           onChangeText={setPassword}
         ></AuthTextBox>
-        <AuthAlert text={passwordError}></AuthAlert>
+        <TextAlert text={passwordError}></TextAlert>
         <AuthTextBox
           placeholder="Confirm password"
           onChangeText={setConfirmPassword}
@@ -112,6 +112,7 @@ export default function Register({ navigation }) {
         style={styles.continueButton}
         text="Continue"
         onPress={createUserEmailPass}
+        width="40%"
       ></ChirpButton>
       <Text style={styles.orText}>or</Text>
       <View style={styles.line} />

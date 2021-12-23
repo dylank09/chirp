@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, ScrollView, Text, View } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 import Message from "./Message";
 import SendText from "./SendText";
 import LoadingScreen from "../components/LoadingScreen";
+import ChatOptions from "./ChatOptions";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -19,6 +20,8 @@ const firestore = firebase.firestore(app);
 const auth = firebase.auth();
 
 export default function ChirpChat({ name, id, onBackPress }) {
+  const [optionsOpen, setOptionsOpen] = useState(false);
+
   const { uid } = auth.currentUser;
   const userRef = firestore.collection("users").doc(uid);
   const [user] = useDocumentData(userRef);
@@ -48,39 +51,59 @@ export default function ChirpChat({ name, id, onBackPress }) {
       });
   }
 
-  if (loading) {
-    return <LoadingScreen />;
+  function openOptions() {
+    setOptionsOpen(true);
   }
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <AntDesign
-          style={styles.back}
-          name="left"
-          size={24}
-          color="white"
-          onPress={onBackPress}
-        />
-        <Text style={styles.chatName}>{name}</Text>
+  if (loading) {
+    return <LoadingScreen />;
+  } else if (optionsOpen) {
+    return (
+      <ChatOptions
+        name={name}
+        id={id}
+        chatData={chat}
+        returnToChat={() => setOptionsOpen(false)}
+      ></ChatOptions>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <AntDesign
+            style={styles.back}
+            name="left"
+            size={24}
+            color="white"
+            onPress={onBackPress}
+          />
+          <Text style={styles.chatName}>{name}</Text>
+          <SimpleLineIcons
+            style={styles.options}
+            name="options-vertical"
+            size={22}
+            color="white"
+            onPress={openOptions}
+          />
+        </View>
+        <ScrollView style={styles.messagesBox}>
+          {msgs &&
+            msgs.map((msg) => (
+              <Message
+                key={msg.msgId}
+                text={msg.text}
+                timestamp={msg.createdAt ? msg.createdAt.seconds : "  "}
+                me={msg.uid == uid}
+                user={msg.user}
+              />
+            ))}
+        </ScrollView>
+        <View style={styles.bottomBar}>
+          <SendText send={sendText}></SendText>
+        </View>
       </View>
-      <ScrollView style={styles.messagesBox}>
-        {msgs &&
-          msgs.map((msg) => (
-            <Message
-              key={msg.msgId}
-              text={msg.text}
-              timestamp={msg.createdAt ? msg.createdAt.seconds : "  "}
-              me={msg.uid == uid}
-              user={msg.user}
-            />
-          ))}
-      </ScrollView>
-      <View style={styles.bottomBar}>
-        <SendText send={sendText}></SendText>
-      </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -109,6 +132,10 @@ const styles = StyleSheet.create({
   },
   back: {
     marginLeft: 10,
+  },
+  options: {
+    alignSelf: "flex-end",
+    marginRight: 10,
   },
   chatName: {
     color: theme.colors.text,

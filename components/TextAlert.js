@@ -3,16 +3,8 @@ import { StyleSheet, Text } from "react-native";
 
 import { theme } from "../assets/Theme";
 
-export default function AuthAlert(props) {
-  function bla(event) {
-    console.log(event);
-  }
-
-  return (
-    <Text style={styles.alert} onLayout={(event) => bla}>
-      {props.text ? props.text : " "}
-    </Text>
-  );
+export default function TextAlert(props) {
+  return <Text style={styles.alert}>{props.text ? props.text : " "}</Text>;
 }
 
 const styles = StyleSheet.create({

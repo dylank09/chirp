@@ -7,6 +7,10 @@ import FormatTime from "../functions/FormatTime";
 export default function Message({ text, timestamp, user, me }) {
   timestamp = FormatTime(timestamp);
 
+  if (text.length < 15 && user.length > 5) {
+    user = user.substring(0, user.indexOf(" "));
+  }
+
   return (
     <View style={styles.row}>
       <View
@@ -23,7 +27,7 @@ export default function Message({ text, timestamp, user, me }) {
           <Text style={styles.user}>{user ? user : ""}</Text>
           <Text style={styles.ts}>{timestamp} </Text>
         </View>
-        <Text style={[styles.text, { textAlign: me ? "left" : "right" }]}>
+        <Text style={[styles.text, { textAlign: me ? "right" : "left" }]}>
           {text ? text : ""}
         </Text>
       </View>
@@ -65,11 +69,8 @@ const styles = StyleSheet.create({
   },
   text: {
     width: "auto",
-    // justifyContent: "flex-start",
-    // textAlign: "right",
     color: theme.colors.text,
     padding: 4,
-    // alignSelf: "flex-end",
     fontSize: theme.dimensions.standardFontSize,
   },
 });

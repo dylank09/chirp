@@ -5,7 +5,10 @@ import { theme } from "../assets/Theme";
 
 export default function ChirpButton(props) {
   return (
-    <TouchableOpacity onPress={props.onPress} style={styles.button}>
+    <TouchableOpacity
+      onPress={props.onPress}
+      style={[styles.button, { width: props.width }]}
+    >
       <Text style={styles.buttonText}>{props.text ? props.text : "  "} </Text>
     </TouchableOpacity>
   );
@@ -17,7 +20,6 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10,
     borderRadius: 18,
-    width: theme.dimensions.buttonWidth,
     alignItems: "center",
     height: theme.dimensions.buttonHeight,
   },

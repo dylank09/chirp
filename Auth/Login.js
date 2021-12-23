@@ -12,7 +12,7 @@ import { theme } from "../assets/Theme";
 import logo from "../assets/logo.png";
 import ChirpButton from "../components/ChirpButton";
 import AuthTextBox from "../components/AuthTextBox";
-import AuthAlert from "../components/AuthAlert";
+import TextAlert from "../components/TextAlert";
 import AuthProviderButton from "../components/AuthProviderButton";
 
 import firebase from "firebase/app";
@@ -63,13 +63,17 @@ export default function Login({ navigation }) {
 
       <KeyboardAvoidingView style={styles.inputContainer} behavior="padding">
         <AuthTextBox placeholder="Email" onChangeText={setEmail}></AuthTextBox>
-        <AuthAlert text={emailError}></AuthAlert>
+        <TextAlert text={emailError}></TextAlert>
         <AuthTextBox
           placeholder="Password"
           onChangeText={setPassword}
         ></AuthTextBox>
-        <AuthAlert text={passwordError}></AuthAlert>
-        <ChirpButton text="Continue" onPress={signInEmailPass}></ChirpButton>
+        <TextAlert text={passwordError}></TextAlert>
+        <ChirpButton
+          text="Continue"
+          onPress={signInEmailPass}
+          width="40%"
+        ></ChirpButton>
       </KeyboardAvoidingView>
       <Text style={styles.orText}>or</Text>
       <View style={styles.line} />
