@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput, ScrollView } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
@@ -11,6 +11,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import app from "../config/FirebaseConfig";
 import ChirpButton from "../components/ChirpButton";
 import TextAlert from "../components/TextAlert";
+import FormatTime from "../functions/FormatTime";
 
 const firestore = firebase.firestore(app);
 
@@ -23,6 +24,23 @@ export default function ChatOptions({ name, id, returnToChat, chatData }) {
 
   const query = usersRef.where("email", "==", email);
   const [user] = useCollectionData(query, { idField: "userid" });
+  const [users] = useCollectionData(usersRef, { idField: "userid" });
+
+  var members = [];
+  chatData.members.forEach((mem) => {
+    members.push(findUser(mem));
+  });
+
+  function findUser(id) {
+    if (users) {
+      for (const u of users) {
+        if (id == u.userid) {
+          return u.email;
+        }
+      }
+    }
+    return "";
+  }
 
   function addMember() {
     console.log("chats data: ", chatData);
@@ -41,13 +59,14 @@ export default function ChatOptions({ name, id, returnToChat, chatData }) {
         members: newMembers,
       });
       setEmail("");
+      setAddMemberAlert("Successful");
     } else {
       setAddMemberAlert("User is already in the chat");
     }
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.header}>
         <AntDesign
           style={styles.back}
@@ -64,10 +83,19 @@ export default function ChatOptions({ name, id, returnToChat, chatData }) {
           color={theme.colors.background}
         />
       </View>
+      <Text style={styles.optionsText}>Members List</Text>
+      {members &&
+        members.map((mem, i) => (
+          <Text key={i} style={styles.member}>
+            {mem}
+          </Text>
+        ))}
+      <Text style={styles.optionsText}>Add member</Text>
       <View style={styles.addMember}>
         <TextInput
           style={styles.memberTextBox}
           placeholder="Email"
+          value={email}
           onChangeText={setEmail}
         ></TextInput>
         <ChirpButton
@@ -77,7 +105,15 @@ export default function ChatOptions({ name, id, returnToChat, chatData }) {
         ></ChirpButton>
       </View>
       <TextAlert text={addMemberAlert}></TextAlert>
-    </View>
+      <View style={styles.chatInfoSection}>
+        <Text style={styles.chatInfo}>
+          {" "}
+          {chatData.createdAt
+            ? "Created on: " + FormatTime(chatData.createdAt)
+            : ""}
+        </Text>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -88,7 +124,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     backgroundColor: theme.colors.background,
-    alignItems: "center",
   },
   header: {
     flexDirection: "row",
@@ -107,6 +142,21 @@ const styles = StyleSheet.create({
   back: {
     marginLeft: 10,
   },
+  optionsText: {
+    color: theme.colors.text,
+    fontSize: theme.dimensions.standardFontSize,
+    fontWeight: "bold",
+    alignSelf: "center",
+    marginTop: 4,
+  },
+  member: {
+    color: theme.colors.text,
+    fontSize: theme.dimensions.standardFontSize,
+    borderBottomColor: theme.colors.text,
+    borderBottomWidth: 0.5,
+    padding: 4,
+    marginVertical: 5,
+  },
   addMember: {
     borderRadius: 18,
     borderColor: theme.colors.primary,
@@ -115,6 +165,7 @@ const styles = StyleSheet.create({
     margin: 7,
     width: "90%",
     justifyContent: "space-around",
+    alignSelf: "center",
   },
   memberTextBox: {
     width: "60%",
@@ -122,5 +173,15 @@ const styles = StyleSheet.create({
     placeholderTextColor: theme.colors.placeholderColor,
     fontSize: theme.dimensions.standardFontSize + 2,
     margin: 7,
+  },
+  chatInfoSection: {
+    justifyContent: "flex-end",
+  },
+  chatInfo: {
+    color: theme.colors.hazeText,
+    fontSize: theme.dimensions.standardFontSize - 2,
+    marginHorizontal: 4,
+    marginTop: "70%",
+    alignSelf: "flex-end",
   },
 });

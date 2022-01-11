@@ -11,6 +11,7 @@ const theme = {
     buttonText: "rgb(255, 255, 255)",
     jet: "rgb(45, 45, 42)",
     alertText: "rgb(193, 73, 83)",
+    hazeText: "rgb(169,169,169)",
     navBarTint: "rgb(193, 73, 83)",
   },
   dimensions: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 
@@ -21,6 +21,8 @@ const auth = firebase.auth();
 
 export default function ChirpChat({ name, id, onBackPress }) {
   const [optionsOpen, setOptionsOpen] = useState(false);
+
+  const scrollViewRef = useRef();
 
   const { uid } = auth.currentUser;
   const userRef = firestore.collection("users").doc(uid);
@@ -86,7 +88,13 @@ export default function ChirpChat({ name, id, onBackPress }) {
             onPress={openOptions}
           />
         </View>
-        <ScrollView style={styles.messagesBox}>
+        <ScrollView
+          style={styles.messagesBox}
+          ref={scrollViewRef}
+          onContentSizeChange={() =>
+            scrollViewRef.current.scrollToEnd({ animated: false })
+          }
+        >
           {msgs &&
             msgs.map((msg) => (
               <Message
