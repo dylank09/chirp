@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, SafeAreaView } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -92,17 +92,19 @@ export default function ChirpGroups() {
                 <SearchBar></SearchBar>
                 <CreateChatButton onPress={goToCreateChat}></CreateChatButton>
               </View>
-              {groups &&
-                groups.map((grp) => (
-                  <ChirpPreview
-                    key={grp.chatId}
-                    chatName={grp.name}
-                    previewText={grp.lastMessage}
-                    previewtimestamp={grp.lastMessageTimestamp.seconds}
-                    notOpened={grp.membersUnseen.includes(uid)}
-                    onPress={() => goToChat(grp.chatId, grp.name)}
-                  />
-                ))}
+              <ScrollView style={styles.groupsScroll}>
+                {groups &&
+                  groups.map((grp) => (
+                    <ChirpPreview
+                      key={grp.chatId}
+                      chatName={grp.name}
+                      previewText={grp.lastMessage}
+                      previewtimestamp={grp.lastMessageTimestamp.seconds}
+                      notOpened={grp.membersUnseen.includes(uid)}
+                      onPress={() => goToChat(grp.chatId, grp.name)}
+                    />
+                  ))}
+              </ScrollView>
             </SafeAreaView>
           );
         }
@@ -116,6 +118,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.background,
     alignItems: "center",
+  },
+  groupsScroll: {
+    width: "100%",
   },
   outerContainer: {
     height: "100%",
