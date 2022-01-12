@@ -8,7 +8,7 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 
-import ChirpGroups from "./chat/ChirpGroups";
+import ChirpGroups from "./chats/ChirpGroups";
 import { theme } from "./assets/Theme";
 import ChirpProfile from "./profile/ChirpProfile";
 import ChirpProjects from "./projects/ChirpProjects";
