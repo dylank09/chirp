@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 
-export default function SearchBar() {
+export default function SearchBar({ onChange }) {
   return (
     <View style={styles.container}>
       <Ionicons
@@ -13,7 +13,11 @@ export default function SearchBar() {
         color="white"
         style={{ alignSelf: "center" }}
       />
-      <TextInput style={styles.searchBox} placeholder="Search"></TextInput>
+      <TextInput
+        style={styles.searchBox}
+        onChangeText={onChange}
+        placeholder="Search"
+      ></TextInput>
     </View>
   );
 }

@@ -37,10 +37,10 @@ export default function ChatOptions({
     members.push(findUser(mem));
   });
 
-  function findUser(id) {
+  function findUser(userid) {
     if (users) {
       for (const u of users) {
-        if (id == u.userid) {
+        if (userid == u.userid) {
           return u.email;
         }
       }
@@ -49,7 +49,6 @@ export default function ChatOptions({
   }
 
   function addMember() {
-    console.log("chats data: ", chatData);
     setAddMemberAlert("");
 
     if (!user[0]) {
@@ -94,13 +93,23 @@ export default function ChatOptions({
           color={theme.colors.background}
         />
       </View>
-      <Text style={styles.optionsText}>Members List</Text>
-      {members &&
-        members.map((mem, i) => (
-          <Text key={i} style={styles.member}>
-            {mem}
-          </Text>
-        ))}
+      <View style={styles.chatInfoSection}>
+        <Text style={styles.chatInfo}>
+          {" "}
+          {chatData.createdAt
+            ? "Created on: " + FormatTime(chatData.createdAt)
+            : ""}
+        </Text>
+      </View>
+      <View style={styles.memberList}>
+        <Text style={styles.optionsText}>Members List</Text>
+        {members &&
+          members.map((mem, i) => (
+            <Text key={i} style={styles.member}>
+              {mem}
+            </Text>
+          ))}
+      </View>
       <Text style={styles.optionsText}>Add member</Text>
       <View style={styles.addMember}>
         <TextInput
@@ -116,14 +125,7 @@ export default function ChatOptions({
         ></ChirpButton>
       </View>
       <TextAlert text={addMemberAlert}></TextAlert>
-      <View style={styles.chatInfoSection}>
-        <Text style={styles.chatInfo}>
-          {" "}
-          {chatData.createdAt
-            ? "Created on: " + FormatTime(chatData.createdAt)
-            : ""}
-        </Text>
-      </View>
+
       <View style={styles.deleteButton}>
         <ChirpButton
           onPress={deleteChat}
@@ -159,6 +161,9 @@ const styles = StyleSheet.create({
   },
   back: {
     marginLeft: 10,
+  },
+  memberList: {
+    marginBottom: "5%",
   },
   optionsText: {
     color: theme.colors.text,
@@ -199,12 +204,12 @@ const styles = StyleSheet.create({
     color: theme.colors.hazeText,
     fontSize: theme.dimensions.standardFontSize - 2,
     marginHorizontal: 4,
-    marginTop: "70%",
     alignSelf: "flex-end",
+    marginBottom: "5%",
   },
   deleteButton: {
+    marginTop: "8%",
     width: "100%",
-    marginTop: "10%",
     alignItems: "center",
   },
 });

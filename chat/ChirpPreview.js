@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     height: 65,
-    borderColor: "white",
+    borderColor: theme.colors.hazeText,
     borderBottomWidth: 1,
     padding: 7,
     alignItems: "center",

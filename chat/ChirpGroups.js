@@ -11,7 +11,7 @@ import ChirpPreview from "./ChirpPreview";
 import SearchBar from "../components/SearchBar";
 import ChirpChat from "./ChirpChat";
 import app from "../config/FirebaseConfig";
-import CreateChatButton from "../components/CreateChatButton";
+import CreateButton from "../components/CreateButton";
 import CreateChirpChat from "./CreateChirpChat";
 
 const firestore = firebase.firestore(app);
@@ -22,11 +22,20 @@ export default function ChirpGroups() {
   const [createClicked, setCreateClicked] = useState(false);
   const [chatId, setChatId] = useState();
   const [chatName, setChatName] = useState("");
+  const [search, setSearch] = useState("");
 
   const uid = auth.currentUser.uid;
   const chatsRef = firestore.collection("chatGroups");
   const query = chatsRef.where("members", "array-contains", uid);
   const [groups] = useCollectionData(query, { idField: "chatId" });
+
+  let chatGroups = groups;
+
+  if (groups) {
+    groups.sort(function (a, b) {
+      return b.lastMessageTimestamp - a.lastMessageTimestamp;
+    });
+  }
 
   function goToChat(id, name) {
     setChatId(id);
@@ -74,6 +83,18 @@ export default function ChirpGroups() {
     return true;
   }
 
+  if (search.length > 0) {
+    const matches = groups.filter((group) => {
+      if (group.name.toLowerCase().indexOf(search) !== -1) {
+        console.log(true);
+        return true;
+      }
+    });
+    chatGroups = matches;
+  } else {
+    chatGroups = groups;
+  }
+
   return (
     <View style={styles.outerContainer}>
       {(() => {
@@ -89,12 +110,12 @@ export default function ChirpGroups() {
           return (
             <SafeAreaView style={styles.container}>
               <View style={styles.header}>
-                <SearchBar></SearchBar>
-                <CreateChatButton onPress={goToCreateChat}></CreateChatButton>
+                <SearchBar onChange={setSearch}></SearchBar>
+                <CreateButton onPress={goToCreateChat}></CreateButton>
               </View>
               <ScrollView style={styles.groupsScroll}>
-                {groups &&
-                  groups.map((grp) => (
+                {chatGroups &&
+                  chatGroups.map((grp) => (
                     <ChirpPreview
                       key={grp.chatId}
                       chatName={grp.name}
