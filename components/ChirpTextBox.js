@@ -3,7 +3,7 @@ import { StyleSheet, TextInput } from "react-native";
 
 import { theme } from "../assets/Theme";
 
-export default function AuthTextBox(props) {
+export default function ChirpTextBox(props) {
   return (
     <TextInput
       style={styles.textBox}
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     padding: 5,
     width: theme.dimensions.authWidth,
     color: theme.colors.text,
-    fontSize: theme.dimensions.standardFontSize,
+    fontSize: theme.dimensions.standardFontSize + 1,
     borderBottomColor: theme.colors.authTextBox,
     borderBottomWidth: 1,
     marginTop: 7,

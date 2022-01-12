@@ -11,7 +11,7 @@ import {
 import { theme } from "../assets/Theme";
 import logo from "../assets/logo.png";
 import ChirpButton from "../components/ChirpButton";
-import AuthTextBox from "../components/AuthTextBox";
+import ChirpTextBox from "../components/ChirpTextBox";
 import TextAlert from "../components/TextAlert";
 import AuthProviderButton from "../components/AuthProviderButton";
 
@@ -62,12 +62,15 @@ export default function Login({ navigation }) {
       <Text style={styles.headingText}>Sign In</Text>
 
       <KeyboardAvoidingView style={styles.inputContainer} behavior="padding">
-        <AuthTextBox placeholder="Email" onChangeText={setEmail}></AuthTextBox>
+        <ChirpTextBox
+          placeholder="Email"
+          onChangeText={setEmail}
+        ></ChirpTextBox>
         <TextAlert text={emailError}></TextAlert>
-        <AuthTextBox
+        <ChirpTextBox
           placeholder="Password"
           onChangeText={setPassword}
-        ></AuthTextBox>
+        ></ChirpTextBox>
         <TextAlert text={passwordError}></TextAlert>
         <ChirpButton
           text="Continue"

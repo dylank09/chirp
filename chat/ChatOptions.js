@@ -15,7 +15,13 @@ import FormatTime from "../functions/FormatTime";
 
 const firestore = firebase.firestore(app);
 
-export default function ChatOptions({ name, id, returnToChat, chatData }) {
+export default function ChatOptions({
+  name,
+  id,
+  returnToChat,
+  chatData,
+  returnToMain,
+}) {
   const [email, setEmail] = useState("");
   const [addMemberAlert, setAddMemberAlert] = useState("");
 
@@ -65,6 +71,11 @@ export default function ChatOptions({ name, id, returnToChat, chatData }) {
     }
   }
 
+  function deleteChat() {
+    chatRef.delete();
+    returnToMain();
+  }
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -112,6 +123,13 @@ export default function ChatOptions({ name, id, returnToChat, chatData }) {
             ? "Created on: " + FormatTime(chatData.createdAt)
             : ""}
         </Text>
+      </View>
+      <View style={styles.deleteButton}>
+        <ChirpButton
+          onPress={deleteChat}
+          width="60%"
+          text="Delete Chat"
+        ></ChirpButton>
       </View>
     </ScrollView>
   );
@@ -183,5 +201,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     marginTop: "70%",
     alignSelf: "flex-end",
+  },
+  deleteButton: {
+    width: "100%",
+    marginTop: "10%",
+    alignItems: "center",
   },
 });

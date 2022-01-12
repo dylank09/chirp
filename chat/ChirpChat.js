@@ -66,6 +66,7 @@ export default function ChirpChat({ name, id, onBackPress }) {
         id={id}
         chatData={chat}
         returnToChat={() => setOptionsOpen(false)}
+        returnToMain={onBackPress}
       ></ChatOptions>
     );
   } else {

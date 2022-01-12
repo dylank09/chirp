@@ -98,8 +98,12 @@ export default function ChirpGroups() {
                     <ChirpPreview
                       key={grp.chatId}
                       chatName={grp.name}
-                      previewText={grp.lastMessage}
-                      previewtimestamp={grp.lastMessageTimestamp.seconds}
+                      previewText={grp.lastMessage ? grp.lastMessage : ""}
+                      previewtimestamp={
+                        grp.lastMessageTimestamp
+                          ? grp.lastMessageTimestamp.seconds
+                          : ""
+                      }
                       notOpened={grp.membersUnseen.includes(uid)}
                       onPress={() => goToChat(grp.chatId, grp.name)}
                     />

@@ -9,7 +9,7 @@ import {
 
 import { theme } from "../assets/Theme";
 import ChirpButton from "../components/ChirpButton";
-import AuthTextBox from "../components/AuthTextBox";
+import ChirpTextBox from "../components/ChirpTextBox";
 import TextAlert from "../components/TextAlert";
 import AuthProviderButton from "../components/AuthProviderButton";
 
@@ -91,22 +91,25 @@ export default function Register({ navigation }) {
     <SafeAreaView style={styles.container}>
       <Text style={styles.headingText}>Register</Text>
       <KeyboardAvoidingView style={styles.inputContainer} behavior="padding">
-        <AuthTextBox
+        <ChirpTextBox
           placeholder="Full name"
           onChangeText={setFullName}
-        ></AuthTextBox>
+        ></ChirpTextBox>
         <TextAlert text={nameError}></TextAlert>
-        <AuthTextBox placeholder="Email" onChangeText={setEmail}></AuthTextBox>
+        <ChirpTextBox
+          placeholder="Email"
+          onChangeText={setEmail}
+        ></ChirpTextBox>
         <TextAlert text={emailError}></TextAlert>
-        <AuthTextBox
+        <ChirpTextBox
           placeholder="Password"
           onChangeText={setPassword}
-        ></AuthTextBox>
+        ></ChirpTextBox>
         <TextAlert text={passwordError}></TextAlert>
-        <AuthTextBox
+        <ChirpTextBox
           placeholder="Confirm password"
           onChangeText={setConfirmPassword}
-        ></AuthTextBox>
+        ></ChirpTextBox>
       </KeyboardAvoidingView>
       <ChirpButton
         style={styles.continueButton}
