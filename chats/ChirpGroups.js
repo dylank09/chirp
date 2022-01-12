@@ -7,7 +7,7 @@ import "firebase/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 import { theme } from "../assets/Theme";
-import ChirpPreview from "./ChirpPreview";
+import ChatPreview from "./ChatPreview";
 import SearchBar from "../components/SearchBar";
 import ChirpChat from "./ChirpChat";
 import app from "../config/FirebaseConfig";
@@ -116,7 +116,7 @@ export default function ChirpGroups() {
               <ScrollView style={styles.groupsScroll}>
                 {chatGroups &&
                   chatGroups.map((grp) => (
-                    <ChirpPreview
+                    <ChatPreview
                       key={grp.chatId}
                       chatName={grp.name}
                       previewText={grp.lastMessage ? grp.lastMessage : ""}

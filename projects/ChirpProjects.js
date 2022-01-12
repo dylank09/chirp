@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, Text } from "react-native";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -57,9 +57,12 @@ export default function ChirpProjects() {
           return (
             <SafeAreaView style={styles.container}>
               <View style={styles.header}>
+                <Text style={styles.headerText}>Projects</Text>
+              </View>
+              <ScrollView style={styles.projectScroll}></ScrollView>
+              <View style={styles.footer}>
                 <CreateButton onPress={goToCreateProject}></CreateButton>
               </View>
-              <ScrollView style={styles.groupsScroll}></ScrollView>
             </SafeAreaView>
           );
         }
@@ -69,9 +72,29 @@ export default function ChirpProjects() {
 }
 
 const styles = StyleSheet.create({
+  outerContainer: {
+    width: "100%",
+    height: "100%",
+  },
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  header: {
+    marginTop: 10,
     alignItems: "center",
+  },
+  headerText: {
+    color: theme.colors.text,
+    fontWeight: "500",
+    fontSize: theme.dimensions.standardFontSize + 2,
+  },
+  projectScroll: {
+    flex: 1,
+  },
+  footer: {
+    alignItems: "flex-end",
+    margin: 15,
   },
 });

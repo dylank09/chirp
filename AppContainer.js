@@ -55,7 +55,7 @@ const bottomTabNavigator = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: "Chat",
+    initialRouteName: "Projects",
     tabBarOptions: {
       activeTintColor: theme.colors.hazeText,
       labelStyle: {

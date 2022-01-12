@@ -4,7 +4,7 @@ import FormatTime from "../functions/FormatTime";
 
 import { theme } from "../assets/Theme";
 
-export default function ChirpPreview({
+export default function ChatPreview({
   chatName,
   previewText,
   notOpened,

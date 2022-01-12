@@ -152,6 +152,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginRight: 25,
     fontWeight: "500",
-    fontSize: theme.dimensions.standardFontSize,
+    fontSize: theme.dimensions.standardFontSize + 2,
   },
 });
