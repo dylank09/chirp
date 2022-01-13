@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, Text } from "react-native";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -12,7 +12,7 @@ import SearchBar from "../components/SearchBar";
 import ChirpChat from "./ChirpChat";
 import app from "../config/FirebaseConfig";
 import CreateButton from "../components/CreateButton";
-import CreateChirpChat from "./CreateChirpChat";
+import CreateChat from "./CreateChat";
 
 const firestore = firebase.firestore(app);
 const auth = firebase.auth();
@@ -103,9 +103,7 @@ export default function ChirpGroups() {
             <ChirpChat id={chatId} name={chatName} onBackPress={backToGroups} />
           );
         } else if (createClicked) {
-          return (
-            <CreateChirpChat onBackPress={backToGroups} goToChat={goToChat} />
-          );
+          return <CreateChat onBackPress={backToGroups} goToChat={goToChat} />;
         } else {
           return (
             <SafeAreaView style={styles.container}>
@@ -114,7 +112,7 @@ export default function ChirpGroups() {
                 <CreateButton onPress={goToCreateChat}></CreateButton>
               </View>
               <ScrollView style={styles.groupsScroll}>
-                {chatGroups &&
+                {chatGroups && chatGroups.length > 0 ? (
                   chatGroups.map((grp) => (
                     <ChatPreview
                       key={grp.chatId}
@@ -128,7 +126,13 @@ export default function ChirpGroups() {
                       notOpened={grp.membersUnseen.includes(uid)}
                       onPress={() => goToChat(grp.chatId, grp.name)}
                     />
-                  ))}
+                  ))
+                ) : (
+                  <Text style={styles.emptyGroupsText}>
+                    You have not joined any chats yet. {"\n\n"}Click the create
+                    button to make your own chat group!
+                  </Text>
+                )}
               </ScrollView>
             </SafeAreaView>
           );
@@ -156,5 +160,13 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "space-around",
     marginVertical: 20,
+  },
+  emptyGroupsText: {
+    fontSize: theme.dimensions.standardFontSize + 5,
+    color: theme.colors.hazeText,
+    width: "80%",
+    alignSelf: "center",
+    paddingTop: 40,
+    textAlign: "center",
   },
 });

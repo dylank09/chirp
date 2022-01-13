@@ -9,6 +9,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { theme } from "../assets/Theme";
 import app from "../config/FirebaseConfig";
 import CreateButton from "../components/CreateButton";
+import ProjectPreview from "./ProjectPreview";
 
 const firestore = firebase.firestore(app);
 const auth = firebase.auth();
@@ -59,7 +60,13 @@ export default function ChirpProjects() {
               <View style={styles.header}>
                 <Text style={styles.headerText}>Projects</Text>
               </View>
-              <ScrollView style={styles.projectScroll}></ScrollView>
+              <ScrollView style={styles.projectScroll}>
+                <ProjectPreview
+                  projectName="Mobile App"
+                  nextTodo="Fix bug"
+                  remaining="21 days"
+                ></ProjectPreview>
+              </ScrollView>
               <View style={styles.footer}>
                 <CreateButton onPress={goToCreateProject}></CreateButton>
               </View>
@@ -82,8 +89,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   header: {
-    marginTop: 10,
+    marginTop: 15,
     alignItems: "center",
+    marginBottom: 40,
   },
   headerText: {
     color: theme.colors.text,

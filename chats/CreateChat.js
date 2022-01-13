@@ -13,7 +13,7 @@ import "firebase/auth";
 const firestore = firebase.firestore();
 const auth = firebase.auth();
 
-export default function CreateChirpChat({ onBackPress }) {
+export default function CreateChat({ onBackPress }) {
   const [name, setName] = useState("");
 
   function createChat() {
