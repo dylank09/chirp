@@ -19,7 +19,7 @@ const theme = {
     standardFontSize: 15,
     buttonWidth: "40%",
     authButtonWidth: "70%",
-    buttonHeight: "",
+    // buttonHeight: 50,
     inputHeight: 50,
   },
 };

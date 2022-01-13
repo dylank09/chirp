@@ -10,6 +10,8 @@ import { theme } from "../assets/Theme";
 import app from "../config/FirebaseConfig";
 import CreateButton from "../components/CreateButton";
 import ProjectPreview from "./ProjectPreview";
+import ChirpProject from "./ChirpProject";
+import CreateProject from "./CreateProject";
 
 const firestore = firebase.firestore(app);
 const auth = firebase.auth();
@@ -35,7 +37,7 @@ export default function ChirpProjects() {
     setCreateClicked(true);
   }
 
-  function backToGroups() {
+  function backToList() {
     setProjectClicked(false);
     setCreateClicked(false);
     setProjectID(0);
@@ -46,14 +48,14 @@ export default function ChirpProjects() {
       {(() => {
         if (projectClicked) {
           return (
-            <ChirpChat
+            <ChirpProject
               id={projectID}
               name={projectName}
-              onBackPress={backToGroups}
+              onBackPress={backToList}
             />
           );
         } else if (createClicked) {
-          return;
+          return <CreateProject onBackPress={backToList}></CreateProject>;
         } else {
           return (
             <SafeAreaView style={styles.container}>
@@ -65,6 +67,9 @@ export default function ChirpProjects() {
                   projectName="Mobile App"
                   nextTodo="Fix bug"
                   remaining="21 days"
+                  onPress={() =>
+                    goToProject("VLTxVOeBueiKOmj6Okdz", "Mobile App")
+                  }
                 ></ProjectPreview>
               </ScrollView>
               <View style={styles.footer}>

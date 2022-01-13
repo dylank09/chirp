@@ -115,6 +115,7 @@ export default function ChatOptions({
         <TextInput
           style={styles.memberTextBox}
           placeholder="Email"
+          placeholderTextColor={theme.colors.placeholderColor}
           value={email}
           onChangeText={setEmail}
         ></TextInput>
@@ -193,7 +194,6 @@ const styles = StyleSheet.create({
   memberTextBox: {
     width: "60%",
     color: "white",
-    placeholderTextColor: theme.colors.placeholderColor,
     fontSize: theme.dimensions.standardFontSize + 2,
     margin: 7,
   },

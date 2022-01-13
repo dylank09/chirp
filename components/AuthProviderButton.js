@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text, Image } from "react-native";
-import microsoftLogo from "../assets/microsoft-logo.png";
 import googleLogo from "../assets/google-logo.png";
 import { theme } from "../assets/Theme";
 
@@ -9,7 +8,7 @@ export default function AuthProviderButton(props) {
     <TouchableOpacity onPress={props.onPress} style={styles.button}>
       <Image
         style={styles.buttonLogo}
-        source={props.type == "google" ? googleLogo : microsoftLogo}
+        source={props.type == "google" ? googleLogo : ""}
       ></Image>
       <Text style={styles.buttonText}>{props.text ? props.text : "  "} </Text>
     </TouchableOpacity>
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     width: theme.dimensions.authButtonWidth,
-    height: theme.dimensions.buttonHeight,
+    // height: theme.dimensions.buttonHeight,
     paddingTop: 7,
     paddingBottom: 7,
     paddingLeft: 15,

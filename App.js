@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StatusBar, StyleSheet, View } from "react-native";
 
 import { theme } from "./assets/Theme";
 import AppContainer from "./AppContainer";
@@ -32,5 +32,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+    paddingTop: StatusBar.currentHeight,
   },
 });

@@ -103,7 +103,7 @@ export default function ChirpGroups() {
             <ChirpChat id={chatId} name={chatName} onBackPress={backToGroups} />
           );
         } else if (createClicked) {
-          return <CreateChat onBackPress={backToGroups} goToChat={goToChat} />;
+          return <CreateChat onBackPress={backToGroups} />;
         } else {
           return (
             <SafeAreaView style={styles.container}>

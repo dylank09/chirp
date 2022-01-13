@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Image,
   Text,
-  View,
   SafeAreaView,
   KeyboardAvoidingView,
 } from "react-native";
@@ -18,7 +17,6 @@ import AuthProviderButton from "../components/AuthProviderButton";
 import firebase from "firebase/app";
 import "firebase/auth";
 import GoogleSignIn from "./GoogleSignIn";
-import MicrosoftSignIn from "./MicrosoftSignIn";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -60,7 +58,6 @@ export default function Login({ navigation }) {
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={logo}></Image>
       <Text style={styles.headingText}>Sign In</Text>
-
       <KeyboardAvoidingView style={styles.inputContainer} behavior="padding">
         <ChirpTextBox
           placeholder="Email"
@@ -79,16 +76,10 @@ export default function Login({ navigation }) {
         ></ChirpButton>
       </KeyboardAvoidingView>
       <Text style={styles.orText}>or</Text>
-      <View style={styles.line} />
       <AuthProviderButton
         text="Sign in with Google"
         type="google"
         onPress={() => GoogleSignIn(navigation, next)}
-      ></AuthProviderButton>
-      <AuthProviderButton
-        text="Sign in with Microsoft"
-        type="microsoft"
-        onPress={() => MicrosoftSignIn(navigation, next)}
       ></AuthProviderButton>
       <Text style={styles.registerText} onPress={navToRegister}>
         Register new account
@@ -103,44 +94,38 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: theme.colors.background,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
   },
   inputContainer: {
-    flex: 2,
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
+    marginBottom: 40,
   },
   headingText: {
-    flex: 1,
     fontSize: 28,
     color: theme.colors.text,
-    marginBottom: 25,
-    marginTop: 10,
+    marginBottom: 15,
+    // marginTop: 10,
   },
   logo: {
-    width: 130,
-    height: 130,
+    width: 120,
+    height: 120,
     padding: 0,
-    marginTop: 10,
     marginBottom: 15,
   },
   orText: {
     fontSize: theme.dimensions.standardFontSize,
     color: theme.colors.text,
-  },
-  line: {
-    borderBottomColor: theme.colors.text,
+    width: "40%",
+    textAlign: "center",
     borderBottomWidth: 1,
-    marginBottom: 15,
-    width: "50%",
+    borderBottomColor: theme.colors.text,
   },
   registerText: {
-    flex: 0.3,
+    // flex: 0.3,
     color: theme.colors.placeholderColor,
     fontSize: theme.dimensions.standardFontSize,
-    marginTop: 10,
     marginBottom: 10,
     textDecorationLine: "underline",
   },

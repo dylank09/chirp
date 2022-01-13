@@ -22,6 +22,7 @@ export default function SendText(props) {
       <TextInput
         style={styles.textInput}
         placeholder="Message"
+        placeholderTextColor="#404040"
         onChange={(e) => settxt(e.target.value)}
         ref={myTextInput}
       ></TextInput>
@@ -38,7 +39,6 @@ const styles = StyleSheet.create({
     width: "80%",
     backgroundColor: theme.colors.secondary,
     alignItems: "center",
-    placeholderTextColor: "#404040",
     color: theme.colors.text,
     borderRadius: theme.dimensions.inputHeight / 2,
     padding: 8,

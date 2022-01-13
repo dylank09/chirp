@@ -7,11 +7,11 @@ export default function ChirpTextBox(props) {
   return (
     <TextInput
       style={styles.textBox}
-      //   {...props}
       maxLength={40}
       onChangeText={props.onChangeText}
       blurOnSubmit={true}
       placeholder={props.placeholder}
+      placeholderTextColor={theme.colors.placeholderColor}
     ></TextInput>
   );
 }
@@ -26,6 +26,5 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginTop: 7,
     marginBottom: 5,
-    placeholderTextColor: theme.colors.placeholderColor,
   },
 });

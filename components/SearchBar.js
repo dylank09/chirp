@@ -17,6 +17,7 @@ export default function SearchBar({ onChange }) {
         style={styles.searchBox}
         onChangeText={onChange}
         placeholder="Search"
+        placeholderTextColor="white"
       ></TextInput>
     </View>
   );
@@ -28,7 +29,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: (theme.dimensions.inputHeight + 2) / 2,
     width: "80%",
-    // alignItems: "center",
     height: theme.dimensions.inputHeight + 2,
     backgroundColor: theme.colors.primary,
     justifyContent: "flex-start",
@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
   searchBox: {
     color: "white",
     marginLeft: 10,
-    placeholderTextColor: "white",
     fontSize: theme.dimensions.standardFontSize + 2,
     width: "80%",
   },

@@ -124,11 +124,6 @@ export default function Register({ navigation }) {
         type="google"
         onPress={() => GoogleSignIn(navigation, next)}
       ></AuthProviderButton>
-      <AuthProviderButton
-        text="Sign in with Microsoft"
-        type="microsoft"
-        onPress={() => GoogleSignIn(navigation, next)}
-      ></AuthProviderButton>
       <Text style={styles.loginText} onPress={navToLogin}>
         Already have an account? Sign in
       </Text>
@@ -142,17 +137,15 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: theme.colors.background,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
   inputContainer: {
-    flex: 2,
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 20,
   },
   headingText: {
-    flex: 0.5,
     fontSize: 24,
     color: theme.colors.text,
     marginTop: 15,
@@ -161,15 +154,12 @@ const styles = StyleSheet.create({
   orText: {
     fontSize: theme.dimensions.standardFontSize,
     color: theme.colors.text,
-  },
-  line: {
-    borderBottomColor: theme.colors.text,
+    width: "40%",
+    textAlign: "center",
     borderBottomWidth: 1,
-    marginBottom: 7,
-    width: "50%",
+    borderBottomColor: theme.colors.text,
   },
   loginText: {
-    flex: 0.3,
     color: theme.colors.placeholderColor,
     fontSize: theme.dimensions.standardFontSize,
     marginTop: 8,
