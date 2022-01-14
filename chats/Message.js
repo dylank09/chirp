@@ -27,7 +27,7 @@ export default function Message({ text, timestamp, user, me }) {
           <Text style={styles.user}>{user ? user : ""}</Text>
           <Text style={styles.ts}>{timestamp} </Text>
         </View>
-        <Text style={[styles.text, { textAlign: me ? "right" : "left" }]}>
+        <Text style={[styles.text, { textAlign: "center" }]}>
           {text ? text : ""}
         </Text>
       </View>

@@ -78,29 +78,16 @@ export default function ChatOptions({
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <AntDesign
-          style={styles.back}
-          name="left"
-          size={24}
-          color="white"
-          onPress={returnToChat}
-        />
+        <AntDesign name="left" size={24} color="white" onPress={returnToChat} />
         <Text style={styles.chatName}>{name}</Text>
-        <AntDesign
-          style={styles.back}
-          name="left"
-          size={24}
-          color={theme.colors.background}
-        />
+        <AntDesign name="left" size={24} color={theme.colors.background} />
       </View>
-      <View style={styles.chatInfoSection}>
-        <Text style={styles.chatInfo}>
-          {" "}
-          {chatData.createdAt
-            ? "Created on: " + FormatTime(chatData.createdAt)
-            : ""}
-        </Text>
-      </View>
+      <Text style={styles.chatInfo}>
+        {" "}
+        {chatData.createdAt
+          ? "Created on: " + FormatTime(chatData.createdAt)
+          : ""}
+      </Text>
       <View style={styles.memberList}>
         <Text style={styles.optionsText}>Members List</Text>
         {members &&
@@ -148,23 +135,18 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    width: "100%",
+    width: "90%",
     justifyContent: "space-between",
-    marginVertical: 15,
+    marginVertical: 20,
+    alignSelf: "center",
   },
   chatName: {
     color: theme.colors.text,
-    width: "100%",
-    textAlign: "center",
-    marginRight: 25,
     fontWeight: "500",
-    fontSize: theme.dimensions.standardFontSize,
-  },
-  back: {
-    marginLeft: 10,
+    fontSize: theme.dimensions.standardFontSize + 2,
   },
   memberList: {
-    marginBottom: "5%",
+    marginBottom: 30,
   },
   optionsText: {
     color: theme.colors.text,
@@ -197,18 +179,14 @@ const styles = StyleSheet.create({
     fontSize: theme.dimensions.standardFontSize + 2,
     margin: 7,
   },
-  chatInfoSection: {
-    justifyContent: "flex-end",
-  },
   chatInfo: {
     color: theme.colors.hazeText,
     fontSize: theme.dimensions.standardFontSize - 2,
-    marginHorizontal: 4,
-    alignSelf: "flex-end",
-    marginBottom: "5%",
+    alignSelf: "center",
+    marginBottom: 30,
   },
   deleteButton: {
-    marginTop: "8%",
+    marginTop: 30,
     width: "100%",
     alignItems: "center",
   },

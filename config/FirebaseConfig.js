@@ -1,15 +1,15 @@
 import firebase from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDI5TLvpo2EW-DORkzce0SRtY6la0C6Rts",
-  authDomain: "chirp-c5c07.firebaseapp.com",
+  apiKey: "AIzaSyDS6ewZ9HDXhwN8u6qzsXmsijtv-5GFcrM",
+  authDomain: "chirp-77b9d.firebaseapp.com",
   databaseURL:
-    "https://chirp-c5c07-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "chirp-c5c07",
-  storageBucket: "chirp-c5c07.appspot.com",
-  messagingSenderId: "623601996602",
-  appId: "1:623601996602:web:30653c73b6f4254acff603",
-  measurementId: "G-635KBY2MX9",
+    "https://chirp-77b9d-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "chirp-77b9d",
+  storageBucket: "chirp-77b9d.appspot.com",
+  messagingSenderId: "875721758742",
+  appId: "1:875721758742:web:96ae1de3b28abdf608bd37",
+  measurementId: "G-S4YZ6D7KW9",
 };
 
 export default firebase.initializeApp(firebaseConfig);

@@ -1,5 +1,11 @@
 import React, { useState, useRef } from "react";
-import { StyleSheet, ScrollView, Text, View } from "react-native";
+import {
+  StyleSheet,
+  ScrollView,
+  Text,
+  View,
+  KeyboardAvoidingView,
+} from "react-native";
 import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
@@ -74,7 +80,6 @@ export default function ChirpChat({ name, id, onBackPress }) {
       <View style={styles.container}>
         <View style={styles.header}>
           <AntDesign
-            style={styles.back}
             name="left"
             size={24}
             color="white"
@@ -82,7 +87,6 @@ export default function ChirpChat({ name, id, onBackPress }) {
           />
           <Text style={styles.chatName}>{name}</Text>
           <SimpleLineIcons
-            style={styles.options}
             name="options-vertical"
             size={22}
             color="white"
@@ -107,9 +111,13 @@ export default function ChirpChat({ name, id, onBackPress }) {
               />
             ))}
         </ScrollView>
-        <View style={styles.bottomBar}>
+        <KeyboardAvoidingView
+          style={styles.bottomBar}
+          behavior="padding"
+          keyboardVerticalOffset={-150}
+        >
           <SendText send={sendText}></SendText>
-        </View>
+        </KeyboardAvoidingView>
       </View>
     );
   }
@@ -127,9 +135,9 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    width: "100%",
+    width: "90%",
     justifyContent: "space-between",
-    marginVertical: 15,
+    marginVertical: 20,
   },
   messagesBox: {
     flex: 1,
@@ -139,18 +147,9 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
   },
-  back: {
-    marginLeft: 10,
-  },
-  options: {
-    alignSelf: "flex-end",
-    marginRight: 10,
-  },
   chatName: {
     color: theme.colors.text,
-    width: "100%",
     textAlign: "center",
-    marginRight: 25,
     fontWeight: "500",
     fontSize: theme.dimensions.standardFontSize + 2,
   },

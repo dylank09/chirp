@@ -7,13 +7,10 @@ import { theme } from "../assets/Theme";
 export default function SendText(props) {
   const [txt, settxt] = useState();
 
-  const myTextInput = React.createRef();
-
   function sender() {
     if (txt && txt.length > 0) {
       props.send(txt);
       settxt("");
-      myTextInput.current.clear();
     }
   }
 
@@ -21,10 +18,10 @@ export default function SendText(props) {
     <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
       <TextInput
         style={styles.textInput}
-        placeholder="Message"
+        placeholder="message"
         placeholderTextColor="#404040"
-        onChange={(e) => settxt(e.target.value)}
-        ref={myTextInput}
+        onChangeText={settxt}
+        // value={txt}
       ></TextInput>
       <TouchableOpacity style={styles.send} onPress={sender}>
         <Ionicons name="send" size={20} color={theme.colors.text} />

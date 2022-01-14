@@ -61,6 +61,7 @@ export default function ChirpProject({ name, id, onBackPress }) {
             onPress={onBackPress}
           />
           <Text style={styles.chatName}>{name}</Text>
+          <AntDesign name="left" size={24} color={theme.colors.background} />
         </View>
       </View>
     );
@@ -79,7 +80,8 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    width: "100%",
+    width: "90%",
+    alignItems: "center",
     justifyContent: "space-between",
     marginVertical: 15,
   },
@@ -88,17 +90,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   back: {
-    marginLeft: 10,
-  },
-  options: {
-    alignSelf: "flex-end",
-    marginRight: 10,
+    alignSelf: "flex-start",
   },
   chatName: {
     color: theme.colors.text,
-    width: "100%",
     textAlign: "center",
-    marginRight: 25,
+    alignSelf: "center",
     fontWeight: "500",
     fontSize: theme.dimensions.standardFontSize + 2,
   },
