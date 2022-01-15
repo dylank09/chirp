@@ -85,7 +85,7 @@ export default function ChatOptions({
       <Text style={styles.chatInfo}>
         {" "}
         {chatData.createdAt
-          ? "Created on: " + FormatTime(chatData.createdAt)
+          ? "Created on: " + FormatTime(chatData.createdAt.seconds)
           : ""}
       </Text>
       <View style={styles.memberList}>

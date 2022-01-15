@@ -23,9 +23,11 @@ export default function ChirpProjects() {
   const [projectName, setProjectName] = useState("");
 
   const uid = auth.currentUser.uid;
-  const chatsRef = firestore.collection("chatGroups");
-  const query = chatsRef.where("members", "array-contains", uid);
-  const [groups] = useCollectionData(query, { idField: "chatId" });
+  const projectsRef = firestore.collection("projects");
+  const query = projectsRef.where("members", "array-contains", uid);
+  const [projects] = useCollectionData(query, { idField: "projectId" });
+
+  console.log(projects);
 
   function goToProject(id, name) {
     setProjectID(id);
@@ -63,14 +65,22 @@ export default function ChirpProjects() {
                 <Text style={styles.headerText}>Projects</Text>
               </View>
               <ScrollView style={styles.projectScroll}>
-                <ProjectPreview
-                  projectName="Mobile App"
-                  nextTodo="Fix bug"
-                  remaining="21 days"
-                  onPress={() =>
-                    goToProject("VLTxVOeBueiKOmj6Okdz", "Mobile App")
-                  }
-                ></ProjectPreview>
+                {projects && projects.length > 0 ? (
+                  projects.map((proj) => (
+                    <ProjectPreview
+                      key={proj.projectId}
+                      projectName={proj.name}
+                      nextTodo={proj.nextTodo ? proj.nextTodo : ""}
+                      remaining={"21 days, 6 hours"}
+                      onPress={() => goToProject(proj.projectId, proj.name)}
+                    />
+                  ))
+                ) : (
+                  <Text style={styles.emptyGroupsText}>
+                    You have not joined any projects yet. {"\n\n"}Click the
+                    create button to make your own!
+                  </Text>
+                )}
               </ScrollView>
               <View style={styles.footer}>
                 <CreateButton onPress={goToCreateProject}></CreateButton>
@@ -109,5 +119,13 @@ const styles = StyleSheet.create({
   footer: {
     alignItems: "flex-end",
     margin: 15,
+  },
+  emptyGroupsText: {
+    fontSize: theme.dimensions.standardFontSize + 4,
+    color: theme.colors.hazeText,
+    width: "85%",
+    alignSelf: "center",
+    paddingTop: 40,
+    textAlign: "center",
   },
 });

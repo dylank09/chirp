@@ -106,7 +106,6 @@ const styles = StyleSheet.create({
     fontSize: 28,
     color: theme.colors.text,
     marginBottom: 15,
-    // marginTop: 10,
   },
   logo: {
     width: 120,
@@ -123,7 +122,6 @@ const styles = StyleSheet.create({
     borderBottomColor: theme.colors.text,
   },
   registerText: {
-    // flex: 0.3,
     color: theme.colors.placeholderColor,
     fontSize: theme.dimensions.standardFontSize,
     marginBottom: 10,
