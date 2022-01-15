@@ -19,8 +19,9 @@ const auth = firebase.auth();
 export default function ChirpProjects() {
   const [projectClicked, setProjectClicked] = useState(false);
   const [createClicked, setCreateClicked] = useState(false);
-  const [projectID, setProjectID] = useState();
+  const [projectID, setProjectID] = useState("");
   const [projectName, setProjectName] = useState("");
+  const [currentProject, setCurrentProject] = useState();
 
   const uid = auth.currentUser.uid;
   const projectsRef = firestore.collection("projects");
@@ -33,6 +34,11 @@ export default function ChirpProjects() {
     setProjectID(id);
     setProjectClicked(true);
     setProjectName(name);
+    projects.forEach((proj) => {
+      if (proj.projectId === id) {
+        setCurrentProject(proj);
+      }
+    });
   }
 
   function goToCreateProject() {
@@ -54,6 +60,7 @@ export default function ChirpProjects() {
               id={projectID}
               name={projectName}
               onBackPress={backToList}
+              projectData={currentProject}
             />
           );
         } else if (createClicked) {

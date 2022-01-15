@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, Text, View } from "react-native";
-import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
+import { StyleSheet, Text, View } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 import LoadingScreen from "../components/LoadingScreen";
+import MemberList from "../components/MemberList";
+import GetUser from "../functions/GetUser";
+
 import firebase from "firebase/app";
 import "firebase/firestore";
 import {
@@ -15,15 +18,16 @@ import app from "../config/FirebaseConfig";
 const firestore = firebase.firestore(app);
 const auth = firebase.auth();
 
-export default function ChirpProject({ name, id, onBackPress }) {
+export default function ChirpProject({ name, onBackPress, projectData }) {
   const { uid } = auth.currentUser;
   const userRef = firestore.collection("users").doc(uid);
   const [user] = useDocumentData(userRef);
 
-  const projectRef = firestore.collection("projects").doc(id);
-  const [project] = useDocumentData(projectRef);
+  var members = [];
 
-  const loading = false;
+  projectData.members.forEach((member) => {
+    members.push(GetUser(member));
+  });
 
   //   const todosRef = projectRef.collection("messages");
   //   const query = todosRef.orderBy("createdAt").limit(50);
@@ -47,25 +51,29 @@ export default function ChirpProject({ name, id, onBackPress }) {
   //       });
   //   }
 
-  if (loading) {
-    return <LoadingScreen />;
-  } else {
-    return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <AntDesign
-            style={styles.back}
-            name="left"
-            size={24}
-            color="white"
-            onPress={onBackPress}
-          />
-          <Text style={styles.chatName}>{name}</Text>
-          <AntDesign name="left" size={24} color={theme.colors.background} />
-        </View>
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <AntDesign
+          style={styles.back}
+          name="left"
+          size={24}
+          color="white"
+          onPress={onBackPress}
+        />
+        <Text style={styles.chatName}>{name}</Text>
+        <AntDesign name="left" size={24} color={theme.colors.background} />
       </View>
-    );
-  }
+      <View style={styles.project}>
+        <MemberList
+          style={styles.memberSection}
+          members={members ? members : []}
+        ></MemberList>
+        <View style={styles.todoSection}></View>
+        <View style={styles.deadline}></View>
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -98,5 +106,17 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontWeight: "500",
     fontSize: theme.dimensions.standardFontSize + 2,
+  },
+  project: {
+    flexDirection: "column",
+  },
+  memberSection: {
+    flex: 2,
+  },
+  todoSection: {
+    flex: 3,
+  },
+  deadlineSection: {
+    flex: 1,
   },
 });

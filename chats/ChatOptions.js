@@ -12,6 +12,8 @@ import app from "../config/FirebaseConfig";
 import ChirpButton from "../components/ChirpButton";
 import TextAlert from "../components/TextAlert";
 import FormatTime from "../functions/FormatTime";
+import MemberList from "../components/MemberList";
+import GetUser from "../functions/GetUser";
 
 const firestore = firebase.firestore(app);
 
@@ -34,19 +36,8 @@ export default function ChatOptions({
 
   var members = [];
   chatData.members.forEach((mem) => {
-    members.push(findUser(mem));
+    members.push(GetUser(mem));
   });
-
-  function findUser(userid) {
-    if (users) {
-      for (const u of users) {
-        if (userid == u.userid) {
-          return u.email;
-        }
-      }
-    }
-    return "";
-  }
 
   function addMember() {
     setAddMemberAlert("");
@@ -88,15 +79,6 @@ export default function ChatOptions({
           ? "Created on: " + FormatTime(chatData.createdAt.seconds)
           : ""}
       </Text>
-      <View style={styles.memberList}>
-        <Text style={styles.optionsText}>Members List</Text>
-        {members &&
-          members.map((mem, i) => (
-            <Text key={i} style={styles.member}>
-              {mem}
-            </Text>
-          ))}
-      </View>
       <Text style={styles.optionsText}>Add member</Text>
       <View style={styles.addMember}>
         <TextInput
@@ -113,7 +95,7 @@ export default function ChatOptions({
         ></ChirpButton>
       </View>
       <TextAlert text={addMemberAlert}></TextAlert>
-
+      <MemberList members={members ? members : []}></MemberList>
       <View style={styles.deleteButton}>
         <ChirpButton
           onPress={deleteChat}
@@ -145,23 +127,12 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: theme.dimensions.standardFontSize + 2,
   },
-  memberList: {
-    marginBottom: 30,
-  },
   optionsText: {
     color: theme.colors.text,
     fontSize: theme.dimensions.standardFontSize,
     fontWeight: "bold",
     alignSelf: "center",
     marginTop: 4,
-  },
-  member: {
-    color: theme.colors.text,
-    fontSize: theme.dimensions.standardFontSize,
-    borderBottomColor: theme.colors.text,
-    borderBottomWidth: 0.5,
-    padding: 4,
-    marginVertical: 5,
   },
   addMember: {
     borderRadius: 18,
