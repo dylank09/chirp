@@ -18,11 +18,7 @@ export default function ProjectPreview({
       </View>
       {remaining ? (
         <View style={styles.right}>
-          <MaterialCommunityIcons
-            name="timer-sand-full"
-            size={20}
-            color="white"
-          />
+          <MaterialCommunityIcons name="timer-sand" size={18} color="white" />
           <Text style={styles.remaining}>{remaining}</Text>
         </View>
       ) : (
@@ -40,7 +36,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     backgroundColor: theme.colors.jet,
     padding: 5,
-    margin: 5,
+    margin: 10,
     alignSelf: "center",
     justifyContent: "space-between",
     alignItems: "center",
@@ -71,10 +67,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   remaining: {
-    fontSize: theme.dimensions.standardFontSize + 2,
+    fontSize: theme.dimensions.standardFontSize,
     color: theme.colors.text,
     fontWeight: "500",
-    paddingLeft: 2,
+    paddingLeft: 6,
     paddingRight: 3,
   },
 });

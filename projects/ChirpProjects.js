@@ -12,6 +12,7 @@ import CreateButton from "../components/CreateButton";
 import ProjectPreview from "./ProjectPreview";
 import ChirpProject from "./ChirpProject";
 import CreateProject from "./CreateProject";
+import GetRemaining from "../functions/GetRemaining";
 
 const firestore = firebase.firestore(app);
 const auth = firebase.auth();
@@ -78,7 +79,7 @@ export default function ChirpProjects() {
                       key={proj.projectId}
                       projectName={proj.name}
                       nextTodo={proj.nextTodo ? proj.nextTodo : ""}
-                      remaining={"21 days, 6 hours"}
+                      remaining={GetRemaining(proj.deadline)}
                       onPress={() => goToProject(proj.projectId, proj.name)}
                     />
                   ))
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   header: {
     marginTop: 15,
     alignItems: "center",
-    marginBottom: 40,
+    marginBottom: 50,
   },
   headerText: {
     color: theme.colors.text,

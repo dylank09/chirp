@@ -21,7 +21,9 @@ export default function MemberList({ members }) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    marginBottom: 30,
+    marginBottom: 20,
+    borderBottomColor: theme.colors.jet,
+    borderBottomWidth: 1,
   },
   heading: {
     color: theme.colors.text,

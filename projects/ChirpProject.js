@@ -14,6 +14,7 @@ import {
   useDocumentData,
 } from "react-firebase-hooks/firestore";
 import app from "../config/FirebaseConfig";
+import Deadline from "./Deadline";
 
 const firestore = firebase.firestore(app);
 const auth = firebase.auth();
@@ -68,9 +69,9 @@ export default function ChirpProject({ name, onBackPress, projectData }) {
         <MemberList
           style={styles.memberSection}
           members={members ? members : []}
-        ></MemberList>
+        />
         <View style={styles.todoSection}></View>
-        <View style={styles.deadline}></View>
+        <Deadline currentDeadline={projectData.deadline.seconds} />
       </View>
     </View>
   );
@@ -89,13 +90,9 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     width: "90%",
-    alignItems: "center",
     justifyContent: "space-between",
-    marginVertical: 15,
-  },
-  bottomBar: {
-    width: "100%",
-    justifyContent: "center",
+    marginTop: 15,
+    marginBottom: 30,
   },
   back: {
     alignSelf: "flex-start",
@@ -108,7 +105,8 @@ const styles = StyleSheet.create({
     fontSize: theme.dimensions.standardFontSize + 2,
   },
   project: {
-    flexDirection: "column",
+    height: "90%",
+    width: "100%",
   },
   memberSection: {
     flex: 2,
