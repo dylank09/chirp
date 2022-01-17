@@ -52,15 +52,14 @@ const styles = StyleSheet.create({
   name: {
     fontSize: theme.dimensions.standardFontSize + 3,
     color: theme.colors.text,
-    fontWeight: "500",
+    fontWeight: "bold",
     alignSelf: "flex-start",
     paddingLeft: 10,
   },
   todo: {
     fontSize: theme.dimensions.standardFontSize - 2,
     color: theme.colors.text,
-    fontWeight: "400",
-    // alignSelf: "flex-end",
+    fontWeight: "normal",
     paddingLeft: 10,
   },
   right: {
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
   remaining: {
     fontSize: theme.dimensions.standardFontSize,
     color: theme.colors.text,
-    fontWeight: "500",
+    fontWeight: "bold",
     paddingLeft: 6,
     paddingRight: 3,
   },

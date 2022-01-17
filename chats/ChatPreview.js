@@ -20,24 +20,32 @@ export default function ChatPreview({
           style={{
             fontSize: 20,
             textAlign: "center",
-            fontWeight: notOpened ? "500" : "400",
+            fontWeight: notOpened ? "bold" : "normal",
           }}
         >
           {chatName ? chatName[0] : "E"}
         </Text>
       </View>
       <View>
-        <Text style={[styles.name, { fontWeight: notOpened ? "500" : "400" }]}>
+        <Text
+          style={[styles.name, { fontWeight: notOpened ? "bold" : "normal" }]}
+        >
           {chatName ? chatName : "Name Err"}
         </Text>
         <Text
-          style={[styles.message, { fontWeight: notOpened ? "500" : "400" }]}
+          style={[
+            styles.message,
+            { fontWeight: notOpened ? "bold" : "normal" },
+          ]}
         >
           {previewText ? previewText : ""}
         </Text>
       </View>
       <Text
-        style={[styles.timestamp, { fontWeight: notOpened ? "500" : "400" }]}
+        style={[
+          styles.timestamp,
+          { fontWeight: notOpened ? "bold" : "normal" },
+        ]}
       >
         {previewtimestamp ? previewtimestamp : ""}
       </Text>
@@ -67,7 +75,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: theme.dimensions.standardFontSize + 4,
     color: theme.colors.text,
-    fontWeight: "500",
+    fontWeight: "bold",
     alignSelf: "flex-start",
   },
   message: {

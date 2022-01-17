@@ -21,7 +21,7 @@ export default function CreateChat({ onBackPress }) {
     chatsRef.doc().set({
       name: name,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      members: [auth.currentUser.uid],
+      members: [auth.currentUser.email],
       membersUnseen: [],
       lastMessage: "",
       lastMessageTimestamp: null,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     width: "100%",
     textAlign: "center",
     marginRight: 25,
-    fontWeight: "500",
+    fontWeight: "bold",
     fontSize: theme.dimensions.standardFontSize,
   },
   chatInfo: {

@@ -30,7 +30,7 @@ export default function ChirpChat({ name, id, onBackPress }) {
 
   const scrollViewRef = useRef();
 
-  const { uid } = auth.currentUser;
+  const { uid, email } = auth.currentUser;
   const userRef = firestore.collection("users").doc(uid);
   const [user] = useDocumentData(userRef);
 
@@ -46,6 +46,7 @@ export default function ChirpChat({ name, id, onBackPress }) {
       text: text ? text : "",
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
+      email,
       user: user.name,
     });
 
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
   chatName: {
     color: theme.colors.text,
     textAlign: "center",
-    fontWeight: "500",
+    fontWeight: "bold",
     fontSize: theme.dimensions.standardFontSize + 2,
   },
 });

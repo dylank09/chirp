@@ -22,24 +22,16 @@ export default function ChirpProjects() {
   const [createClicked, setCreateClicked] = useState(false);
   const [projectID, setProjectID] = useState("");
   const [projectName, setProjectName] = useState("");
-  const [currentProject, setCurrentProject] = useState();
 
-  const uid = auth.currentUser.uid;
+  const { email } = auth.currentUser;
   const projectsRef = firestore.collection("projects");
-  const query = projectsRef.where("members", "array-contains", uid);
+  const query = projectsRef.where("members", "array-contains", email);
   const [projects] = useCollectionData(query, { idField: "projectId" });
-
-  console.log(projects);
 
   function goToProject(id, name) {
     setProjectID(id);
     setProjectClicked(true);
     setProjectName(name);
-    projects.forEach((proj) => {
-      if (proj.projectId === id) {
-        setCurrentProject(proj);
-      }
-    });
   }
 
   function goToCreateProject() {
@@ -58,10 +50,9 @@ export default function ChirpProjects() {
         if (projectClicked) {
           return (
             <ChirpProject
-              id={projectID}
               name={projectName}
               onBackPress={backToList}
-              projectData={currentProject}
+              projectId={projectID}
             />
           );
         } else if (createClicked) {
@@ -118,7 +109,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: theme.colors.text,
-    fontWeight: "500",
+    fontWeight: "bold",
     fontSize: theme.dimensions.standardFontSize + 2,
   },
   projectScroll: {

@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     width: "100%",
     textAlign: "center",
     marginRight: 25,
-    fontWeight: "500",
+    fontWeight: "bold",
     fontSize: theme.dimensions.standardFontSize + 2,
   },
 });

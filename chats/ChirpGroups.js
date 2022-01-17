@@ -24,9 +24,9 @@ export default function ChirpGroups() {
   const [chatName, setChatName] = useState("");
   const [search, setSearch] = useState("");
 
-  const uid = auth.currentUser.uid;
+  const { email } = auth.currentUser;
   const chatsRef = firestore.collection("chatGroups");
-  const query = chatsRef.where("members", "array-contains", uid);
+  const query = chatsRef.where("members", "array-contains", email);
   const [groups] = useCollectionData(query, { idField: "chatId" });
 
   let chatGroups = groups;
@@ -75,7 +75,7 @@ export default function ChirpGroups() {
     }
 
     let unseen = groups[groupIndex].membersUnseen;
-    let updateUnseen = removeElementFromArray(uid, unseen);
+    let updateUnseen = removeElementFromArray(email, unseen);
 
     chatsRef.doc(id).update({
       membersUnseen: updateUnseen,
@@ -123,7 +123,7 @@ export default function ChirpGroups() {
                           ? grp.lastMessageTimestamp.seconds
                           : ""
                       }
-                      notOpened={grp.membersUnseen.includes(uid)}
+                      notOpened={grp.membersUnseen.includes(email)}
                       onPress={() => goToChat(grp.chatId, grp.name)}
                     />
                   ))

@@ -24,6 +24,6 @@ export default function FormatTime(timestamp, type = "short") {
   } else if (type === "date") {
     return t.toLocaleDateString();
   } else {
-    return t.toLocaleTimeString();
+    return t.toLocaleTimeString().slice(0, -3);
   }
 }

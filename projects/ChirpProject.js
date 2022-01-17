@@ -19,16 +19,11 @@ import Deadline from "./Deadline";
 const firestore = firebase.firestore(app);
 const auth = firebase.auth();
 
-export default function ChirpProject({ name, onBackPress, projectData }) {
-  const { uid } = auth.currentUser;
-  const userRef = firestore.collection("users").doc(uid);
-  const [user] = useDocumentData(userRef);
+export default function ChirpProject({ name, onBackPress, projectId }) {
+  // const { uid } = auth.currentUser;
 
-  var members = [];
-
-  projectData.members.forEach((member) => {
-    members.push(GetUser(member));
-  });
+  const projectRef = firestore.collection("projects").doc(projectId);
+  const [project, loading] = useDocumentData(projectRef);
 
   //   const todosRef = projectRef.collection("messages");
   //   const query = todosRef.orderBy("createdAt").limit(50);
@@ -52,29 +47,33 @@ export default function ChirpProject({ name, onBackPress, projectData }) {
   //       });
   //   }
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <AntDesign
-          style={styles.back}
-          name="left"
-          size={24}
-          color="white"
-          onPress={onBackPress}
-        />
-        <Text style={styles.chatName}>{name}</Text>
-        <AntDesign name="left" size={24} color={theme.colors.background} />
+  if (loading) {
+    return <LoadingScreen />;
+  } else {
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <AntDesign
+            style={styles.back}
+            name="left"
+            size={24}
+            color="white"
+            onPress={onBackPress}
+          />
+          <Text style={styles.chatName}>{name}</Text>
+          <AntDesign name="left" size={24} color={theme.colors.background} />
+        </View>
+        <View style={styles.project}>
+          <MemberList style={styles.memberSection} members={project.members} />
+          <View style={styles.todoSection}></View>
+          <Deadline
+            currentDeadline={project.deadline.seconds}
+            projectId={projectId}
+          />
+        </View>
       </View>
-      <View style={styles.project}>
-        <MemberList
-          style={styles.memberSection}
-          members={members ? members : []}
-        />
-        <View style={styles.todoSection}></View>
-        <Deadline currentDeadline={projectData.deadline.seconds} />
-      </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     textAlign: "center",
     alignSelf: "center",
-    fontWeight: "500",
+    fontWeight: "bold",
     fontSize: theme.dimensions.standardFontSize + 2,
   },
   project: {
@@ -109,12 +108,12 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   memberSection: {
-    flex: 2,
+    // flex: 2,
   },
   todoSection: {
-    flex: 3,
+    // flex: 3,
   },
   deadlineSection: {
-    flex: 1,
+    // flex: 1,
   },
 });

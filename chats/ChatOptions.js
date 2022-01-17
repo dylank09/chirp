@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   chatName: {
     color: theme.colors.text,
-    fontWeight: "500",
+    fontWeight: "bold",
     fontSize: theme.dimensions.standardFontSize + 2,
   },
   optionsText: {
