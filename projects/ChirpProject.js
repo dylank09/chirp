@@ -1,27 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 import LoadingScreen from "../components/LoadingScreen";
 import MemberList from "../components/MemberList";
-import GetUser from "../functions/GetUser";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
-import {
-  useCollectionData,
-  useDocumentData,
-} from "react-firebase-hooks/firestore";
+import { useDocumentData } from "react-firebase-hooks/firestore";
 import app from "../config/FirebaseConfig";
 import Deadline from "./Deadline";
+import TodoList from "./TodoList";
 
 const firestore = firebase.firestore(app);
-const auth = firebase.auth();
 
 export default function ChirpProject({ name, onBackPress, projectId }) {
-  // const { uid } = auth.currentUser;
-
   const projectRef = firestore.collection("projects").doc(projectId);
   const [project, loading] = useDocumentData(projectRef);
 
@@ -65,7 +59,7 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
         </View>
         <View style={styles.project}>
           <MemberList style={styles.memberSection} members={project.members} />
-          <View style={styles.todoSection}></View>
+          <TodoList style={styles.todoSection} projectId={projectId} />
           <Deadline
             currentDeadline={project.deadline.seconds}
             projectId={projectId}

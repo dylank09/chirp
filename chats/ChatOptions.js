@@ -34,11 +34,6 @@ export default function ChatOptions({
   const [user] = useCollectionData(query, { idField: "userid" });
   const [users] = useCollectionData(usersRef, { idField: "userid" });
 
-  var members = [];
-  chatData.members.forEach((mem) => {
-    members.push(GetUser(mem));
-  });
-
   function addMember() {
     setAddMemberAlert("");
 
@@ -47,10 +42,10 @@ export default function ChatOptions({
       return;
     }
 
-    let userid = user[0].userid;
-    if (!chatData.members.includes(userid)) {
+    let userEmail = user[0].email;
+    if (!chatData.members.includes(userEmail)) {
       let newMembers = chatData.members;
-      newMembers.push(userid);
+      newMembers.push(userEmail);
       chatRef.update({
         members: newMembers,
       });
@@ -95,7 +90,7 @@ export default function ChatOptions({
         ></ChirpButton>
       </View>
       <TextAlert text={addMemberAlert}></TextAlert>
-      <MemberList members={members ? members : []}></MemberList>
+      <MemberList members={chatData.members}></MemberList>
       <View style={styles.deleteButton}>
         <ChirpButton
           onPress={deleteChat}
