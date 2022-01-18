@@ -1,18 +1,28 @@
 import React from "react";
-import { StyleSheet, ScrollView, Text } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { StyleSheet, ScrollView, Text, View } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 
-export default function MemberList({ members }) {
+export default function MemberList({ members, fsRef }) {
+  function deleteMember(member) {
+    console.log(member);
+  }
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.heading}>Members List</Text>
       {members &&
         members.map((mem, i) => (
-          <Text key={i} style={styles.member}>
-            {mem}
-          </Text>
+          <View key={i} style={styles.memberContainer}>
+            <Text style={styles.member}>{mem}</Text>
+            <AntDesign
+              name="delete"
+              size={16}
+              color="white"
+              onPress={() => deleteMember(mem)}
+            />
+          </View>
         ))}
     </ScrollView>
   );
@@ -20,10 +30,9 @@ export default function MemberList({ members }) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     width: "100%",
-    marginBottom: 20,
-    borderBottomColor: theme.colors.jet,
-    borderBottomWidth: 1,
+    marginBottom: 15,
   },
   heading: {
     color: theme.colors.text,
@@ -32,12 +41,16 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: 4,
   },
-  member: {
-    color: theme.colors.text,
-    fontSize: theme.dimensions.standardFontSize,
+  memberContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     borderBottomColor: theme.colors.text,
     borderBottomWidth: 0.5,
     padding: 4,
     marginVertical: 5,
+  },
+  member: {
+    color: theme.colors.text,
+    fontSize: theme.dimensions.standardFontSize,
   },
 });

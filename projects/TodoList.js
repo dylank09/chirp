@@ -80,7 +80,7 @@ export default function TodoList({ projectId }) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    marginBottom: 20,
+    marginBottom: 15,
   },
   heading: {
     color: theme.colors.text,

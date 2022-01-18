@@ -10,10 +10,9 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 import app from "../config/FirebaseConfig";
 import ChirpButton from "../components/ChirpButton";
-import TextAlert from "../components/TextAlert";
 import FormatTime from "../functions/FormatTime";
 import MemberList from "../components/MemberList";
-import GetUser from "../functions/GetUser";
+import AddMember from "../components/AddMember";
 
 const firestore = firebase.firestore(app);
 
@@ -24,37 +23,10 @@ export default function ChatOptions({
   chatData,
   returnToMain,
 }) {
-  const [email, setEmail] = useState("");
-  const [addMemberAlert, setAddMemberAlert] = useState("");
-
   const usersRef = firestore.collection("users");
   const chatRef = firestore.collection("chatGroups").doc(id);
 
-  const query = usersRef.where("email", "==", email);
-  const [user] = useCollectionData(query, { idField: "userid" });
   const [users] = useCollectionData(usersRef, { idField: "userid" });
-
-  function addMember() {
-    setAddMemberAlert("");
-
-    if (!user[0]) {
-      setAddMemberAlert("No user with that email exists");
-      return;
-    }
-
-    let userEmail = user[0].email;
-    if (!chatData.members.includes(userEmail)) {
-      let newMembers = chatData.members;
-      newMembers.push(userEmail);
-      chatRef.update({
-        members: newMembers,
-      });
-      setEmail("");
-      setAddMemberAlert("Successful");
-    } else {
-      setAddMemberAlert("User is already in the chat");
-    }
-  }
 
   function deleteChat() {
     chatRef.delete();
@@ -74,23 +46,8 @@ export default function ChatOptions({
           ? "Created on: " + FormatTime(chatData.createdAt.seconds)
           : ""}
       </Text>
-      <Text style={styles.optionsText}>Add member</Text>
-      <View style={styles.addMember}>
-        <TextInput
-          style={styles.memberTextBox}
-          placeholder="Email"
-          placeholderTextColor={theme.colors.placeholderColor}
-          value={email}
-          onChangeText={setEmail}
-        ></TextInput>
-        <ChirpButton
-          text="Add"
-          onPress={() => addMember()}
-          width="25%"
-        ></ChirpButton>
-      </View>
-      <TextAlert text={addMemberAlert}></TextAlert>
-      <MemberList members={chatData.members}></MemberList>
+      <MemberList members={chatData.members} />
+      <AddMember currentMembers={chatData.members} chatId={id} />
       <View style={styles.deleteButton}>
         <ChirpButton
           onPress={deleteChat}
@@ -121,29 +78,6 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     fontWeight: "bold",
     fontSize: theme.dimensions.standardFontSize + 2,
-  },
-  optionsText: {
-    color: theme.colors.text,
-    fontSize: theme.dimensions.standardFontSize,
-    fontWeight: "bold",
-    alignSelf: "center",
-    marginTop: 4,
-  },
-  addMember: {
-    borderRadius: 18,
-    borderColor: theme.colors.primary,
-    borderWidth: 1,
-    flexDirection: "row",
-    margin: 7,
-    width: "90%",
-    justifyContent: "space-around",
-    alignSelf: "center",
-  },
-  memberTextBox: {
-    width: "60%",
-    color: "white",
-    fontSize: theme.dimensions.standardFontSize + 2,
-    margin: 7,
   },
   chatInfo: {
     color: theme.colors.hazeText,

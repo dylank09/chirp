@@ -19,8 +19,6 @@ export default function Profile() {
 
   const { photoURL, displayName } = auth.currentUser;
 
-  console.log(user);
-
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileHeader}>
@@ -28,7 +26,9 @@ export default function Profile() {
           <Image style={styles.profileImage} source={{ uri: photoURL }}></Image>
         ) : (
           <View style={styles.profileImage}>
-            {user ? user[0].name.slice(0, 1) : ""}
+            <Text style={styles.profileText}>
+              {user ? user[0].name.slice(0, 1) : ""}
+            </Text>
           </View>
         )}
         <View style={styles.profileInfo}>
@@ -70,9 +70,11 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     borderColor: theme.colors.hazeText,
     borderWidth: 0.8,
+    justifyContent: "center",
+  },
+  profileText: {
     color: theme.colors.hazeText,
     fontSize: theme.dimensions.standardFontSize + 14,
-    justifyContent: "center",
     textAlign: "center",
   },
   displayName: {
