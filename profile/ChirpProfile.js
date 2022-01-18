@@ -17,16 +17,23 @@ export default function Profile() {
   const query = usersRef.where("email", "==", auth.currentUser.email);
   const [user] = useCollectionData(query, { idField: "userid" });
 
+  const { photoURL, displayName } = auth.currentUser;
+
+  console.log(user);
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileHeader}>
-        <Image
-          style={styles.profileImage}
-          source={{ uri: auth.currentUser.photoURL }}
-        ></Image>
+        {photoURL ? (
+          <Image style={styles.profileImage} source={{ uri: photoURL }}></Image>
+        ) : (
+          <View style={styles.profileImage}>
+            {user ? user[0].name.slice(0, 1) : ""}
+          </View>
+        )}
         <View style={styles.profileInfo}>
           <Text style={styles.displayName}>
-            {user ? user[0].name : auth.currentUser.displayName}
+            {user ? user[0].name : displayName}
           </Text>
           <Text style={styles.createdAt}>
             Created at:{" "}
@@ -63,6 +70,10 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     borderColor: theme.colors.hazeText,
     borderWidth: 0.8,
+    color: theme.colors.hazeText,
+    fontSize: theme.dimensions.standardFontSize + 14,
+    justifyContent: "center",
+    textAlign: "center",
   },
   displayName: {
     fontSize: theme.dimensions.standardFontSize + 5,

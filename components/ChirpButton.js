@@ -16,7 +16,7 @@ export default function ChirpButton(props) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: theme.colors.button,
+    backgroundColor: theme.colors.primary,
     padding: 10,
     margin: 10,
     borderRadius: 18,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     height: theme.dimensions.buttonHeight,
   },
   buttonText: {
-    color: theme.colors.buttonText,
+    color: theme.colors.text,
     fontSize: theme.dimensions.standardFontSize,
   },
 });

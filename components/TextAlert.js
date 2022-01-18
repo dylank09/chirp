@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     paddingLeft: 3,
     width: theme.dimensions.authWidth,
     height: 15,
-    color: theme.colors.alertText,
+    color: theme.colors.primary,
     fontSize: 11,
     margin: 0,
   },

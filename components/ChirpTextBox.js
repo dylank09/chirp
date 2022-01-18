@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     width: theme.dimensions.authWidth,
     color: theme.colors.text,
     fontSize: theme.dimensions.standardFontSize + 1,
-    borderBottomColor: theme.colors.authTextBox,
+    borderBottomColor: theme.colors.text,
     borderBottomWidth: 1,
     marginTop: 7,
     marginBottom: 5,

@@ -14,7 +14,7 @@ export default function CreateButton(props) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: theme.colors.button,
+    backgroundColor: theme.colors.primary,
     borderRadius: (theme.dimensions.inputHeight + 2) / 2,
     alignItems: "center",
     justifyContent: "center",
