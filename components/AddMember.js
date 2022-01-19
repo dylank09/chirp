@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput } from "react-native";
 
 import { theme } from "../assets/Theme";
 import TextAlert from "../components/TextAlert";
@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     marginBottom: 20,
-    borderBottomColor: theme.colors.jet,
-    borderBottomWidth: 1,
+    // borderBottomColor: theme.colors.jet,
+    // borderBottomWidth: 1,
   },
   optionsText: {
     color: theme.colors.text,

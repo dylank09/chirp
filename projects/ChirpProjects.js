@@ -30,8 +30,8 @@ export default function ChirpProjects() {
 
   if (projects) {
     projects.sort(function (a, b) {
-      var x = a.deadline.seconds ? a.deadline.seconds : 0;
-      var y = b.deadline.seconds ? b.deadline.seconds : 0;
+      var x = a.deadline ? a.deadline.seconds : 0;
+      var y = b.deadline ? b.deadline.seconds : 0;
       return x - y;
     });
   }

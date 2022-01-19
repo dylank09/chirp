@@ -26,7 +26,7 @@ export default function MemberList({ members, fsRef, admin }) {
                 <AntDesign
                   name="delete"
                   size={16}
-                  color="white"
+                  color={theme.colors.hazeText}
                   onPress={() => deleteMember(mem)}
                 />
               </View>

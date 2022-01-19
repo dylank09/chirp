@@ -92,6 +92,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     borderTopColor: theme.colors.jet,
     borderTopWidth: 1,
+    maxHeight: "20%",
+    width: "100%",
   },
   deadline: {
     color: theme.colors.primary,

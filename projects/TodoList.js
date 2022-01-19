@@ -9,6 +9,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import app from "../config/FirebaseConfig";
+import { ThemeColors } from "react-navigation";
 
 const firestore = firebase.firestore(app);
 
@@ -44,14 +45,14 @@ export default function TodoList({ projectId }) {
                 <MaterialIcons
                   name="done-outline"
                   size={20}
-                  color="white"
+                  color={theme.colors.hazeText}
                   onPress={() => pressDone(todo.todoId, false)}
                 />
               ) : (
                 <Entypo
                   name="circle-with-cross"
                   size={19}
-                  color="white"
+                  color={theme.colors.hazeText}
                   onPress={() => pressDone(todo.todoId, true)}
                 />
               )}
@@ -70,7 +71,7 @@ export default function TodoList({ projectId }) {
               <AntDesign
                 name="delete"
                 size={20}
-                color="white"
+                color={theme.colors.hazeText}
                 onPress={() => deleteTodo(todo.todoId)}
               />
             </View>
@@ -84,6 +85,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     marginBottom: 15,
+    marginTop: 20,
   },
   heading: {
     color: theme.colors.text,
