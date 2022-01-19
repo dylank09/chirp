@@ -17,7 +17,7 @@ export default function TodoList({ projectId }) {
     .collection("projects")
     .doc(projectId)
     .collection("todos");
-  const query = todosRef.orderBy("createdAt").limit(50);
+  const query = todosRef.orderBy("done", "asc").limit(50);
   const [todos] = useCollectionData(query, { idField: "todoId" });
 
   function deleteTodo(todoId) {
@@ -36,18 +36,9 @@ export default function TodoList({ projectId }) {
       {todos &&
         todos.map((todo, i) => (
           <View key={i} style={styles.todo}>
-            <Text style={styles.description}>
-              {todo.description ? todo.description : ""}
-            </Text>
-            <View style={styles.bottomSection}>
-              <Text style={styles.info}>
-                Creator: {todo.author ? todo.author : ""}
-              </Text>
-              <Text style={styles.info}>
-                Assignee: {todo.assignee ? todo.assignee : ""}
-              </Text>
-              <Text style={styles.info}>
-                Size: {todo.size ? todo.size : ""}
+            <View style={styles.topSection}>
+              <Text style={styles.description}>
+                {todo.description ? todo.description : ""}
               </Text>
               {todo.done ? (
                 <MaterialIcons
@@ -64,6 +55,18 @@ export default function TodoList({ projectId }) {
                   onPress={() => pressDone(todo.todoId, true)}
                 />
               )}
+            </View>
+            <View style={styles.bottomSection}>
+              <Text style={styles.info}>
+                Assignee: {todo.assignee ? todo.assignee : ""}
+              </Text>
+              <Text style={styles.info}>
+                Size: {todo.size ? todo.size : ""}
+              </Text>
+              <Text style={styles.info}>
+                Creator: {todo.author ? todo.author : ""}
+              </Text>
+
               <AntDesign
                 name="delete"
                 size={20}
@@ -100,7 +103,11 @@ const styles = StyleSheet.create({
   description: {
     color: theme.colors.text,
     fontSize: theme.dimensions.standardFontSize + 1,
-    marginBottom: 2,
+  },
+  topSection: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 3,
   },
   bottomSection: {
     flexDirection: "row",

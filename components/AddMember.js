@@ -12,13 +12,13 @@ import app from "../config/FirebaseConfig";
 
 const firestore = firebase.firestore(app);
 
-export default function AddMember({ currentMembers, chatId, projectId }) {
+export default function AddMember({ currentMembers, fsRef }) {
   const [email, setEmail] = useState("");
   const [addMemberAlert, setAddMemberAlert] = useState("");
 
-  const fsRef = chatId
-    ? firestore.collection("chatGroups").doc(chatId)
-    : firestore.collection("projects").doc(projectId);
+  // const fsRef = chatId
+  //   ? firestore.collection("chatGroups").doc(chatId)
+  //   : firestore.collection("projects").doc(projectId);
   const usersRef = firestore.collection("users");
   const query = usersRef.where("email", "==", email);
   const [user] = useCollectionData(query, { idField: "userid" });

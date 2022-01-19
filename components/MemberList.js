@@ -4,9 +4,12 @@ import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 
-export default function MemberList({ members, fsRef }) {
+export default function MemberList({ members, fsRef, admin }) {
   function deleteMember(member) {
-    console.log(member);
+    var newMembers = members.filter((mem) => mem !== member);
+    fsRef.update({
+      members: newMembers,
+    });
   }
 
   return (
@@ -15,13 +18,19 @@ export default function MemberList({ members, fsRef }) {
       {members &&
         members.map((mem, i) => (
           <View key={i} style={styles.memberContainer}>
-            <Text style={styles.member}>{mem}</Text>
-            <AntDesign
-              name="delete"
-              size={16}
-              color="white"
-              onPress={() => deleteMember(mem)}
-            />
+            {mem === admin ? (
+              <Text style={styles.adminMember}>{mem}</Text>
+            ) : (
+              <View style={styles.regularMember}>
+                <Text style={styles.member}>{mem}</Text>
+                <AntDesign
+                  name="delete"
+                  size={16}
+                  color="white"
+                  onPress={() => deleteMember(mem)}
+                />
+              </View>
+            )}
           </View>
         ))}
     </ScrollView>
@@ -42,15 +51,22 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   memberContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
     borderBottomColor: theme.colors.text,
     borderBottomWidth: 0.5,
     padding: 4,
     marginVertical: 5,
+    width: "100%",
+  },
+  regularMember: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   member: {
     color: theme.colors.text,
+    fontSize: theme.dimensions.standardFontSize,
+  },
+  adminMember: {
+    color: theme.colors.hazeText,
     fontSize: theme.dimensions.standardFontSize,
   },
 });

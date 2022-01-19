@@ -37,8 +37,16 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
           <AntDesign name="left" size={24} color={theme.colors.background} />
         </View>
         <View style={styles.project}>
-          <MemberList members={project.members} />
-          <AddMember currentMembers={project.members} projectId={projectId} />
+          <MemberList
+            members={project.members}
+            fsRef={projectRef}
+            admin={project.admin}
+          />
+          <AddMember
+            currentMembers={project.members}
+            projectId={projectId}
+            fsRef={projectRef}
+          />
           <TodoList projectId={projectId} />
           <Deadline
             currentDeadline={project.deadline.seconds}

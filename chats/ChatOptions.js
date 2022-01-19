@@ -23,10 +23,7 @@ export default function ChatOptions({
   chatData,
   returnToMain,
 }) {
-  const usersRef = firestore.collection("users");
   const chatRef = firestore.collection("chatGroups").doc(id);
-
-  const [users] = useCollectionData(usersRef, { idField: "userid" });
 
   function deleteChat() {
     chatRef.delete();
@@ -46,8 +43,12 @@ export default function ChatOptions({
           ? "Created on: " + FormatTime(chatData.createdAt.seconds)
           : ""}
       </Text>
-      <MemberList members={chatData.members} />
-      <AddMember currentMembers={chatData.members} chatId={id} />
+      <MemberList members={chatData.members} fsRef={chatRef} />
+      <AddMember
+        currentMembers={chatData.members}
+        chatId={id}
+        fsRef={chatRef}
+      />
       <View style={styles.deleteButton}>
         <ChirpButton
           onPress={deleteChat}
