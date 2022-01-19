@@ -29,12 +29,13 @@ export default function ChirpGroups() {
   const query = chatsRef.where("members", "array-contains", email);
   const [groups] = useCollectionData(query, { idField: "chatId" });
 
-  let chatGroups = groups;
+  let chatGroups;
 
   if (groups) {
     groups.sort(function (a, b) {
       return b.lastMessageTimestamp - a.lastMessageTimestamp;
     });
+    chatGroups = groups;
   }
 
   function goToChat(id, name) {

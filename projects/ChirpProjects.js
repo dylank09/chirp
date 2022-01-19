@@ -28,6 +28,14 @@ export default function ChirpProjects() {
   const query = projectsRef.where("members", "array-contains", email);
   const [projects] = useCollectionData(query, { idField: "projectId" });
 
+  if (projects) {
+    projects.sort(function (a, b) {
+      var x = a.deadline.seconds ? a.deadline.seconds : 0;
+      var y = b.deadline.seconds ? b.deadline.seconds : 0;
+      return x - y;
+    });
+  }
+
   function goToProject(id, name) {
     setProjectID(id);
     setProjectClicked(true);

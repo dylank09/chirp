@@ -50,7 +50,7 @@ export default function TodoList({ projectId }) {
               ) : (
                 <Entypo
                   name="circle-with-cross"
-                  size={20}
+                  size={19}
                   color="white"
                   onPress={() => pressDone(todo.todoId, true)}
                 />

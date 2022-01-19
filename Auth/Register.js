@@ -104,11 +104,13 @@ export default function Register({ navigation }) {
         <ChirpTextBox
           placeholder="Password"
           onChangeText={setPassword}
+          password={true}
         ></ChirpTextBox>
         <TextAlert text={passwordError}></TextAlert>
         <ChirpTextBox
           placeholder="Confirm password"
           onChangeText={setConfirmPassword}
+          password={true}
         ></ChirpTextBox>
       </KeyboardAvoidingView>
       <ChirpButton

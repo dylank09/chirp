@@ -48,10 +48,7 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
             fsRef={projectRef}
           />
           <TodoList projectId={projectId} />
-          <Deadline
-            currentDeadline={project.deadline.seconds}
-            projectId={projectId}
-          />
+          <Deadline projectId={projectId} />
         </View>
       </View>
     );

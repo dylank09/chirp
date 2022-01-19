@@ -67,6 +67,7 @@ export default function Login({ navigation }) {
         <ChirpTextBox
           placeholder="Password"
           onChangeText={setPassword}
+          password={true}
         ></ChirpTextBox>
         <TextAlert text={passwordError}></TextAlert>
         <ChirpButton

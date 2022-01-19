@@ -1,26 +1,30 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, Button, View, Platform } from "react-native";
+import { StyleSheet, Text, View, Platform } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 import { theme } from "../assets/Theme";
-import CreateButton from "../components/CreateButton";
 import ChirpButton from "../components/ChirpButton";
+import FormatTime from "../functions/FormatTime";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { useDocumentData } from "react-firebase-hooks/firestore";
 import app from "../config/FirebaseConfig";
-import FormatTime from "../functions/FormatTime";
+import { useDocumentData } from "react-firebase-hooks/firestore";
 
 const firestore = firebase.firestore(app);
 
-export default function Deadline({ currentDeadline, projectId }) {
+export default function Deadline({ projectId }) {
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
 
-  var deadlineDate = FormatTime(currentDeadline, "date");
-  var deadlineTime = FormatTime(currentDeadline, "time");
+  const projectRef = firestore.collection("projects").doc(projectId);
+  const [project] = useDocumentData(projectRef);
+
+  if (project) {
+    var deadlineDate = FormatTime(project.deadline.seconds, "date");
+    var deadlineTime = FormatTime(project.deadline.seconds, "time");
+  }
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -33,7 +37,6 @@ export default function Deadline({ currentDeadline, projectId }) {
   };
 
   function setDeadlineDate(currentDate) {
-    const projectRef = firestore.collection("projects").doc(projectId);
     projectRef.update({
       deadline: firebase.firestore.Timestamp.fromDate(currentDate),
     });

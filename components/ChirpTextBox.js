@@ -3,14 +3,24 @@ import { StyleSheet, TextInput } from "react-native";
 
 import { theme } from "../assets/Theme";
 
-export default function ChirpTextBox(props) {
+export default function ChirpTextBox({
+  onChangeText,
+  value,
+  placeholder,
+  password,
+}) {
   return (
     <TextInput
       style={styles.textBox}
       maxLength={40}
-      onChangeText={props.onChangeText}
+      value={value}
+      onChangeText={onChangeText ? onChangeText : null}
+      secureTextEntry={password ? true : false}
+      selectTextOnFocus={password ? true : false}
+      selectionColor={theme.colors.primary}
+      multiline={false}
       blurOnSubmit={true}
-      placeholder={props.placeholder}
+      placeholder={placeholder ? placeholder : ""}
       placeholderTextColor={theme.colors.placeholderColor}
     ></TextInput>
   );

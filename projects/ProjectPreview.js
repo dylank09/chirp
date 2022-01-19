@@ -14,7 +14,7 @@ export default function ProjectPreview({
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.left}>
         <Text style={styles.name}>{projectName ? projectName : ""}</Text>
-        <Text style={styles.todo}>Todo: {nextTodo ? nextTodo : ""}</Text>
+        <Text style={styles.todo}>{nextTodo ? "Todo: " + nextTodo : ""}</Text>
       </View>
       {remaining ? (
         <View style={styles.right}>
