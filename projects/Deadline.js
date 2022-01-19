@@ -57,6 +57,7 @@ export default function Deadline({ projectId }) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.heading}>Deadline</Text>
       <View style={styles.body}>
         <Text style={styles.deadline} onPress={showDatepicker}>
           {deadlineDate}
@@ -94,6 +95,13 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     maxHeight: "20%",
     width: "100%",
+  },
+  heading: {
+    color: theme.colors.text,
+    fontSize: theme.dimensions.standardFontSize,
+    fontWeight: "bold",
+    alignSelf: "center",
+    marginTop: 4,
   },
   deadline: {
     color: theme.colors.primary,
