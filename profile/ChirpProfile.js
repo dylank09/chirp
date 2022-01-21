@@ -49,7 +49,6 @@ export default function Profile() {
           </Text>
         </View>
       </View>
-      {/* options... information... */}
       <View style={styles.options}>
         <ChirpSwitch
           text="Enable light mode"
@@ -58,6 +57,9 @@ export default function Profile() {
         />
         <Text style={styles.signout} onPress={() => auth.signOut()}>
           Sign out
+        </Text>
+        <Text style={styles.signout} onPress={() => console.log("clicked")}>
+          New option
         </Text>
       </View>
     </ScrollView>

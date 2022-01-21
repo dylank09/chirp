@@ -80,13 +80,13 @@ export default function TodoList({ projectId }) {
             </View>
             <View style={styles.bottomSection}>
               <Text style={styles.info}>
-                Assignee: {todo.assignee ? todo.assignee : ""}
+                {todo.assignee ? "Assignee: " + todo.assignee : ""}
               </Text>
               <Text style={styles.info}>
-                Size: {todo.size ? todo.size : ""}
+                {todo.size ? "Size: " + todo.size : ""}
               </Text>
               <Text style={styles.info}>
-                Creator: {todo.author ? todo.author : ""}
+                {todo.author ? "Author: " + todo.author : ""}
               </Text>
 
               <AntDesign
@@ -105,6 +105,7 @@ export default function TodoList({ projectId }) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
+    flex: 1,
     marginBottom: 15,
     marginTop: 20,
     borderBottomColor: theme.colors.jet,
@@ -152,5 +153,6 @@ const styles = StyleSheet.create({
   info: {
     color: theme.colors.hazeText,
     fontSize: theme.dimensions.standardFontSize - 1,
+    minWidth: "20%",
   },
 });

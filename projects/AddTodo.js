@@ -18,13 +18,13 @@ const auth = firebase.auth();
 export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
   const [description, setDescription] = useState("");
   const [assignee, setAssignee] = useState("");
-  const [size, setSize] = useState();
+  const [size, setSize] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
 
   async function addTodo() {
     var author = auth.currentUser.displayName;
     author = author.substring(0, author.indexOf(" "));
-    console.log(author);
+    console.log(author, assignee, size);
 
     if (description.length < 2) {
       setDescriptionError("Description is too short");
@@ -68,15 +68,19 @@ export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
           value={assignee}
           onChangeText={setAssignee}
         ></ChirpTextBox>
-        <Picker
-          selectedValue={size}
-          onValueChange={(itemValue, itemIndex) => setSize(itemValue)}
-          prompt="Select size"
-        >
-          <Picker.Item label="S" value="S" />
-          <Picker.Item label="M" value="M" />
-          <Picker.Item label="L" value="L" />
-        </Picker>
+        <View style={styles.pickerRow}>
+          <Text style={styles.pickerHelpText}>Todo size: </Text>
+          <Picker
+            selectedValue={size}
+            onValueChange={(itemValue, itemIndex) => setSize(itemValue)}
+            prompt="Todo size"
+          >
+            <Picker.Item label="Select size" value="" />
+            <Picker.Item label="S" value="S" />
+            <Picker.Item label="M" value="M" />
+            <Picker.Item label="L" value="L" />
+          </Picker>
+        </View>
       </View>
       <ChirpButton onPress={addTodo} width="70%" text="Add Todo"></ChirpButton>
     </View>
@@ -119,9 +123,20 @@ const styles = StyleSheet.create({
     fontSize: theme.dimensions.standardFontSize,
   },
   todoInfo: {
-    height: "60%",
+    height: "50%",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+  },
+  pickerRow: {
+    flexDirection: "row",
+    alignSelf: "center",
+    width: "60%",
+    justifyContent: "space-around",
+    marginTop: 10,
+  },
+  pickerHelpText: {
+    color: theme.colors.text,
+    fontSize: theme.dimensions.standardFontSize,
   },
 });
