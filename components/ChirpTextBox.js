@@ -8,17 +8,17 @@ export default function ChirpTextBox({
   value,
   placeholder,
   password,
+  allowMultiline,
 }) {
   return (
     <TextInput
       style={styles.textBox}
-      maxLength={40}
       value={value}
       onChangeText={onChangeText ? onChangeText : null}
       secureTextEntry={password ? true : false}
       selectTextOnFocus={password ? true : false}
       selectionColor={theme.colors.primary}
-      multiline={false}
+      multiline={allowMultiline ? allowMultiline : false}
       blurOnSubmit={true}
       placeholder={placeholder ? placeholder : ""}
       placeholderTextColor={theme.colors.placeholderColor}

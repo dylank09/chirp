@@ -1,25 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { AntDesign, Entypo, MaterialIcons } from "@expo/vector-icons";
 
+import CreateButton from "../components/CreateButton";
 import { theme } from "../assets/Theme";
-import LoadingScreen from "../components/LoadingScreen";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import app from "../config/FirebaseConfig";
-import { ThemeColors } from "react-navigation";
+import AddTodo from "./AddTodo";
 
 const firestore = firebase.firestore(app);
 
 export default function TodoList({ projectId }) {
+  const [createTodo, setCreateTodo] = useState(false);
+
   const todosRef = firestore
     .collection("projects")
     .doc(projectId)
     .collection("todos");
   const query = todosRef.orderBy("done", "asc").limit(50);
   const [todos] = useCollectionData(query, { idField: "todoId" });
+
+  if (todos) {
+    todos.sort(function (a, b) {
+      return b.createdAt - a.createdAt;
+    });
+  }
 
   function deleteTodo(todoId) {
     todosRef.doc(todoId).delete();
@@ -31,9 +39,22 @@ export default function TodoList({ projectId }) {
     });
   }
 
+  if (createTodo) {
+    return (
+      <AddTodo
+        todosRef={todosRef}
+        onBackPress={() => setCreateTodo(false)}
+        onSubmit={() => setCreateTodo(false)}
+      />
+    );
+  }
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.heading}>Todo List</Text>
+      <View style={styles.header}>
+        <View style={styles.blankHeading} />
+        <Text style={styles.heading}>Todo List</Text>
+        <CreateButton onPress={setCreateTodo} size={40} />
+      </View>
       {todos &&
         todos.map((todo, i) => (
           <View key={i} style={styles.todo}>
@@ -86,6 +107,18 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 15,
     marginTop: 20,
+    borderBottomColor: theme.colors.jet,
+    borderBottomWidth: 1,
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "90%",
+    alignContent: "center",
+    alignSelf: "center",
+  },
+  blankHeading: {
+    width: 50,
   },
   heading: {
     color: theme.colors.text,
@@ -103,6 +136,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   description: {
+    maxWidth: "92%",
     color: theme.colors.text,
     fontSize: theme.dimensions.standardFontSize + 1,
   },

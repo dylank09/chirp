@@ -5,30 +5,38 @@ import { AntDesign } from "@expo/vector-icons";
 import { theme } from "../assets/Theme";
 import ChirpButton from "../components/ChirpButton";
 import ChirpTextBox from "../components/ChirpTextBox";
+import TextAlert from "../components/TextAlert";
+import Deadline from "./Deadline";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
-import Deadline from "./Deadline";
 
 const firestore = firebase.firestore();
 const auth = firebase.auth();
 
 export default function CreateProject({ onBackPress }) {
   const [name, setName] = useState("");
-  const [projectId, setProjectId] = useState();
+  const [nameError, setNameError] = useState("");
+  const [projectId, setProjectId] = useState("");
   const projectsRef = firestore.collection("projects");
 
   async function createProject() {
-    const { id } = await projectsRef.add({
-      name: name,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      deadline: firebase.firestore.FieldValue.serverTimestamp(),
-      members: [auth.currentUser.email],
-      admin: auth.currentUser.email,
-      nextTodo: "",
-    });
-    setProjectId(id);
+    if (name.length < 1) {
+      setNameError("Name is too short");
+    } else if (name.length > 24) {
+      setNameError("Name is too long");
+    } else {
+      const { id } = await projectsRef.add({
+        name: name,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        deadline: firebase.firestore.FieldValue.serverTimestamp(),
+        members: [auth.currentUser.email],
+        admin: auth.currentUser.email,
+        nextTodo: "",
+      });
+      setProjectId(id);
+    }
   }
 
   if (projectId) {
@@ -61,6 +69,7 @@ export default function CreateProject({ onBackPress }) {
           value={name}
           onChangeText={setName}
         ></ChirpTextBox>
+        <TextAlert text={nameError} />
       </View>
       <ChirpButton
         onPress={createProject}

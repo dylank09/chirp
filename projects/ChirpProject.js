@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalView: {
+    height: "60%",
     backgroundColor: theme.colors.background,
     margin: 20,
     borderRadius: 20,

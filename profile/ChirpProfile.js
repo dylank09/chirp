@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -8,11 +9,14 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 import { theme } from "../assets/Theme";
 import app from "../config/FirebaseConfig";
+import ChirpSwitch from "../components/ChirpSwitch";
 
 const firestore = firebase.firestore(app);
 const auth = firebase.auth();
 
 export default function Profile() {
+  const [lightMode, setLightMode] = useState(false);
+
   const usersRef = firestore.collection("users");
   const query = usersRef.where("email", "==", auth.currentUser.email);
   const [user] = useCollectionData(query, { idField: "userid" });
@@ -46,9 +50,16 @@ export default function Profile() {
         </View>
       </View>
       {/* options... information... */}
-      <Text style={styles.signout} onPress={() => auth.signOut()}>
-        Sign out
-      </Text>
+      <View style={styles.options}>
+        <ChirpSwitch
+          text="Enable light mode"
+          value={lightMode}
+          func={setLightMode}
+        />
+        <Text style={styles.signout} onPress={() => auth.signOut()}>
+          Sign out
+        </Text>
+      </View>
     </ScrollView>
   );
 }
@@ -89,12 +100,13 @@ const styles = StyleSheet.create({
     color: theme.colors.hazeText,
     fontSize: theme.dimensions.standardFontSize - 4,
   },
+  options: {
+    marginTop: 20,
+  },
   signout: {
-    fontSize: theme.dimensions.standardFontSize,
+    fontSize: theme.dimensions.standardFontSize + 2,
     color: theme.colors.text,
     width: "100%",
-    borderBottomWidth: 0.5,
-    borderBottomColor: theme.colors.hazeText,
     padding: 7,
   },
 });

@@ -6,7 +6,19 @@ import { theme } from "../assets/Theme";
 
 export default function CreateButton(props) {
   return (
-    <TouchableOpacity onPress={props.onPress} style={styles.button}>
+    <TouchableOpacity
+      onPress={props.onPress}
+      style={[
+        styles.button,
+        props.size
+          ? {
+              borderRadius: props.size / 2,
+              width: props.size,
+              height: props.size,
+            }
+          : "",
+      ]}
+    >
       <MaterialIcons name="create" size={24} color="white" />
     </TouchableOpacity>
   );

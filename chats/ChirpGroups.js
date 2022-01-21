@@ -86,8 +86,7 @@ export default function ChirpGroups() {
 
   if (search.length > 0) {
     const matches = groups.filter((group) => {
-      if (group.name.toLowerCase().indexOf(search) !== -1) {
-        console.log(true);
+      if (group.name.toLowerCase().indexOf(search.toLowerCase()) !== -1) {
         return true;
       }
     });

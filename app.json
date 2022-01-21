@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "chirp",
-    "slug": "chirp",
-    "description": "Chirp app",
-    "version": "1.0.0",
+    "name": "Chirp",
+    "slug": "Chirp",
+    "description": "Chirp",
+    "version": "1.5.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/chirp_icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/chirp_splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#4c4c47"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,12 +22,12 @@
       "package": "com.dylank.chirp",
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/chirp_android_icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/chirp_icon.png"
     }
   }
 }

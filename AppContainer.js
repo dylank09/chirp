@@ -51,6 +51,7 @@ const bottomTabNavigator = createBottomTabNavigator(
             color="white"
           />
         ),
+        title: "Profile",
       },
     },
   },
@@ -59,7 +60,7 @@ const bottomTabNavigator = createBottomTabNavigator(
     tabBarOptions: {
       activeTintColor: theme.colors.hazeText,
       labelStyle: {
-        fontSize: 0,
+        fontSize: 10,
       },
       style: {
         backgroundColor: theme.colors.background,

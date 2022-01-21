@@ -9,7 +9,7 @@ import Register from "./Register";
 
 const Stack = createNativeStackNavigator();
 
-export default function AuthContainer({ auth }) {
+export default function AuthContainer() {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator initialRouteName={"Login"}>

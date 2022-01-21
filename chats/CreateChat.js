@@ -5,6 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { theme } from "../assets/Theme";
 import ChirpButton from "../components/ChirpButton";
 import ChirpTextBox from "../components/ChirpTextBox";
+import TextAlert from "../components/TextAlert";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -15,19 +16,27 @@ const auth = firebase.auth();
 
 export default function CreateChat({ onBackPress }) {
   const [name, setName] = useState("");
+  const [nameError, setNameError] = useState("");
 
   function createChat() {
-    const chatsRef = firestore.collection("chatGroups");
-    chatsRef.doc().set({
-      name: name,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      members: [auth.currentUser.email],
-      membersUnseen: [],
-      lastMessage: "",
-      lastMessageTimestamp: null,
-    });
-
-    onBackPress();
+    if (name.length < 1) {
+      setNameError("Name is too short");
+    } else if (name.length > 25) {
+      setNameError("Name is too long");
+    } else {
+      setNameError("");
+      const chatsRef = firestore.collection("chatGroups");
+      chatsRef.doc().set({
+        name: name,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        members: [auth.currentUser.email],
+        membersUnseen: [],
+        lastMessage: "",
+        lastMessageTimestamp: null,
+      });
+      setName("");
+      onBackPress();
+    }
   }
 
   return (
@@ -48,6 +57,7 @@ export default function CreateChat({ onBackPress }) {
           value={name}
           onChangeText={setName}
         ></ChirpTextBox>
+        <TextAlert text={nameError}></TextAlert>
       </View>
       <ChirpButton
         onPress={createChat}

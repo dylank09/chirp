@@ -17,7 +17,7 @@ import GetRemaining from "../functions/GetRemaining";
 const firestore = firebase.firestore(app);
 const auth = firebase.auth();
 
-export default function ChirpProjects() {
+export default function ChirpProjects(props) {
   const [projectClicked, setProjectClicked] = useState(false);
   const [createClicked, setCreateClicked] = useState(false);
   const [projectID, setProjectID] = useState("");
