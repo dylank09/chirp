@@ -13,10 +13,9 @@ import ChirpButton from "../components/ChirpButton";
 import ChirpTextBox from "../components/ChirpTextBox";
 import TextAlert from "../components/TextAlert";
 import AuthProviderButton from "../components/AuthProviderButton";
-
-import firebase from "firebase/app";
-import "firebase/auth";
 import GoogleSignIn from "./GoogleSignIn";
+
+import auth from "../config/FirebaseAuthInit";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -27,14 +26,12 @@ export default function Login({ navigation }) {
   const next = "ChirpGroups";
 
   function signInEmailPass() {
-    firebase
-      .auth()
+    auth
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Signed in
         // var user = userCredential.user;
         navigation.navigate("ChirpGroups");
-        // set currentUser in the App to some value in order to render the main screen?
       })
       .catch((error) => {
         console.log(error);

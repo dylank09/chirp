@@ -1,14 +1,13 @@
 import { Platform } from "react-native";
 import * as GoogleAuthentication from "expo-google-app-auth";
 
-import firebase from "firebase/app";
-import "firebase/auth";
-
 import AddUserToDB from "../functions/AddUserToDB";
+
+import auth from "../config/FirebaseAuthInit";
 
 export default function GoogleSignIn() {
   if (Platform.OS === "web") {
-    var provider = new firebase.auth.GoogleAuthProvider();
+    var provider = new auth.GoogleAuthProvider();
     provider.addScope("profile");
     firebase
       .auth()

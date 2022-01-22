@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { AntDesign, Entypo, MaterialIcons } from "@expo/vector-icons";
 
-import CreateButton from "../components/CreateButton";
 import { theme } from "../assets/Theme";
-
-import firebase from "firebase/app";
-import "firebase/firestore";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import app from "../config/FirebaseConfig";
+import CreateButton from "../components/CreateButton";
 import AddTodo from "./AddTodo";
 
-const firestore = firebase.firestore(app);
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
+import firestore from "../config/FirestoreInit";
 
 export default function TodoList({ projectId }) {
   const [createTodo, setCreateTodo] = useState(false);

@@ -6,12 +6,9 @@ import { theme } from "../assets/Theme";
 import ChirpButton from "../components/ChirpButton";
 import FormatTime from "../functions/FormatTime";
 
-import firebase from "firebase/app";
-import "firebase/firestore";
-import app from "../config/FirebaseConfig";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 
-const firestore = firebase.firestore(app);
+import firestore from "../config/FirestoreInit";
 
 export default function Deadline({ projectId }) {
   const [date, setDate] = useState(new Date(1598051730000));

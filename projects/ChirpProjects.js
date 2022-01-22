@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView, Text } from "react-native";
 
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-
 import { theme } from "../assets/Theme";
-import app from "../config/FirebaseConfig";
 import CreateButton from "../components/CreateButton";
 import ProjectPreview from "./ProjectPreview";
 import ChirpProject from "./ChirpProject";
 import CreateProject from "./CreateProject";
 import GetRemaining from "../functions/GetRemaining";
 
-const firestore = firebase.firestore(app);
-const auth = firebase.auth();
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
+import firestore from "../config/FirestoreInit";
+import auth from "../config/FirebaseAuthInit";
 
 export default function ChirpProjects(props) {
   const [projectClicked, setProjectClicked] = useState(false);

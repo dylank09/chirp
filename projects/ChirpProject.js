@@ -1,22 +1,19 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Modal, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Modal } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 import LoadingScreen from "../components/LoadingScreen";
 import MemberList from "../components/MemberList";
-
-import firebase from "firebase/app";
-import "firebase/firestore";
-import { useDocumentData } from "react-firebase-hooks/firestore";
-import app from "../config/FirebaseConfig";
 import Deadline from "./Deadline";
 import TodoList from "./TodoList";
 import AddMember from "../components/AddMember";
 import ChirpButton from "../components/ChirpButton";
 
-const firestore = firebase.firestore(app);
-const auth = firebase.auth();
+import { useDocumentData } from "react-firebase-hooks/firestore";
+
+import firestore from "../config/FirestoreInit";
+import auth from "../config/FirebaseAuthInit";
 
 export default function ChirpProject({ name, onBackPress, projectId }) {
   const [modalVisible, setModalVisible] = useState(false);

@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 
 import { theme } from "../assets/Theme";
-import app from "../config/FirebaseConfig";
 import ChirpSwitch from "../components/ChirpSwitch";
 
-const firestore = firebase.firestore(app);
-const auth = firebase.auth();
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
+import firestore from "../config/FirestoreInit";
+import auth from "../config/FirebaseAuthInit";
 
 export default function Profile() {
   const [lightMode, setLightMode] = useState(false);

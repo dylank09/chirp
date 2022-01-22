@@ -7,12 +7,8 @@ import ChirpButton from "../components/ChirpButton";
 import ChirpTextBox from "../components/ChirpTextBox";
 import TextAlert from "../components/TextAlert";
 
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
-
-const firestore = firebase.firestore();
-const auth = firebase.auth();
+import firestore from "../config/FirestoreInit";
+import auth from "../config/FirebaseAuthInit";
 
 export default function CreateChat({ onBackPress }) {
   const [name, setName] = useState("");

@@ -12,11 +12,10 @@ import ChirpButton from "../components/ChirpButton";
 import ChirpTextBox from "../components/ChirpTextBox";
 import TextAlert from "../components/TextAlert";
 import AuthProviderButton from "../components/AuthProviderButton";
-
-import firebase from "../config/FirebaseConfig";
-import "firebase/auth";
 import GoogleSignIn from "./GoogleSignIn";
 import AddUserToDB from "../functions/AddUserToDB";
+
+import auth from "../config/FirebaseAuthInit";
 
 export default function Register({ navigation }) {
   const [fullName, setFullName] = useState("");
@@ -31,16 +30,13 @@ export default function Register({ navigation }) {
 
   function createUserEmailPass() {
     if (validateName() && validatePassword()) {
-      firebase
-        .auth()
+      auth
         .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
           setEmailError("");
           // Signed in
-          // var user = userCredential.user;
           AddUserToDB(fullName);
           navigation.navigate(next);
-          // set currentUser in the App to some value in order to render the main screen?
         })
         .catch((error) => {
           console.log(error);

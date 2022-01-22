@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView, Text } from "react-native";
 
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-
 import { theme } from "../assets/Theme";
 import ChatPreview from "./ChatPreview";
 import SearchBar from "../components/SearchBar";
 import ChirpChat from "./ChirpChat";
-import app from "../config/FirebaseConfig";
 import CreateButton from "../components/CreateButton";
 import CreateChat from "./CreateChat";
 
-const firestore = firebase.firestore(app);
-const auth = firebase.auth();
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
+import firestore from "../config/FirestoreInit";
+import auth from "../config/FirebaseAuthInit";
 
 export default function ChirpGroups() {
   const [chatClicked, setChatClicked] = useState(false);

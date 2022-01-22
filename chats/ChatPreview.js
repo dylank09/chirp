@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import FormatTime from "../functions/FormatTime";
 
 import { theme } from "../assets/Theme";
+import FormatTime from "../functions/FormatTime";
 
 export default function ChatPreview({
   chatName,

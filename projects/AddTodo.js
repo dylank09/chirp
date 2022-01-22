@@ -8,12 +8,7 @@ import ChirpButton from "../components/ChirpButton";
 import ChirpTextBox from "../components/ChirpTextBox";
 import TextAlert from "../components/TextAlert";
 
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
-
-const firestore = firebase.firestore();
-const auth = firebase.auth();
+import auth from "../config/FirebaseAuthInit";
 
 export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
   const [description, setDescription] = useState("");

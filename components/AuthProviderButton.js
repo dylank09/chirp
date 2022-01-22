@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text, Image } from "react-native";
+
 import googleLogo from "../assets/google-logo.png";
 import { theme } from "../assets/Theme";
 

@@ -5,12 +5,9 @@ import { theme } from "../assets/Theme";
 import TextAlert from "../components/TextAlert";
 import ChirpButton from "./ChirpButton";
 
-import firebase from "firebase/app";
-import "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import app from "../config/FirebaseConfig";
 
-const firestore = firebase.firestore(app);
+import firestore from "../config/FirestoreInit";
 
 export default function AddMember({ currentMembers, fsRef }) {
   const [email, setEmail] = useState("");

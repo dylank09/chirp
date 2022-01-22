@@ -8,12 +8,8 @@ import ChirpTextBox from "../components/ChirpTextBox";
 import TextAlert from "../components/TextAlert";
 import Deadline from "./Deadline";
 
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
-
-const firestore = firebase.firestore();
-const auth = firebase.auth();
+import firestore from "../config/FirestoreInit";
+import auth from "../config/FirebaseAuthInit";
 
 export default function CreateProject({ onBackPress }) {
   const [name, setName] = useState("");

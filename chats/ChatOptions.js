@@ -1,20 +1,15 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, ScrollView } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 
-import firebase from "firebase/app";
-import "firebase/firestore";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-
-import app from "../config/FirebaseConfig";
 import ChirpButton from "../components/ChirpButton";
 import FormatTime from "../functions/FormatTime";
 import MemberList from "../components/MemberList";
 import AddMember from "../components/AddMember";
 
-const firestore = firebase.firestore(app);
+import firestore from "../config/FirestoreInit";
 
 export default function ChatOptions({
   name,

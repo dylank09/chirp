@@ -1,11 +1,5 @@
-import React from "react";
-
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
-
-const firestore = firebase.firestore();
-const auth = firebase.auth();
+import firestore from "../config/FirestoreInit";
+import auth from "../config/FirebaseAuthInit";
 
 async function AddUserToDB(name) {
   const usersRef = firestore.collection("users");

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Switch, StyleSheet } from "react-native";
+
 import { theme } from "../assets/Theme";
 
 export default function App({ text, value, func }) {

@@ -14,16 +14,13 @@ import SendText from "./SendText";
 import LoadingScreen from "../components/LoadingScreen";
 import ChatOptions from "./ChatOptions";
 
-import firebase from "firebase/app";
-import "firebase/firestore";
 import {
   useCollectionData,
   useDocumentData,
 } from "react-firebase-hooks/firestore";
-import app from "../config/FirebaseConfig";
 
-const firestore = firebase.firestore(app);
-const auth = firebase.auth();
+import firestore from "../config/FirestoreInit";
+import auth from "../config/FirebaseAuthInit";
 
 export default function ChirpChat({ name, id, onBackPress }) {
   const [optionsOpen, setOptionsOpen] = useState(false);

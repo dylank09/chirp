@@ -1,11 +1,6 @@
-import React from "react";
-
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
-const firestore = firebase.firestore();
+import firestore from "../config/FirestoreInit";
 
 function GetUser(id) {
   const usersRef = firestore.collection("users");
