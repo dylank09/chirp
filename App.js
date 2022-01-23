@@ -8,7 +8,7 @@ import LoadingScreen from "./components/LoadingScreen";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import auth from "../config/FirebaseAuthInit";
+import auth from "./config/FirebaseAuthInit";
 
 export default function App() {
   const [user, loading] = useAuthState(auth);

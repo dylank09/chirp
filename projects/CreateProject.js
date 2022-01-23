@@ -14,17 +14,19 @@ import auth from "../config/FirebaseAuthInit";
 export default function CreateProject({ onBackPress }) {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
+  const [description, setDescription] = useState("");
   const [projectId, setProjectId] = useState("");
   const projectsRef = firestore.collection("projects");
 
   async function createProject() {
-    if (name.length < 1) {
+    if (name.length < 2) {
       setNameError("Name is too short");
     } else if (name.length > 24) {
       setNameError("Name is too long");
     } else {
       const { id } = await projectsRef.add({
         name: name,
+        description: description,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         deadline: firebase.firestore.FieldValue.serverTimestamp(),
         members: [auth.currentUser.email],
@@ -66,6 +68,12 @@ export default function CreateProject({ onBackPress }) {
           onChangeText={setName}
         ></ChirpTextBox>
         <TextAlert text={nameError} />
+        <ChirpTextBox
+          placeholder="Description"
+          value={description}
+          allowMultiline={true}
+          onChangeText={setDescription}
+        ></ChirpTextBox>
       </View>
       <ChirpButton
         onPress={createProject}

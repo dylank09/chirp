@@ -52,6 +52,9 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
           )}
         </View>
         <View style={styles.project}>
+          <Text style={styles.description}>
+            {project.description ? project.description : ""}
+          </Text>
           <ChirpButton
             text="Show Members"
             onPress={() => setModalVisible(true)}
@@ -117,6 +120,9 @@ const styles = StyleSheet.create({
     height: "90%",
     width: "100%",
     alignItems: "center",
+  },
+  description: {
+    color: theme.colors.hazeText,
   },
   modalView: {
     height: "60%",
