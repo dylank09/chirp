@@ -10,6 +10,7 @@ import MemberList from "../components/MemberList";
 import AddMember from "../components/AddMember";
 
 import firestore from "../config/FirestoreInit";
+import auth from "../config/FirebaseAuthInit";
 
 export default function ChatOptions({
   name,
@@ -30,7 +31,16 @@ export default function ChatOptions({
       <View style={styles.header}>
         <AntDesign name="left" size={24} color="white" onPress={returnToChat} />
         <Text style={styles.chatName}>{name}</Text>
-        <AntDesign name="left" size={24} color={theme.colors.background} />
+        {auth.currentUser.email === chatData.admin ? (
+          <AntDesign
+            name="delete"
+            size={24}
+            color={theme.colors.text}
+            onPress={deleteChat}
+          />
+        ) : (
+          <AntDesign name="back" size={24} color={theme.colors.background} />
+        )}
       </View>
       <Text style={styles.chatInfo}>
         {" "}
@@ -38,19 +48,16 @@ export default function ChatOptions({
           ? "Created on: " + FormatTime(chatData.createdAt.seconds)
           : ""}
       </Text>
-      <MemberList members={chatData.members} fsRef={chatRef} />
+      <MemberList
+        members={chatData.members}
+        fsRef={chatRef}
+        admin={chatData.admin}
+      />
       <AddMember
         currentMembers={chatData.members}
         chatId={id}
         fsRef={chatRef}
       />
-      <View style={styles.deleteButton}>
-        <ChirpButton
-          onPress={deleteChat}
-          width="60%"
-          text="Delete Chat"
-        ></ChirpButton>
-      </View>
     </ScrollView>
   );
 }

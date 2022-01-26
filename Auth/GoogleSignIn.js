@@ -3,11 +3,12 @@ import * as GoogleAuthentication from "expo-google-app-auth";
 
 import AddUserToDB from "../functions/AddUserToDB";
 
-import auth from "../config/FirebaseAuthInit";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 export default function GoogleSignIn() {
   if (Platform.OS === "web") {
-    var provider = new auth.GoogleAuthProvider();
+    var provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope("profile");
     firebase
       .auth()

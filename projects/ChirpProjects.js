@@ -48,6 +48,12 @@ export default function ChirpProjects(props) {
     setProjectID(0);
   }
 
+  function spliceTodo(todo) {
+    if (todo.length > 28) {
+      return todo.substring(0, 28) + "...";
+    } else return todo;
+  }
+
   return (
     <View style={styles.outerContainer}>
       {(() => {
@@ -73,7 +79,7 @@ export default function ChirpProjects(props) {
                     <ProjectPreview
                       key={proj.projectId}
                       projectName={proj.name}
-                      nextTodo={proj.nextTodo ? proj.nextTodo : ""}
+                      nextTodo={proj.nextTodo ? spliceTodo(proj.nextTodo) : ""}
                       remaining={GetRemaining(proj.deadline)}
                       onPress={() => goToProject(proj.projectId, proj.name)}
                     />

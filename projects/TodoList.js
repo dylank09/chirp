@@ -10,21 +10,8 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 import firestore from "../config/FirestoreInit";
 
-export default function TodoList({ projectId }) {
+export default function TodoList({ todos, todosRef }) {
   const [createTodo, setCreateTodo] = useState(false);
-
-  const todosRef = firestore
-    .collection("projects")
-    .doc(projectId)
-    .collection("todos");
-  const query = todosRef.orderBy("done", "asc").limit(50);
-  const [todos] = useCollectionData(query, { idField: "todoId" });
-
-  if (todos) {
-    todos.sort(function (a, b) {
-      return b.createdAt - a.createdAt;
-    });
-  }
 
   function deleteTodo(todoId) {
     todosRef.doc(todoId).delete();
@@ -83,7 +70,7 @@ export default function TodoList({ projectId }) {
                 {todo.size ? "Size: " + todo.size : ""}
               </Text>
               <Text style={styles.info}>
-                {todo.author ? "Author: " + todo.author : ""}
+                {todo.author ? "Creator: " + todo.author : ""}
               </Text>
 
               <AntDesign

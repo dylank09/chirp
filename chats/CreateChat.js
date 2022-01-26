@@ -26,6 +26,7 @@ export default function CreateChat({ onBackPress }) {
         name: name,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         members: [auth.currentUser.email],
+        admin: auth.currentUser.email,
         membersUnseen: [],
         lastMessage: "",
         lastMessageTimestamp: null,

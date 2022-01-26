@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
 

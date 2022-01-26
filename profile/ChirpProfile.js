@@ -18,47 +18,52 @@ export default function Profile() {
 
   const { photoURL, displayName } = auth.currentUser;
 
-  return (
-    <ScrollView style={styles.container}>
-      <View style={styles.profileHeader}>
-        {photoURL ? (
-          <Image style={styles.profileImage} source={{ uri: photoURL }}></Image>
-        ) : (
-          <View style={styles.profileImage}>
-            <Text style={styles.profileText}>
-              {user ? user[0].name.slice(0, 1) : ""}
+  if (user) {
+    return (
+      <ScrollView style={styles.container}>
+        <View style={styles.profileHeader}>
+          {photoURL ? (
+            <Image
+              style={styles.profileImage}
+              source={{ uri: photoURL }}
+            ></Image>
+          ) : (
+            <View style={styles.profileImage}>
+              <Text style={styles.profileText}>{user[0].name.slice(0, 1)}</Text>
+            </View>
+          )}
+          <View style={styles.profileInfo}>
+            <Text style={styles.displayName}>
+              {user ? user[0].name : displayName}
+            </Text>
+            <Text style={styles.createdAt}>
+              Created at:{" "}
+              {auth.currentUser.metadata.creationTime.substring(5, 22)}
+            </Text>
+            <Text style={styles.createdAt}>
+              Last Sign In:{" "}
+              {auth.currentUser.metadata.lastSignInTime.substring(5, 22)}
             </Text>
           </View>
-        )}
-        <View style={styles.profileInfo}>
-          <Text style={styles.displayName}>
-            {user ? user[0].name : displayName}
-          </Text>
-          <Text style={styles.createdAt}>
-            Created at:{" "}
-            {auth.currentUser.metadata.creationTime.substring(5, 22)}
-          </Text>
-          <Text style={styles.createdAt}>
-            Last Sign In:{" "}
-            {auth.currentUser.metadata.lastSignInTime.substring(5, 22)}
-          </Text>
         </View>
-      </View>
-      <View style={styles.options}>
-        <ChirpSwitch
-          text="Enable light mode"
-          value={lightMode}
-          func={setLightMode}
-        />
-        <Text style={styles.signout} onPress={() => auth.signOut()}>
-          Sign out
-        </Text>
-        <Text style={styles.signout} onPress={() => console.log("clicked")}>
-          New option
-        </Text>
-      </View>
-    </ScrollView>
-  );
+        <View style={styles.options}>
+          <Text style={styles.option} onPress={() => console.log("clicked")}>
+            Edit profile
+          </Text>
+          <Text style={styles.option} onPress={() => auth.signOut()}>
+            Sign out
+          </Text>
+          <ChirpSwitch
+            text="Enable light mode"
+            value={lightMode}
+            func={setLightMode}
+          />
+        </View>
+      </ScrollView>
+    );
+  } else {
+    return <View></View>;
+  }
 }
 
 const styles = StyleSheet.create({
@@ -100,7 +105,7 @@ const styles = StyleSheet.create({
   options: {
     marginTop: 20,
   },
-  signout: {
+  option: {
     fontSize: theme.dimensions.standardFontSize + 2,
     color: theme.colors.text,
     width: "100%",

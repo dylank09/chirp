@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import Checkbox from "expo-checkbox";
 
 import { theme } from "../assets/Theme";
 import ChirpButton from "../components/ChirpButton";
@@ -8,6 +9,7 @@ import ChirpTextBox from "../components/ChirpTextBox";
 import TextAlert from "../components/TextAlert";
 import Deadline from "./Deadline";
 
+import firebase from "firebase";
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
 
@@ -15,16 +17,17 @@ export default function CreateProject({ onBackPress }) {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
   const [description, setDescription] = useState("");
+  const [createChat, setCreateChat] = useState(false);
   const [projectId, setProjectId] = useState("");
-  const projectsRef = firestore.collection("projects");
 
   async function createProject() {
     if (name.length < 2) {
       setNameError("Name is too short");
-    } else if (name.length > 24) {
+    } else if (name.length > 25) {
       setNameError("Name is too long");
     } else {
-      const { id } = await projectsRef.add({
+      setNameError("");
+      const { id } = await firestore.collection("projects").add({
         name: name,
         description: description,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -34,6 +37,19 @@ export default function CreateProject({ onBackPress }) {
         nextTodo: "",
       });
       setProjectId(id);
+
+      if (createChat) {
+        await firestore.collection("chatGroups").add({
+          name: name,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          members: [auth.currentUser.email],
+          admin: auth.currentUser.email,
+          membersUnseen: [],
+          lastMessage: "",
+          lastMessageTimestamp: null,
+        });
+      }
+      setName("");
     }
   }
 
@@ -59,7 +75,8 @@ export default function CreateProject({ onBackPress }) {
           color="white"
           onPress={onBackPress}
         />
-        <Text style={styles.projectName}>Create new project</Text>
+        <Text style={styles.projectName}>Create project</Text>
+        <AntDesign name="left" size={24} color={theme.colors.background} />
       </View>
       <View style={styles.projectInfo}>
         <ChirpTextBox
@@ -74,6 +91,15 @@ export default function CreateProject({ onBackPress }) {
           allowMultiline={true}
           onChangeText={setDescription}
         ></ChirpTextBox>
+        <View style={styles.createChat}>
+          <Text style={styles.createChatText}>Create chat group</Text>
+          <Checkbox
+            style={styles.createChatCheckbox}
+            value={createChat}
+            onValueChange={setCreateChat}
+            color={createChat ? theme.colors.primary : undefined}
+          />
+        </View>
       </View>
       <ChirpButton
         onPress={createProject}
@@ -110,16 +136,26 @@ const styles = StyleSheet.create({
   },
   projectName: {
     color: theme.colors.text,
-    width: "100%",
-    textAlign: "center",
-    marginRight: 25,
     fontWeight: "bold",
     fontSize: theme.dimensions.standardFontSize + 2,
   },
   projectInfo: {
     height: "60%",
-    width: "100%",
+    width: "90%",
     alignItems: "center",
     justifyContent: "center",
+  },
+  createChat: {
+    marginTop: 10,
+    width: "70%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  createChatText: {
+    color: theme.colors.text,
+    fontSize: theme.dimensions.standardFontSize,
+  },
+  createChatCheckbox: {
+    margin: 4,
   },
 });

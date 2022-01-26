@@ -13,6 +13,7 @@ import auth from "../config/FirebaseAuthInit";
 export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
   const [description, setDescription] = useState("");
   const [assignee, setAssignee] = useState("");
+  const [author, setAuthor] = useState("");
   const [size, setSize] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
 
@@ -48,7 +49,8 @@ export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
           color="white"
           onPress={onBackPress}
         />
-        <Text style={styles.todoName}>Create new todo</Text>
+        <Text style={styles.todoName}>Create todo</Text>
+        <AntDesign name="left" size={24} color={theme.colors.background} />
       </View>
       <View style={styles.todoInfo}>
         <ChirpTextBox
@@ -62,6 +64,11 @@ export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
           placeholder="Assignee"
           value={assignee}
           onChangeText={setAssignee}
+        ></ChirpTextBox>
+        <ChirpTextBox
+          placeholder="Author"
+          value={author}
+          onChangeText={setAuthor}
         ></ChirpTextBox>
         <View style={styles.pickerRow}>
           <Text style={styles.pickerHelpText}>Todo size: </Text>
@@ -111,9 +118,6 @@ const styles = StyleSheet.create({
   },
   todoName: {
     color: theme.colors.text,
-    width: "100%",
-    textAlign: "center",
-    marginRight: 25,
     fontWeight: "bold",
     fontSize: theme.dimensions.standardFontSize,
   },

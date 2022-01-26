@@ -10,7 +10,10 @@ import TodoList from "./TodoList";
 import AddMember from "../components/AddMember";
 import ChirpButton from "../components/ChirpButton";
 
-import { useDocumentData } from "react-firebase-hooks/firestore";
+import {
+  useDocumentData,
+  useCollectionData,
+} from "react-firebase-hooks/firestore";
 
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
@@ -24,6 +27,23 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
   function deleteProject() {
     projectRef.delete();
     onBackPress();
+  }
+
+  const todosRef = projectRef.collection("todos");
+  const query = todosRef.orderBy("done", "asc").limit(50);
+  const [todos] = useCollectionData(query, { idField: "todoId" });
+
+  if (todos) {
+    todos.sort(function (a, b) {
+      if (a.done) return 1;
+      return b.createdAt - a.createdAt;
+    });
+
+    if (todos[0] && project.nextTodo !== todos[0].description) {
+      projectRef.update({
+        nextTodo: todos[0].description,
+      });
+    }
   }
 
   if (loading) {
@@ -84,7 +104,7 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
               ></ChirpButton>
             </View>
           </Modal>
-          <TodoList projectId={projectId} />
+          <TodoList todos={todos} todosRef={todosRef} />
           <Deadline projectId={projectId} />
         </View>
       </View>
@@ -104,7 +124,7 @@ const styles = StyleSheet.create({
     width: "90%",
     justifyContent: "space-between",
     marginTop: 15,
-    marginBottom: 15,
+    marginBottom: 5,
   },
   back: {
     alignSelf: "flex-start",
@@ -123,6 +143,9 @@ const styles = StyleSheet.create({
   },
   description: {
     color: theme.colors.hazeText,
+    textAlign: "center",
+    width: "90%",
+    marginBottom: 5,
   },
   modalView: {
     height: "60%",

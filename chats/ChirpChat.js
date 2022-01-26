@@ -19,11 +19,13 @@ import {
   useDocumentData,
 } from "react-firebase-hooks/firestore";
 
+import firebase from "firebase/app";
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
 
 export default function ChirpChat({ name, id, onBackPress }) {
   const [optionsOpen, setOptionsOpen] = useState(false);
+  const [text, setText] = useState("");
 
   const scrollViewRef = useRef();
 
@@ -38,23 +40,27 @@ export default function ChirpChat({ name, id, onBackPress }) {
   const query = messagesRef.orderBy("createdAt").limit(50);
   const [msgs, loading] = useCollectionData(query, { idField: "msgId" });
 
-  async function sendText(text) {
-    await messagesRef.add({
-      text: text ? text : "",
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
-      email,
-      user: user.name,
-    });
-
-    firestore
-      .collection("chatGroups")
-      .doc(id)
-      .update({
-        membersUnseen: chat.members,
-        lastMessage: text.length < 30 ? text : text.slice(0, 30) + "...",
-        lastMessageTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  async function sendText() {
+    if (text.length > 0) {
+      await messagesRef.add({
+        text: text ? text : "",
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid,
+        email,
+        user: user.name,
       });
+
+      firestore
+        .collection("chatGroups")
+        .doc(id)
+        .update({
+          membersUnseen: chat.members,
+          lastMessage: text.length < 30 ? text : text.slice(0, 30) + "...",
+          lastMessageTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+
+      setText("");
+    }
   }
 
   function openOptions() {
@@ -98,7 +104,7 @@ export default function ChirpChat({ name, id, onBackPress }) {
             scrollViewRef.current.scrollToEnd({ animated: false })
           }
         >
-          {msgs &&
+          {msgs.length > 0 ? (
             msgs.map((msg) => (
               <Message
                 key={msg.msgId}
@@ -107,14 +113,20 @@ export default function ChirpChat({ name, id, onBackPress }) {
                 me={msg.uid == uid}
                 user={msg.user}
               />
-            ))}
+            ))
+          ) : (
+            <Text style={styles.noMessagesText}>
+              Be the first to send a message! {"\n\n\n\n"} Click on the ⋮ in the
+              top right corner to open options and add other members
+            </Text>
+          )}
         </ScrollView>
         <KeyboardAvoidingView
           style={styles.bottomBar}
           behavior="padding"
           keyboardVerticalOffset={-150}
         >
-          <SendText send={sendText}></SendText>
+          <SendText text={text} setText={setText} send={sendText}></SendText>
         </KeyboardAvoidingView>
       </View>
     );
@@ -149,6 +161,13 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     textAlign: "center",
     fontWeight: "bold",
+    fontSize: theme.dimensions.standardFontSize + 2,
+  },
+  noMessagesText: {
+    textAlign: "center",
+    width: "80%",
+    alignSelf: "center",
+    color: theme.colors.hazeText,
     fontSize: theme.dimensions.standardFontSize + 2,
   },
 });
