@@ -31,7 +31,7 @@ export default function Login({ navigation }) {
       .then((userCredential) => {
         // Signed in
         // var user = userCredential.user;
-        navigation.navigate("ChirpGroups");
+        // navigation.navigate("ChirpGroups");
       })
       .catch((error) => {
         console.log(error);

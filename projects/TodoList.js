@@ -6,10 +6,6 @@ import { theme } from "../assets/Theme";
 import CreateButton from "../components/CreateButton";
 import AddTodo from "./AddTodo";
 
-import { useCollectionData } from "react-firebase-hooks/firestore";
-
-import firestore from "../config/FirestoreInit";
-
 export default function TodoList({ todos, todosRef }) {
   const [createTodo, setCreateTodo] = useState(false);
 

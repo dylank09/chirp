@@ -8,20 +8,16 @@ import ChirpButton from "../components/ChirpButton";
 import ChirpTextBox from "../components/ChirpTextBox";
 import TextAlert from "../components/TextAlert";
 
-import auth from "../config/FirebaseAuthInit";
+import firebase from "firebase";
 
 export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
   const [description, setDescription] = useState("");
   const [assignee, setAssignee] = useState("");
-  const [author, setAuthor] = useState("");
+  const [creator, setCreator] = useState("");
   const [size, setSize] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
 
   async function addTodo() {
-    var author = auth.currentUser.displayName;
-    author = author.substring(0, author.indexOf(" "));
-    console.log(author, assignee, size);
-
     if (description.length < 2) {
       setDescriptionError("Description is too short");
     } else if (description.length > 120) {
@@ -31,7 +27,7 @@ export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
         description: description,
         assignee: assignee,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        author: author,
+        author: creator,
         done: false,
         size: size,
       });
@@ -66,9 +62,9 @@ export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
           onChangeText={setAssignee}
         ></ChirpTextBox>
         <ChirpTextBox
-          placeholder="Author"
-          value={author}
-          onChangeText={setAuthor}
+          placeholder="Creator"
+          value={creator}
+          onChangeText={setCreator}
         ></ChirpTextBox>
         <View style={styles.pickerRow}>
           <Text style={styles.pickerHelpText}>Todo size: </Text>
