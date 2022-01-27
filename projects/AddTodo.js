@@ -68,16 +68,19 @@ export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
         ></ChirpTextBox>
         <View style={styles.pickerRow}>
           <Text style={styles.pickerHelpText}>Todo size: </Text>
-          <Picker
-            selectedValue={size}
-            onValueChange={(itemValue, itemIndex) => setSize(itemValue)}
-            prompt="Todo size"
-          >
-            <Picker.Item label="Select size" value="" />
-            <Picker.Item label="S" value="S" />
-            <Picker.Item label="M" value="M" />
-            <Picker.Item label="L" value="L" />
-          </Picker>
+          <View style={{ flex: 1, padding: 0, margin: 0 }}>
+            <Picker
+              style={{ color: theme.colors.text }}
+              selectedValue={size}
+              onValueChange={(itemValue, itemIndex) => setSize(itemValue)}
+              prompt="Todo size"
+            >
+              <Picker.Item label="Select size" value="" />
+              <Picker.Item label="S" value="S" />
+              <Picker.Item label="M" value="M" />
+              <Picker.Item label="L" value="L" />
+            </Picker>
+          </View>
         </View>
       </View>
       <ChirpButton onPress={addTodo} width="70%" text="Add Todo"></ChirpButton>
