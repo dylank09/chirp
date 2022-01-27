@@ -11,7 +11,7 @@ import { useDocumentData } from "react-firebase-hooks/firestore";
 import firestore from "../config/FirestoreInit";
 
 export default function Deadline({ projectId }) {
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
 
