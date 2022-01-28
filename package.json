@@ -31,9 +31,13 @@
     ]
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "~1.15.0",
+    "@react-native-community/datetimepicker": "3.5.2",
+    "@react-native-picker/picker": "1.16.1",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "expo": "^42.0.0",
+    "expo-checkbox": "~1.0.3",
     "expo-google-app-auth": "~8.2.5",
     "expo-status-bar": "~1.0.4",
     "firebase": "8.2.3",
@@ -43,16 +47,13 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-paper": "^4.11.2",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
     "react-native-svg": "^12.1.1",
     "react-native-web": "^0.14.13",
     "react-navigation": "^4.4.4",
-    "react-navigation-tabs": "^2.11.1",
-    "@react-native-community/datetimepicker": "3.5.2",
-    "@react-native-async-storage/async-storage": "~1.15.0",
-    "@react-native-picker/picker": "1.16.1",
-    "expo-checkbox": "~1.0.3"
+    "react-navigation-tabs": "^2.11.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

@@ -48,15 +48,15 @@ export default function ChatOptions({
           ? "Created on: " + FormatTime(chatData.createdAt.seconds)
           : ""}
       </Text>
-      <MemberList
-        members={chatData.members}
-        fsRef={chatRef}
-        admin={chatData.admin}
-      />
       <AddMember
         currentMembers={chatData.members}
         chatId={id}
         fsRef={chatRef}
+      />
+      <MemberList
+        members={chatData.members}
+        fsRef={chatRef}
+        admin={chatData.admin}
       />
     </ScrollView>
   );

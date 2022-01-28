@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, Text, View } from "react-native";
+import { StyleSheet, ScrollView, Text, View, Alert } from "react-native";
 import { AntDesign, Entypo, MaterialIcons } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
@@ -10,7 +10,27 @@ export default function TodoList({ todos, todosRef }) {
   const [createTodo, setCreateTodo] = useState(false);
 
   function deleteTodo(todoId) {
-    todosRef.doc(todoId).delete();
+    if (Platform.OS === "web") {
+      todosRef.doc(todoId).delete();
+    } else {
+      Alert.alert(
+        "Confirm Delete",
+        "Are you sure you want to delete this todo and all data associated with it?",
+        [
+          {
+            text: "Cancel",
+            style: "cancel",
+          },
+          {
+            text: "Delete",
+            style: "destructive",
+            onPress: () => {
+              todosRef.doc(todoId).delete();
+            },
+          },
+        ]
+      );
+    }
   }
 
   function pressDone(todoId, newValue) {
@@ -35,7 +55,7 @@ export default function TodoList({ todos, todosRef }) {
         <Text style={styles.heading}>Todo List</Text>
         <CreateButton onPress={setCreateTodo} size={40} />
       </View>
-      {todos &&
+      {todos && todos.length > 0 ? (
         todos.map((todo, i) => (
           <View key={i} style={styles.todo}>
             <View style={styles.topSection}>
@@ -77,7 +97,12 @@ export default function TodoList({ todos, todosRef }) {
               />
             </View>
           </View>
-        ))}
+        ))
+      ) : (
+        <Text style={styles.noMessagesText}>
+          {"\n\n\n\n"} Click on the ✏️ to start making your first todo!
+        </Text>
+      )}
     </ScrollView>
   );
 }
@@ -134,5 +159,12 @@ const styles = StyleSheet.create({
     color: theme.colors.hazeText,
     fontSize: theme.dimensions.standardFontSize - 1,
     minWidth: "20%",
+  },
+  noMessagesText: {
+    textAlign: "center",
+    width: "70%",
+    alignSelf: "center",
+    color: theme.colors.hazeText,
+    fontSize: theme.dimensions.standardFontSize + 2,
   },
 });

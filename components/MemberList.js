@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   memberContainer: {
-    borderBottomColor: theme.colors.text,
+    borderBottomColor: theme.colors.hazeText,
     borderBottomWidth: 0.5,
     padding: 4,
     marginVertical: 5,

@@ -104,7 +104,7 @@ export default function ChirpChat({ name, id, onBackPress }) {
             scrollViewRef.current.scrollToEnd({ animated: false })
           }
         >
-          {msgs.length > 0 ? (
+          {msgs && msgs.length > 0 ? (
             msgs.map((msg) => (
               <Message
                 key={msg.msgId}

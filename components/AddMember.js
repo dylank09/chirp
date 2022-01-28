@@ -14,13 +14,13 @@ export default function AddMember({ currentMembers, fsRef }) {
   const [addMemberAlert, setAddMemberAlert] = useState("");
 
   const usersRef = firestore.collection("users");
-  const query = usersRef.where("email", "==", email);
+  const query = usersRef.where("email", "==", email.toLowerCase());
   const [user] = useCollectionData(query, { idField: "userid" });
 
   function addMember() {
     setAddMemberAlert("");
 
-    if (!user[0]) {
+    if (!user) {
       setAddMemberAlert("No user with that email exists");
       return;
     }

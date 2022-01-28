@@ -56,7 +56,7 @@ export default function Profile() {
           <ChirpSwitch
             text="Enable light mode"
             value={lightMode}
-            func={setLightMode}
+            setValue={setLightMode}
           />
         </View>
       </ScrollView>

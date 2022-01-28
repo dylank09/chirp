@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import Checkbox from "expo-checkbox";
 
 import { theme } from "../assets/Theme";
 import ChirpButton from "../components/ChirpButton";
 import ChirpTextBox from "../components/ChirpTextBox";
 import TextAlert from "../components/TextAlert";
 import Deadline from "./Deadline";
+import ChirpSwitch from "../components/ChirpSwitch";
 
 import firebase from "firebase";
 import firestore from "../config/FirestoreInit";
@@ -34,6 +34,7 @@ export default function CreateProject({ onBackPress }) {
         deadline: firebase.firestore.FieldValue.serverTimestamp(),
         members: [auth.currentUser.email],
         admin: auth.currentUser.email,
+        done: false,
         nextTodo: "",
       });
       setProjectId(id);
@@ -91,15 +92,14 @@ export default function CreateProject({ onBackPress }) {
           allowMultiline={true}
           onChangeText={setDescription}
         ></ChirpTextBox>
-        <View style={styles.createChat}>
-          <Text style={styles.createChatText}>Create chat group</Text>
-          <Checkbox
-            style={styles.createChatCheckbox}
-            value={createChat}
-            onValueChange={setCreateChat}
-            color={createChat ? theme.colors.primary : undefined}
-          />
-        </View>
+        <ChirpSwitch
+          style={styles.createChat}
+          text="Create chat group"
+          value={createChat}
+          setValue={() => {
+            setCreateChat(!createChat);
+          }}
+        />
       </View>
       <ChirpButton
         onPress={createProject}
@@ -147,15 +147,10 @@ const styles = StyleSheet.create({
   },
   createChat: {
     marginTop: 10,
-    width: "70%",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    width: "100%",
   },
   createChatText: {
     color: theme.colors.text,
     fontSize: theme.dimensions.standardFontSize,
-  },
-  createChatCheckbox: {
-    margin: 4,
   },
 });

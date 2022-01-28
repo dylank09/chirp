@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Modal } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { StyleSheet, Text, View, Modal, Alert, Platform } from "react-native";
+import { AntDesign, Entypo, MaterialIcons } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 import LoadingScreen from "../components/LoadingScreen";
@@ -25,8 +25,35 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
   const [project, loading] = useDocumentData(projectRef);
 
   function deleteProject() {
-    projectRef.delete();
-    onBackPress();
+    if (Platform.OS === "web") {
+      projectRef.delete();
+      onBackPress();
+    } else {
+      Alert.alert(
+        "Confirm Delete",
+        "Are you sure you want to delete this project and all data associated with it?",
+        [
+          {
+            text: "Cancel",
+            style: "cancel",
+          },
+          {
+            text: "Delete",
+            style: "destructive",
+            onPress: () => {
+              projectRef.delete();
+              onBackPress();
+            },
+          },
+        ]
+      );
+    }
+  }
+
+  function pressDone(newValue) {
+    projectRef.update({
+      done: newValue,
+    });
   }
 
   const todosRef = projectRef.collection("todos");
@@ -59,17 +86,34 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
             color="white"
             onPress={onBackPress}
           />
-          <Text style={styles.chatName}>{name}</Text>
-          {auth.currentUser.email === project.admin ? (
-            <AntDesign
-              name="delete"
-              size={24}
-              color={theme.colors.text}
-              onPress={deleteProject}
-            />
-          ) : (
-            <AntDesign name="back" size={24} color={theme.colors.background} />
-          )}
+          <Text style={styles.projectName}>{name}</Text>
+          <View style={styles.headerButtons}>
+            {project.done ? (
+              <MaterialIcons
+                name="done-outline"
+                style={{ marginRight: 5 }}
+                size={24}
+                color={theme.colors.text}
+                onPress={() => pressDone(false)}
+              />
+            ) : (
+              <Entypo
+                name="circle-with-cross"
+                style={{ marginRight: 5 }}
+                size={24}
+                color={theme.colors.text}
+                onPress={() => pressDone(true)}
+              />
+            )}
+            {auth.currentUser.email === project.admin ? (
+              <AntDesign
+                name="delete"
+                size={24}
+                color={theme.colors.text}
+                onPress={deleteProject}
+              />
+            ) : null}
+          </View>
         </View>
         <View style={styles.project}>
           <Text style={styles.description}>
@@ -129,12 +173,16 @@ const styles = StyleSheet.create({
   back: {
     alignSelf: "flex-start",
   },
-  chatName: {
+  projectName: {
     color: theme.colors.text,
     textAlign: "center",
     alignSelf: "center",
     fontWeight: "bold",
     fontSize: theme.dimensions.standardFontSize + 3,
+    paddingLeft: 5,
+  },
+  headerButtons: {
+    flexDirection: "row",
   },
   project: {
     height: "90%",
