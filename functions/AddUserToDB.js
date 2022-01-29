@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "../config/FirebaseInit";
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
 

@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+import firebase from "./FirebaseInit";
 import "firebase/auth";
 
 export default firebase.auth();

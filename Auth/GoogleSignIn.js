@@ -3,7 +3,7 @@ import * as GoogleAuthentication from "expo-google-app-auth";
 
 import AddUserToDB from "../functions/AddUserToDB";
 
-import firebase from "firebase/app";
+import firebase from "../config/FirebaseInit";
 import "firebase/auth";
 
 export default function GoogleSignIn() {

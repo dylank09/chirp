@@ -19,7 +19,7 @@ import {
   useDocumentData,
 } from "react-firebase-hooks/firestore";
 
-import firebase from "firebase/app";
+import firebase from "../config/FirebaseInit";
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
 

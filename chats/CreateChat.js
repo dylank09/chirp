@@ -9,7 +9,7 @@ import TextAlert from "../components/TextAlert";
 
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
-import firebase from "firebase";
+import firebase from "../config/FirebaseInit";
 
 export default function CreateChat({ onBackPress }) {
   const [name, setName] = useState("");

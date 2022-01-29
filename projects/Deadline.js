@@ -8,7 +8,7 @@ import FormatTime from "../functions/FormatTime";
 
 import { useDocumentData } from "react-firebase-hooks/firestore";
 
-import firebase from "firebase";
+import firebase from "../config/FirebaseInit";
 import firestore from "../config/FirestoreInit";
 
 export default function Deadline({ projectId }) {
