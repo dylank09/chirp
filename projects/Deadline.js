@@ -46,15 +46,23 @@ export default function Deadline({ projectId }) {
   };
 
   const showDatepicker = () => {
-    showMode("date");
+    if (Platform.OS === "ios") {
+      showMode("datetime");
+    } else {
+      showMode("date");
+    }
   };
 
   const showTimepicker = () => {
-    showMode("time");
+    if (Platform.OS === "ios") {
+      showMode("datetime");
+    } else {
+      showMode("time");
+    }
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { maxHeight: show ? null : "20%" }]}>
       <Text style={styles.heading}>Deadline</Text>
       <View style={styles.body}>
         <Text style={styles.deadline} onPress={showDatepicker}>
@@ -67,17 +75,30 @@ export default function Deadline({ projectId }) {
           <ChirpButton width="38%" text="Edit time" onPress={showTimepicker} />
         </View>
       </View>
-
-      {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={mode}
-          is24Hour={true}
-          display="default"
-          onChange={onChange}
-        />
-      )}
+      <View
+        style={{
+          width: "100%",
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        {show && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            mode={mode}
+            style={{
+              flex: 1,
+              width: "100%",
+              alignSelf: "center",
+              alignContent: "center",
+            }}
+            is24Hour={true}
+            display="default"
+            onChange={onChange}
+          />
+        )}
+      </View>
     </View>
   );
 }
@@ -88,8 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: theme.colors.background,
     alignItems: "center",
-    justifyContent: "space-around",
-    maxHeight: "20%",
+    justifyContent: "space-between",
     width: "100%",
   },
   heading: {

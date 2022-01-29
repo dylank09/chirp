@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   profileHeader: {
     flexDirection: "row",
     height: 100,
+    marginTop: 10,
     justifyContent: "center",
     alignItems: "center",
   },

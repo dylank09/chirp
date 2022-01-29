@@ -9,10 +9,19 @@ export default function ChirpTextBox({
   placeholder,
   password,
   allowMultiline,
+  smallVersion,
 }) {
   return (
     <TextInput
-      style={styles.textBox}
+      style={[
+        styles.textBox,
+        {
+          padding: smallVersion ? 3 : 5,
+          fontSize: smallVersion ? 14 : 15,
+          marginTop: smallVersion ? 5 : 7,
+          marginBottom: smallVersion ? 3 : 4,
+        },
+      ]}
       value={value}
       onChangeText={onChangeText ? onChangeText : null}
       secureTextEntry={password ? true : false}
@@ -28,13 +37,9 @@ export default function ChirpTextBox({
 
 const styles = StyleSheet.create({
   textBox: {
-    padding: 5,
-    width: theme.dimensions.authWidth,
+    width: "82%",
     color: theme.colors.text,
-    fontSize: theme.dimensions.standardFontSize + 1,
     borderBottomColor: theme.colors.text,
     borderBottomWidth: 1,
-    marginTop: 7,
-    marginBottom: 5,
   },
 });

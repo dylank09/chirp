@@ -38,13 +38,7 @@ export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <AntDesign
-          style={styles.back}
-          name="left"
-          size={24}
-          color="white"
-          onPress={onBackPress}
-        />
+        <AntDesign name="left" size={24} color="white" onPress={onBackPress} />
         <Text style={styles.todoName}>Create todo</Text>
         <AntDesign name="left" size={24} color={theme.colors.background} />
       </View>
@@ -54,23 +48,35 @@ export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
           value={description}
           onChangeText={setDescription}
           allowMultiline={true}
+          smallVersion={true}
         ></ChirpTextBox>
         <TextAlert text={descriptionError} />
         <ChirpTextBox
           placeholder="Assignee"
           value={assignee}
+          smallVersion={true}
           onChangeText={setAssignee}
         ></ChirpTextBox>
         <ChirpTextBox
           placeholder="Creator"
           value={creator}
           onChangeText={setCreator}
+          smallVersion={true}
         ></ChirpTextBox>
         <View style={styles.pickerRow}>
           <Text style={styles.pickerHelpText}>Todo size: </Text>
           <View style={{ flex: 1, padding: 0, margin: 0 }}>
             <Picker
-              style={{ color: theme.colors.text }}
+              style={{
+                color: theme.colors.text,
+                fontSize: theme.dimensions.standardFontSize,
+                maxHeight: 80,
+              }}
+              itemStyle={{
+                height: 36,
+                color: theme.colors.text,
+                fontSize: theme.dimensions.standardFontSize,
+              }}
               selectedValue={size}
               onValueChange={(itemValue, itemIndex) => setSize(itemValue)}
               prompt="Todo size"
@@ -93,27 +99,18 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     flex: 1,
     width: "100%",
-    marginBottom: 15,
-    marginTop: 20,
+    marginBottom: 2,
+    marginTop: 0,
     borderBottomColor: theme.colors.jet,
     borderBottomWidth: 1,
     alignItems: "center",
     justifyContent: "space-between",
   },
-  deadlineContainer: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
   header: {
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
-    marginVertical: 15,
-  },
-  back: {
-    marginLeft: 10,
+    marginVertical: 10,
   },
   todoName: {
     color: theme.colors.text,
@@ -121,17 +118,17 @@ const styles = StyleSheet.create({
     fontSize: theme.dimensions.standardFontSize,
   },
   todoInfo: {
-    height: "50%",
+    // height: "50%",
     width: "100%",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
   pickerRow: {
     flexDirection: "row",
     alignSelf: "center",
-    width: "60%",
+    width: "75%",
     justifyContent: "space-around",
-    marginTop: 10,
+    marginTop: 5,
   },
   pickerHelpText: {
     color: theme.colors.text,

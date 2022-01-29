@@ -8,6 +8,7 @@ export default function ChirpSwitch({ text, value, setValue }) {
     <View style={styles.container}>
       <Text style={styles.text}>{text ? text : ""}</Text>
       <Switch
+        style={{ marginLeft: 5 }}
         trackColor={{ false: "#767577", true: "#9c5a60" }}
         thumbColor={value ? "rgb(193, 73, 83)" : "#767577"}
         ios_backgroundColor="#3e3e3e"

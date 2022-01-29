@@ -147,7 +147,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "90%",
     justifyContent: "space-between",
-    marginVertical: 20,
+    marginTop: 20,
+    marginBottom: 20,
   },
   messagesBox: {
     flex: 1,
