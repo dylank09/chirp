@@ -1,26 +1,37 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 
 import { theme } from "../assets/Theme";
-import ChirpSwitch from "../components/ChirpSwitch";
+import LoadingScreen from "../components/LoadingScreen";
+import EditProfile from "./EditProfile";
+import Statistics from "./Statistics";
 
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useDocumentData } from "react-firebase-hooks/firestore";
 
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
 
 export default function Profile() {
-  const [lightMode, setLightMode] = useState(false);
+  const [editClicked, setEditClicked] = useState(false);
 
-  const usersRef = firestore.collection("users");
-  const query = usersRef.where("email", "==", auth.currentUser.email);
-  const [user] = useCollectionData(query, { idField: "userid" });
+  const { uid, photoURL, displayName } = auth.currentUser;
 
-  const { photoURL, displayName } = auth.currentUser;
+  const userRef = firestore.collection("users").doc(uid);
+  const [user, loading] = useDocumentData(userRef);
 
-  if (user) {
+  if (loading) {
+    return <LoadingScreen />;
+  } else if (editClicked) {
     return (
-      <ScrollView style={styles.container}>
+      <EditProfile
+        userData={user}
+        userRef={userRef}
+        onBackPress={() => setEditClicked(false)}
+      />
+    );
+  } else {
+    return (
+      <View style={styles.container}>
         <View style={styles.profileHeader}>
           {photoURL ? (
             <Image
@@ -29,12 +40,12 @@ export default function Profile() {
             ></Image>
           ) : (
             <View style={styles.profileImage}>
-              <Text style={styles.profileText}>{user[0].name.slice(0, 1)}</Text>
+              <Text style={styles.profileText}>{user.name.slice(0, 1)}</Text>
             </View>
           )}
           <View style={styles.profileInfo}>
             <Text style={styles.displayName}>
-              {user ? user[0].name : displayName}
+              {user ? user.name : displayName}
             </Text>
             <Text style={styles.createdAt}>
               Created at:{" "}
@@ -47,22 +58,21 @@ export default function Profile() {
           </View>
         </View>
         <View style={styles.options}>
-          <Text style={styles.option} onPress={() => console.log("clicked")}>
+          <Text style={styles.option} onPress={() => setEditClicked(true)}>
             Edit profile
           </Text>
           <Text style={styles.option} onPress={() => auth.signOut()}>
             Sign out
           </Text>
-          <ChirpSwitch
+          {/* <ChirpSwitch
             text="Enable light mode"
             value={lightMode}
             setValue={setLightMode}
-          />
+          /> */}
         </View>
-      </ScrollView>
+        <Statistics />
+      </View>
     );
-  } else {
-    return <View></View>;
   }
 }
 
@@ -70,6 +80,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+    justifyContent: "space-around",
   },
   profileHeader: {
     flexDirection: "row",

@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, Text, View, Alert } from "react-native";
+import {
+  StyleSheet,
+  ScrollView,
+  Text,
+  View,
+  Alert,
+  Platform,
+} from "react-native";
 import { AntDesign, Entypo, MaterialIcons } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 import CreateButton from "../components/CreateButton";
 import AddTodo from "./AddTodo";
 
-export default function TodoList({ todos, todosRef }) {
+export default function TodoList({ todos, todosRef, userRef }) {
   const [createTodo, setCreateTodo] = useState(false);
 
   function deleteTodo(todoId) {
@@ -45,6 +52,7 @@ export default function TodoList({ todos, todosRef }) {
         todosRef={todosRef}
         onBackPress={() => setCreateTodo(false)}
         onSubmit={() => setCreateTodo(false)}
+        userRef={userRef}
       />
     );
   }

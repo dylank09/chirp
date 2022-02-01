@@ -12,6 +12,7 @@ import ChirpSwitch from "../components/ChirpSwitch";
 import firebase from "../config/FirebaseInit";
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
+import Header from "../components/Header";
 
 export default function CreateProject({ onBackPress }) {
   const [name, setName] = useState("");
@@ -68,17 +69,7 @@ export default function CreateProject({ onBackPress }) {
   }
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <AntDesign
-          style={styles.back}
-          name="left"
-          size={24}
-          color="white"
-          onPress={onBackPress}
-        />
-        <Text style={styles.projectName}>Create project</Text>
-        <AntDesign name="left" size={24} color={theme.colors.background} />
-      </View>
+      <Header name="Create Project" onPress={onBackPress} />
       <View style={styles.projectInfo}>
         <ChirpTextBox
           placeholder="Name"

@@ -56,6 +56,8 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
     });
   }
 
+  const userRef = firestore.collection("users").doc(auth.currentUser.uid);
+
   const todosRef = projectRef.collection("todos");
   const query = todosRef.orderBy("done", "asc").limit(50);
   const [todos] = useCollectionData(query, { idField: "todoId" });
@@ -66,9 +68,15 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
       return b.createdAt - a.createdAt;
     });
 
-    if (todos[0] && project.nextTodo !== todos[0].description) {
+    if (todos[0]) {
+      if (project.nextTodo !== todos[0].description) {
+        projectRef.update({
+          nextTodo: todos[0].description,
+        });
+      }
+    } else {
       projectRef.update({
-        nextTodo: todos[0].description,
+        nextTodo: "",
       });
     }
   }
@@ -148,7 +156,7 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
               ></ChirpButton>
             </View>
           </Modal>
-          <TodoList todos={todos} todosRef={todosRef} />
+          <TodoList todos={todos} todosRef={todosRef} userRef={userRef} />
           <Deadline projectId={projectId} />
         </View>
       </View>

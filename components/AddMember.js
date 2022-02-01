@@ -15,7 +15,7 @@ export default function AddMember({ currentMembers, fsRef }) {
 
   const usersRef = firestore.collection("users");
   const query = usersRef.where("email", "==", email.toLowerCase());
-  const [user] = useCollectionData(query, { idField: "userid" });
+  const [user] = useCollectionData(query, { idField: "userId" });
 
   function addMember() {
     setAddMemberAlert("");
@@ -35,7 +35,7 @@ export default function AddMember({ currentMembers, fsRef }) {
       setEmail("");
       setAddMemberAlert("Successful");
     } else {
-      setAddMemberAlert("User is already in the chat");
+      setAddMemberAlert("User is already a member.");
     }
   }
 

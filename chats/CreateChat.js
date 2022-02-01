@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { StyleSheet, View } from "react-native";
 
 import { theme } from "../assets/Theme";
 import ChirpButton from "../components/ChirpButton";
 import ChirpTextBox from "../components/ChirpTextBox";
 import TextAlert from "../components/TextAlert";
+import Header from "../components/Header";
 
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
@@ -39,16 +39,7 @@ export default function CreateChat({ onBackPress }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <AntDesign
-          style={styles.back}
-          name="left"
-          size={24}
-          color="white"
-          onPress={onBackPress}
-        />
-        <Text style={styles.chatName}>Create new chat</Text>
-      </View>
+      <Header name="Create Chat" onPress={onBackPress} />
       <View style={styles.chatInfo}>
         <ChirpTextBox
           placeholder="Name"

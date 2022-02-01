@@ -4,7 +4,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 
-import ChirpButton from "../components/ChirpButton";
+import Header from "../components/Header";
 import FormatTime from "../functions/FormatTime";
 import MemberList from "../components/MemberList";
 import AddMember from "../components/AddMember";
@@ -28,20 +28,25 @@ export default function ChatOptions({
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <AntDesign name="left" size={24} color="white" onPress={returnToChat} />
-        <Text style={styles.chatName}>{name}</Text>
-        {auth.currentUser.email === chatData.admin ? (
+      {auth.currentUser.email === chatData.admin ? (
+        <View style={styles.header}>
+          <AntDesign
+            name="left"
+            size={24}
+            color="white"
+            onPress={returnToChat}
+          />
+          <Text style={styles.chatName}>{name}</Text>
           <AntDesign
             name="delete"
             size={24}
             color={theme.colors.text}
             onPress={deleteChat}
           />
-        ) : (
-          <AntDesign name="back" size={24} color={theme.colors.background} />
-        )}
-      </View>
+        </View>
+      ) : (
+        <Header name={name} onPress={returnToChat} />
+      )}
       <Text style={styles.chatInfo}>
         {" "}
         {chatData.createdAt

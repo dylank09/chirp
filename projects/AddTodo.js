@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
 
 import { theme } from "../assets/Theme";
@@ -9,8 +8,9 @@ import ChirpTextBox from "../components/ChirpTextBox";
 import TextAlert from "../components/TextAlert";
 
 import firebase from "../config/FirebaseInit";
+import Header from "../components/Header";
 
-export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
+export default function AddTodo({ todosRef, onBackPress, onSubmit, userRef }) {
   const [description, setDescription] = useState("");
   const [assignee, setAssignee] = useState("");
   const [creator, setCreator] = useState("");
@@ -37,11 +37,7 @@ export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <AntDesign name="left" size={24} color="white" onPress={onBackPress} />
-        <Text style={styles.todoName}>Create todo</Text>
-        <AntDesign name="left" size={24} color={theme.colors.background} />
-      </View>
+      <Header name="Create Todo" onPress={onBackPress} />
       <View style={styles.todoInfo}>
         <ChirpTextBox
           placeholder="Description"
@@ -68,7 +64,7 @@ export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
           <View style={{ flex: 1, padding: 0, margin: 0 }}>
             <Picker
               style={{
-                color: theme.colors.text,
+                color: theme.colors.jet,
                 fontSize: theme.dimensions.standardFontSize,
                 maxHeight: 80,
               }}
