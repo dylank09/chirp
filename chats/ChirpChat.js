@@ -29,7 +29,12 @@ export default function ChirpChat({ name, id, onBackPress }) {
 
   const scrollViewRef = useRef();
 
-  const { uid, email } = auth.currentUser;
+  const currentUser = auth.currentUser;
+  var uid, email;
+  if (currentUser) {
+    uid = currentUser.uid;
+    email = currentUser.email;
+  }
   const userRef = firestore.collection("users").doc(uid);
   const [user] = useDocumentData(userRef);
 
@@ -87,9 +92,12 @@ export default function ChirpChat({ name, id, onBackPress }) {
             name="left"
             size={24}
             color="white"
+            testID="backButton"
             onPress={onBackPress}
           />
-          <Text style={styles.chatName}>{name}</Text>
+          <Text style={styles.chatName} testID="chatName">
+            {name}
+          </Text>
           <SimpleLineIcons
             name="options-vertical"
             size={22}
@@ -101,7 +109,7 @@ export default function ChirpChat({ name, id, onBackPress }) {
           style={styles.messagesBox}
           ref={scrollViewRef}
           onContentSizeChange={() =>
-            scrollViewRef.current.scrollToEnd({ animated: false })
+            scrollViewRef.current.scrollToEnd({ animated: true })
           }
         >
           {msgs && msgs.length > 0 ? (
@@ -115,7 +123,7 @@ export default function ChirpChat({ name, id, onBackPress }) {
               />
             ))
           ) : (
-            <Text style={styles.noMessagesText}>
+            <Text style={styles.noMessagesText} testID="noChatsHelpText">
               Be the first to send a message! {"\n\n\n\n"} Click on the ⋮ in the
               top right corner to open options and add other members
             </Text>
@@ -126,7 +134,12 @@ export default function ChirpChat({ name, id, onBackPress }) {
           behavior="padding"
           keyboardVerticalOffset={-150}
         >
-          <SendText text={text} setText={setText} send={sendText}></SendText>
+          <SendText
+            text={text}
+            setText={setText}
+            send={sendText}
+            testID="sendTextBox"
+          ></SendText>
         </KeyboardAvoidingView>
       </View>
     );

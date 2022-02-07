@@ -6,7 +6,7 @@ import logo from "../assets/loading.gif";
 
 export default function LoadingScreen() {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="loading">
       <Image source={logo} style={styles.img}></Image>
     </View>
   );

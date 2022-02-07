@@ -13,7 +13,7 @@
     "transformIgnorePatterns": [
       "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
     ],
-    "collectCoverage": true,
+    "collectCoverage": false,
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/coverage/**",
@@ -28,6 +28,7 @@
     "@react-native-picker/picker": "1.16.1",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
+    "@testing-library/react-native": "^9.0.0",
     "expo": "^42.0.0",
     "expo-checkbox": "~1.0.3",
     "expo-google-app-auth": "~8.2.5",

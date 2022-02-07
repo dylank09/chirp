@@ -20,7 +20,13 @@ export default function ChirpGroups() {
   const [chatName, setChatName] = useState("");
   const [search, setSearch] = useState("");
 
-  const { email } = auth.currentUser;
+  const currentUser = auth.currentUser;
+  var email = "";
+
+  if (currentUser) {
+    email = currentUser.email;
+  }
+
   const chatsRef = firestore.collection("chatGroups");
   const query = chatsRef.where("members", "array-contains", email);
   const [groups] = useCollectionData(query, { idField: "chatId" });
@@ -124,7 +130,7 @@ export default function ChirpGroups() {
                     />
                   ))
                 ) : (
-                  <Text style={styles.emptyGroupsText}>
+                  <Text style={styles.emptyGroupsText} testID="noChatsHelpText">
                     You have not joined any chats yet. {"\n\n"}Click the create
                     button to make your own chat group!
                   </Text>

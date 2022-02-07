@@ -26,8 +26,6 @@ export default function Register({ navigation }) {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const next = "ChirpGroups";
-
   function createUserEmailPass() {
     if (validateName() && validatePassword()) {
       auth
@@ -36,7 +34,6 @@ export default function Register({ navigation }) {
           setEmailError("");
           // Signed in
           AddUserToDB(fullName);
-          navigation.navigate(next);
         })
         .catch((error) => {
           console.log(error);
@@ -44,7 +41,7 @@ export default function Register({ navigation }) {
             case "auth/invalid-email":
               setEmailError("Email address is not valid.");
               break;
-            case "auth/blablabla":
+            case "auth/user-exists":
               setEmailError("User already exists.");
               break;
             default:
@@ -114,15 +111,21 @@ export default function Register({ navigation }) {
         text="Continue"
         onPress={createUserEmailPass}
         width="40%"
+        testID="registerButton"
       ></ChirpButton>
       <Text style={styles.orText}>or</Text>
       <View style={styles.line} />
       <AuthProviderButton
         text="Sign in with Google"
         type="google"
-        onPress={() => GoogleSignIn(navigation, next)}
+        onPress={() => GoogleSignIn()}
+        testID="googleButton"
       ></AuthProviderButton>
-      <Text style={styles.loginText} onPress={navToLogin}>
+      <Text
+        style={styles.loginText}
+        onPress={navToLogin}
+        testID="navToLoginButton"
+      >
         Already have an account? Sign in
       </Text>
     </SafeAreaView>

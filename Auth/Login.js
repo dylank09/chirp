@@ -23,28 +23,19 @@ export default function Login({ navigation }) {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const next = "ChirpGroups";
-
   function signInEmailPass() {
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Signed in
-        // var user = userCredential.user;
-        // navigation.navigate("ChirpGroups");
-      })
-      .catch((error) => {
-        console.log(error);
-        if (error.code == "auth/invalid-email")
-          setEmailError("Email address is not valid.");
-        else if (error.code == "auth/user-not-found")
-          setEmailError("User not found.");
-        else if (error.code == "auth/wrong-password")
-          setPasswordError("Incorrect credentials given.");
-        else {
-          setEmailError("Incorrect details. Try again.");
-        }
-      });
+    auth.signInWithEmailAndPassword(email, password).catch((error) => {
+      console.log(error);
+      if (error.code == "auth/invalid-email")
+        setEmailError("Email address is not valid.");
+      else if (error.code == "auth/user-not-found")
+        setEmailError("User not found.");
+      else if (error.code == "auth/wrong-password")
+        setPasswordError("Incorrect credentials given.");
+      else {
+        setEmailError("Incorrect details. Try again.");
+      }
+    });
   }
 
   function navToRegister() {
@@ -69,6 +60,7 @@ export default function Login({ navigation }) {
         <TextAlert text={passwordError}></TextAlert>
         <ChirpButton
           text="Continue"
+          testID="loginButton"
           onPress={signInEmailPass}
           width="40%"
         ></ChirpButton>
@@ -76,10 +68,15 @@ export default function Login({ navigation }) {
       <Text style={styles.orText}>or</Text>
       <AuthProviderButton
         text="Sign in with Google"
+        testID="googleButton"
         type="google"
-        onPress={() => GoogleSignIn(navigation, next)}
+        onPress={() => GoogleSignIn()}
       ></AuthProviderButton>
-      <Text style={styles.registerText} onPress={navToRegister}>
+      <Text
+        style={styles.registerText}
+        onPress={navToRegister}
+        testID="navToRegisterButton"
+      >
         Register new account
       </Text>
     </SafeAreaView>

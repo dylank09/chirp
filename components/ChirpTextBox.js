@@ -10,6 +10,7 @@ export default function ChirpTextBox({
   password,
   allowMultiline,
   smallVersion,
+  testID,
 }) {
   return (
     <TextInput
@@ -31,6 +32,7 @@ export default function ChirpTextBox({
       blurOnSubmit={true}
       placeholder={placeholder ? placeholder : ""}
       placeholderTextColor={theme.colors.placeholderColor}
+      testID={testID ? testID : "chirpTextBox"}
     ></TextInput>
   );
 }

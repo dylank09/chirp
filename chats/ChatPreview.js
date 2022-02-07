@@ -30,7 +30,7 @@ export default function ChatPreview({
         <Text
           style={[styles.name, { fontWeight: notOpened ? "bold" : "normal" }]}
         >
-          {chatName ? chatName : "Name Err"}
+          {chatName ? chatName : "-"}
         </Text>
         <Text
           style={[

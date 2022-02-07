@@ -4,9 +4,12 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 
-export default function SendText({ text, setText, send }) {
+export default function SendText({ text, setText, send, testID }) {
   return (
-    <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+    <View
+      style={{ flexDirection: "row", justifyContent: "space-around" }}
+      testID={testID}
+    >
       <TextInput
         style={styles.textInput}
         placeholder="message"

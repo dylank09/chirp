@@ -6,7 +6,11 @@ import { theme } from "../assets/Theme";
 
 export default function AuthProviderButton(props) {
   return (
-    <TouchableOpacity onPress={props.onPress} style={styles.button}>
+    <TouchableOpacity
+      onPress={props.onPress}
+      style={styles.button}
+      testID={props.testID ? props.testID : "button"}
+    >
       <Image
         style={styles.buttonLogo}
         source={props.type == "google" ? googleLogo : ""}

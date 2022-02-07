@@ -45,6 +45,7 @@ export default function CreateChat({ onBackPress }) {
           placeholder="Name"
           value={name}
           onChangeText={setName}
+          testID="nameBox"
         ></ChirpTextBox>
         <TextAlert text={nameError}></TextAlert>
       </View>
@@ -52,6 +53,7 @@ export default function CreateChat({ onBackPress }) {
         onPress={createChat}
         width="70%"
         text="Create Chat"
+        testID="createChatButton"
       ></ChirpButton>
     </View>
   );

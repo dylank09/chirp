@@ -8,6 +8,7 @@ export default function ChirpButton(props) {
     <TouchableOpacity
       onPress={props.onPress}
       style={[styles.button, { width: props.width }]}
+      testID={props.testID ? props.testID : "button"}
     >
       <Text style={styles.buttonText}>{props.text ? props.text : "  "} </Text>
     </TouchableOpacity>

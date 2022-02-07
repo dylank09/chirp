@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChirpGroups /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgb(76, 76, 71)",
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-around",
+          "marginVertical": 20,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "rgb(193, 73, 83)",
+            "borderRadius": 26,
+            "flexDirection": "row",
+            "height": 52,
+            "justifyContent": "flex-start",
+            "padding": 10,
+            "width": "80%",
+          }
+        }
+      >
+        <Text />
+        <TextInput
+          allowFontScaling={true}
+          onChangeText={[Function]}
+          placeholder="Search"
+          placeholderTextColor="white"
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 17,
+              "marginLeft": 10,
+              "width": "80%",
+            }
+          }
+          underlineColorAndroid="transparent"
+        />
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgb(193, 73, 83)",
+            "borderRadius": 26,
+            "height": 52,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 52,
+          }
+        }
+      >
+        <Text />
+      </View>
+    </View>
+    <RCTScrollView
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <View>
+        <Text
+          style={
+            Object {
+              "alignSelf": "center",
+              "color": "rgb(169,169,169)",
+              "fontSize": 20,
+              "paddingTop": 40,
+              "textAlign": "center",
+              "width": "80%",
+            }
+          }
+          testID="noChatsHelpText"
+        >
+          You have not joined any chats yet. 
+          
+
+
+          Click the create button to make your own chat group!
+        </Text>
+      </View>
+    </RCTScrollView>
+  </RCTSafeAreaView>
+</View>
+`;

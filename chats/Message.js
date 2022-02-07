@@ -7,7 +7,7 @@ import FormatTime from "../functions/FormatTime";
 export default function Message({ text, timestamp, user, me }) {
   timestamp = FormatTime(timestamp);
 
-  if (text.length < 15 && user.length > 5) {
+  if (text && text.length < 15 && user && user.length > 5) {
     user = user.substring(0, user.indexOf(" "));
   }
 
@@ -24,10 +24,14 @@ export default function Message({ text, timestamp, user, me }) {
         ]}
       >
         <View style={styles.userAndTime}>
-          <Text style={styles.user}>{user ? user : ""}</Text>
-          <Text style={styles.ts}>{timestamp} </Text>
+          <Text style={styles.user} testID="user">
+            {user ? user : ""}
+          </Text>
+          <Text style={styles.ts} testID="time">
+            {timestamp}{" "}
+          </Text>
         </View>
-        <Text style={[styles.text, { textAlign: "center" }]}>
+        <Text style={[styles.text, { textAlign: "center" }]} testID="message">
           {text ? text : ""}
         </Text>
       </View>

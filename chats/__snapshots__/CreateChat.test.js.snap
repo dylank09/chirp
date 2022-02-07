@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateChat /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgb(76, 76, 71)",
+      "flexDirection": "column",
+      "height": "100%",
+      "justifyContent": "space-between",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignSelf": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 20,
+        "marginTop": 20,
+        "width": "90%",
+      }
+    }
+  >
+    <Text />
+    <Text
+      style={
+        Object {
+          "color": "rgb(255, 255, 255)",
+          "fontSize": 17,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Create Chat
+    </Text>
+    <Text />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "height": "60%",
+        "justifyContent": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      blurOnSubmit={true}
+      multiline={false}
+      onChangeText={[Function]}
+      placeholder="Name"
+      placeholderTextColor="rgb(158, 158, 158)"
+      rejectResponderTermination={true}
+      secureTextEntry={false}
+      selectTextOnFocus={false}
+      selectionColor="rgb(193, 73, 83)"
+      style={
+        Array [
+          Object {
+            "borderBottomColor": "rgb(255, 255, 255)",
+            "borderBottomWidth": 1,
+            "color": "rgb(255, 255, 255)",
+            "width": "82%",
+          },
+          Object {
+            "fontSize": 15,
+            "marginBottom": 4,
+            "marginTop": 7,
+            "padding": 5,
+          },
+        ]
+      }
+      testID="nameBox"
+      underlineColorAndroid="transparent"
+      value=""
+    />
+    <Text
+      style={
+        Object {
+          "color": "rgb(193, 73, 83)",
+          "fontSize": 11,
+          "height": 15,
+          "margin": 0,
+          "paddingLeft": 3,
+          "width": "75%",
+        }
+      }
+    >
+       
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgb(193, 73, 83)",
+        "borderRadius": 18,
+        "height": undefined,
+        "margin": 10,
+        "opacity": 1,
+        "padding": 10,
+        "width": "70%",
+      }
+    }
+    testID="createChatButton"
+  >
+    <Text
+      style={
+        Object {
+          "color": "rgb(255, 255, 255)",
+          "fontSize": 15,
+        }
+      }
+    >
+      Create Chat
+       
+    </Text>
+  </View>
+</View>
+`;

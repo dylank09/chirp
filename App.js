@@ -13,8 +13,6 @@ import auth from "./config/FirebaseAuthInit";
 export default function App() {
   const [user, loading] = useAuthState(auth);
 
-  console.log(user);
-
   if (loading) {
     return <LoadingScreen />;
   }

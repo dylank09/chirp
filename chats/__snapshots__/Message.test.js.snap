@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Message /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignContent": "flex-start",
+      "marginBottom": 5,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderRadius": 25,
+          "flexDirection": "column",
+          "marginHorizontal": 4,
+          "maxWidth": "62%",
+          "padding": 6,
+        },
+        Object {
+          "alignSelf": "flex-start",
+          "backgroundColor": "rgb(132, 135, 165)",
+          "textAlign": "left",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginLeft": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "alignSelf": "flex-start",
+            "color": "rgb(45, 45, 42)",
+            "fontSize": 11,
+            "fontWeight": "700",
+            "marginRight": 2,
+          }
+        }
+        testID="user"
+      >
+        
+      </Text>
+      <Text
+        style={
+          Object {
+            "alignSelf": "flex-start",
+            "color": "rgb(45, 45, 42)",
+            "fontSize": 11,
+            "fontWeight": "700",
+            "marginLeft": 2,
+          }
+        }
+        testID="time"
+      >
+        
+         
+      </Text>
+    </View>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "rgb(255, 255, 255)",
+            "fontSize": 15,
+            "padding": 4,
+            "width": "auto",
+          },
+          Object {
+            "textAlign": "center",
+          },
+        ]
+      }
+      testID="message"
+    >
+      
+    </Text>
+  </View>
+</View>
+`;

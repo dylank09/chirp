@@ -15,11 +15,13 @@ export default function GoogleSignIn() {
       .signInWithPopup(provider)
       .then((result) => {
         AddUserToDB();
+        return true;
       })
       .catch((error) => {
         console.log(error);
+        return false;
       });
-  } else if (Platform.OS === "android" || Platform.OS === "ios") {
+  } else if (Platform.OS === "android" || "ios") {
     GoogleAuthentication.logInAsync({
       androidStandaloneAppClientId:
         "875721758742-9b11vs4d5un4t600bjtktp0ra5uctcqh.apps.googleusercontent.com",
@@ -35,12 +37,17 @@ export default function GoogleSignIn() {
             accessToken
           );
 
-          return firebase.auth().signInWithCredential(credential);
+          AddUserToDB();
+
+          firebase.auth().signInWithCredential(credential);
+
+          return true;
         }
-        return Promise.reject();
+        return false;
       })
       .catch((error) => {
         console.log(error);
+        return false;
       });
   }
 }
