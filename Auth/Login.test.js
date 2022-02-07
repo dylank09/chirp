@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import App from "./App";
+import Login from "./Login";
 
-describe("<App />", () => {
+describe("<Login />", () => {
   it("renders correctly", () => {
-    const tree = renderer.create(<App />).toJSON();
+    const tree = renderer.create(<Login />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
