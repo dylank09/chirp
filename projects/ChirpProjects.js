@@ -26,6 +26,7 @@ export default function ChirpProjects(props) {
 
   if (projects) {
     projects.sort(function (a, b) {
+      if (b.done) return -1;
       var x = a.deadline ? a.deadline.seconds : 0;
       var y = b.deadline ? b.deadline.seconds : 0;
       return x - y;
@@ -81,6 +82,7 @@ export default function ChirpProjects(props) {
                       projectName={proj.name}
                       nextTodo={proj.nextTodo ? spliceTodo(proj.nextTodo) : ""}
                       remaining={GetRemaining(proj.deadline)}
+                      done={proj.done ? proj.done : false}
                       onPress={() => goToProject(proj.projectId, proj.name)}
                     />
                   ))

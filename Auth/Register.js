@@ -41,7 +41,7 @@ export default function Register({ navigation }) {
             case "auth/invalid-email":
               setEmailError("Email address is not valid.");
               break;
-            case "auth/user-exists":
+            case "auth/email-already-in-use":
               setEmailError("User already exists.");
               break;
             default:

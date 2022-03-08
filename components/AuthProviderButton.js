@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     width: theme.dimensions.authButtonWidth,
-    // height: theme.dimensions.buttonHeight,
     paddingTop: 7,
     paddingBottom: 7,
     paddingLeft: 15,

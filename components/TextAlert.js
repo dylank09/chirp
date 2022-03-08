@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     width: theme.dimensions.authWidth,
     height: 15,
     color: theme.colors.primary,
-    fontSize: 11,
+    fontSize: 12,
     margin: 0,
   },
 });

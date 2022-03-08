@@ -9,14 +9,31 @@ export default function ProjectPreview({
   nextTodo,
   onPress,
   remaining,
+  done,
 }) {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.left}>
-        <Text style={styles.name}>{projectName ? projectName : ""}</Text>
-        <Text style={styles.todo}>{nextTodo ? "Todo: " + nextTodo : ""}</Text>
+        <Text
+          style={[
+            styles.name,
+            done
+              ? {
+                  textDecorationLine: "line-through",
+                  textDecorationStyle: "solid",
+                  textDecorationColor: "white",
+                  fontWeight: "normal",
+                }
+              : {},
+          ]}
+        >
+          {projectName ? projectName : ""}
+        </Text>
+        <Text style={styles.todo}>
+          {nextTodo && !done ? "Todo: " + nextTodo : ""}
+        </Text>
       </View>
-      {remaining ? (
+      {remaining && !done ? (
         <View style={styles.right}>
           <MaterialCommunityIcons name="timer-sand" size={18} color="white" />
           <Text style={styles.remaining}>{remaining}</Text>

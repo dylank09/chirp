@@ -10,6 +10,7 @@ import { useDocumentData } from "react-firebase-hooks/firestore";
 
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
+import ChirpButton from "../components/ChirpButton";
 
 export default function Profile() {
   const [editClicked, setEditClicked] = useState(false);
@@ -56,14 +57,17 @@ export default function Profile() {
               {auth.currentUser.metadata.lastSignInTime.substring(5, 22)}
             </Text>
           </View>
+          <ChirpButton
+            text="Sign out"
+            style={styles.option}
+            onPress={() => auth.signOut()}
+          />
         </View>
         <View style={styles.options}>
-          <Text style={styles.option} onPress={() => setEditClicked(true)}>
+          {/* <Text style={styles.option} onPress={() => setEditClicked(true)}>
             Edit profile
-          </Text>
-          <Text style={styles.option} onPress={() => auth.signOut()}>
-            Sign out
-          </Text>
+          </Text> */}
+
           {/* <ChirpSwitch
             text="Enable light mode"
             value={lightMode}
@@ -118,7 +122,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   option: {
-    fontSize: theme.dimensions.standardFontSize + 2,
+    fontSize: theme.dimensions.standardFontSize + 1,
     color: theme.colors.text,
     width: "100%",
     padding: 7,

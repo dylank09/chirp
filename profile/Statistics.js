@@ -7,7 +7,6 @@ export default function Statistics() {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Statistics</Text>
-
       <Text style={styles.stat}>Created Todos = 4</Text>
       <Text style={styles.stat}>Messages sent = 4</Text>
       <Text style={styles.stat}>Joined projects = 2</Text>
