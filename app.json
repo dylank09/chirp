@@ -11,6 +11,14 @@
       "resizeMode": "contain",
       "backgroundColor": "#4c4c47"
     },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos."
+        }
+      ]
+    ],
     "updates": {
       "fallbackToCacheTimeout": 0
     },

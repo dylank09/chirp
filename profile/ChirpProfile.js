@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 
 import { theme } from "../assets/Theme";
 import LoadingScreen from "../components/LoadingScreen";
-import EditProfile from "./EditProfile";
 import Statistics from "./Statistics";
 
 import { useDocumentData } from "react-firebase-hooks/firestore";
@@ -13,23 +13,39 @@ import auth from "../config/FirebaseAuthInit";
 import ChirpButton from "../components/ChirpButton";
 
 export default function Profile() {
-  const [editClicked, setEditClicked] = useState(false);
+  const [image, setImage] = useState(null);
 
   const { uid, photoURL, displayName } = auth.currentUser;
 
   const userRef = firestore.collection("users").doc(uid);
   const [user, loading] = useDocumentData(userRef);
 
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
   if (loading) {
     return <LoadingScreen />;
-  } else if (editClicked) {
-    return (
-      <EditProfile
-        userData={user}
-        userRef={userRef}
-        onBackPress={() => setEditClicked(false)}
-      />
-    );
+    // } else if (editClicked) {
+    //   return (
+    //     <EditProfile
+    //       userData={user}
+    //       userRef={userRef}
+    //       onBackPress={() => setEditClicked(false)}
+    //     />
+    //   );
   } else {
     return (
       <View style={styles.container}>
@@ -57,11 +73,18 @@ export default function Profile() {
               {auth.currentUser.metadata.lastSignInTime.substring(5, 22)}
             </Text>
           </View>
-          <ChirpButton
-            text="Sign out"
-            style={styles.option}
-            onPress={() => auth.signOut()}
-          />
+          <View style={{ flexDirection: "column" }}>
+            <ChirpButton
+              style={styles.option}
+              text="Change Avatar"
+              onPress={() => pickImage()}
+            />
+            <ChirpButton
+              text="Sign out"
+              style={styles.option}
+              onPress={() => auth.signOut()}
+            />
+          </View>
         </View>
         <View style={styles.options}>
           {/* <Text style={styles.option} onPress={() => setEditClicked(true)}>
