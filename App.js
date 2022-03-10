@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar, StyleSheet, View } from "react-native";
+import { StatusBar, StyleSheet, View, LogBox } from "react-native";
 import { useNetInfo } from "@react-native-community/netinfo";
 
 import { theme } from "./assets/Theme";
@@ -11,6 +11,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import auth from "./config/FirebaseAuthInit";
 import NoWifiScreen from "./components/NoWifiScreen";
+
+// Firebase sets some timeers for a long period, which will trigger some warnings. Let's turn that off for this example
+LogBox.ignoreLogs([`Setting a timer for a long period`]);
 
 export default function App() {
   const [user, loading] = useAuthState(auth);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
@@ -8,17 +8,21 @@ import Statistics from "./Statistics";
 
 import { useDocumentData } from "react-firebase-hooks/firestore";
 
+import firebase from "firebase";
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
 import ChirpButton from "../components/ChirpButton";
 
 export default function Profile() {
-  const [image, setImage] = useState(null);
-
-  const { uid, photoURL, displayName } = auth.currentUser;
+  const { uid, displayName } = auth.currentUser;
+  var photoURL = auth.currentUser.photoURL;
 
   const userRef = firestore.collection("users").doc(uid);
   const [user, loading] = useDocumentData(userRef);
+
+  if (user && user.profileURL) {
+    photoURL = user.profileURL;
+  }
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -30,11 +34,55 @@ export default function Profile() {
     });
 
     console.log(result);
+    handleImagePicked(result);
+  };
 
-    if (!result.cancelled) {
-      setImage(result.uri);
+  const handleImagePicked = async (pickerResult) => {
+    try {
+      if (!pickerResult.cancelled) {
+        const uploadUrl = await uploadImageAsync(pickerResult.uri);
+        setUserProfileURL(uploadUrl);
+      }
+    } catch (e) {
+      console.log(e);
+      alert("Upload failed, sorry :(");
     }
   };
+
+  const setUserProfileURL = (url) => {
+    userRef.update({
+      profileURL: url,
+    });
+  };
+
+  async function uploadImageAsync(uri) {
+    const blob = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function (e) {
+        console.log(e);
+        reject(new TypeError("Network request failed"));
+      };
+      xhr.responseType = "blob";
+      xhr.open("GET", uri, true);
+      xhr.send(null);
+    });
+
+    var fileType = uri.substring(uri.indexOf("/") + 1, uri.indexOf(";"));
+
+    var ref = firebase
+      .storage()
+      .ref()
+      .child("profileImg." + fileType);
+    await ref.put(blob);
+
+    // Done with the blob, close and release it
+    // blob.close();
+
+    return ref.getDownloadURL();
+  }
 
   if (loading) {
     return <LoadingScreen />;
@@ -73,18 +121,18 @@ export default function Profile() {
               {auth.currentUser.metadata.lastSignInTime.substring(5, 22)}
             </Text>
           </View>
-          <View style={{ flexDirection: "column" }}>
-            <ChirpButton
-              style={styles.option}
-              text="Change Avatar"
-              onPress={() => pickImage()}
-            />
-            <ChirpButton
-              text="Sign out"
-              style={styles.option}
-              onPress={() => auth.signOut()}
-            />
-          </View>
+          <ChirpButton
+            text="Sign out"
+            style={styles.option}
+            onPress={() => auth.signOut()}
+          />
+        </View>
+        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+          <ChirpButton
+            style={styles.option}
+            text="Change Avatar"
+            onPress={() => pickImage()}
+          />
         </View>
         <View style={styles.options}>
           {/* <Text style={styles.option} onPress={() => setEditClicked(true)}>
