@@ -26,7 +26,7 @@ export default function ChirpProjects(props) {
 
   if (projects) {
     projects.sort(function (a, b) {
-      if (b.done) return -1;
+      if (a.done || b.done) return 1;
       var x = a.deadline ? a.deadline.seconds : 0;
       var y = b.deadline ? b.deadline.seconds : 0;
       return x - y;
@@ -88,7 +88,7 @@ export default function ChirpProjects(props) {
                   ))
                 ) : (
                   <Text style={styles.emptyGroupsText}>
-                    You have not joined any projects yet. {"\n\n"}Click the
+                    You aren't a member of any projects yet {"\n\n"}Click the
                     create button to make your own!
                   </Text>
                 )}

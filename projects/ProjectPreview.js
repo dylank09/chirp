@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
 
@@ -39,7 +39,9 @@ export default function ProjectPreview({
           <Text style={styles.remaining}>{remaining}</Text>
         </View>
       ) : (
-        <></>
+        <View style={{ paddingRight: 15 }}>
+          <Ionicons name="checkmark-done" size={30} color="white" />
+        </View>
       )}
     </TouchableOpacity>
   );
