@@ -19,9 +19,12 @@ export default function Deadline({ projectId }) {
   const projectRef = firestore.collection("projects").doc(projectId);
   const [project] = useDocumentData(projectRef);
 
+  var deadlineDate;
+  var deadlineTime;
+
   if (project) {
-    var deadlineDate = FormatTime(project.deadline.seconds, "date");
-    var deadlineTime = FormatTime(project.deadline.seconds, "time");
+    deadlineDate = FormatTime(project.deadline.seconds, "date");
+    deadlineTime = FormatTime(project.deadline.seconds, "time");
   }
 
   const onChange = (event, selectedDate) => {

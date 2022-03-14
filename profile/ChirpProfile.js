@@ -72,10 +72,13 @@ export default function Profile() {
 
     var fileType = uri.substring(uri.indexOf("/") + 1, uri.indexOf(";"));
 
+    var currentTime = Date.now();
+    console.log(currentTime);
+
     var ref = firebase
       .storage()
       .ref()
-      .child("profileImg." + fileType);
+      .child(currentTime + "." + fileType);
     await ref.put(blob);
 
     // Done with the blob, close and release it
@@ -127,10 +130,22 @@ export default function Profile() {
             onPress={() => auth.signOut()}
           />
         </View>
-        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+        <View>
+          <Text
+            style={{
+              fontSize: 12,
+              paddingLeft: 4,
+              paddingBottom: 2,
+              color: theme.colors.hazeText,
+              borderBottomColor: theme.colors.hazeText,
+              borderBottomWidth: 1,
+            }}
+          >
+            Options
+          </Text>
           <ChirpButton
             style={styles.option}
-            text="Change Avatar"
+            text="Change Profile Image"
             onPress={() => pickImage()}
           />
         </View>
