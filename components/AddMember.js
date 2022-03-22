@@ -20,25 +20,26 @@ export default function AddMember({ currentMembers, fsRef }) {
   function addMember() {
     setAddMemberAlert("");
 
-    if (validateEmail(email)) {
+    if (!validateEmail(email)) {
       setAddMemberAlert("Email address is invalid");
-    }
-    if (!user && user.length < 1) {
-      setAddMemberAlert("No user with that email exists");
       return;
     }
 
-    let userEmail = user[0].email;
-    if (!currentMembers.includes(userEmail)) {
-      let newMembers = currentMembers;
-      newMembers.push(userEmail);
-      fsRef.update({
-        members: newMembers,
-      });
-      setEmail("");
-      setAddMemberAlert("Successful");
+    if (user && user.length > 0) {
+      let userEmail = user[0].email;
+      if (!currentMembers.includes(userEmail)) {
+        let newMembers = currentMembers;
+        newMembers.push(userEmail);
+        fsRef.update({
+          members: newMembers,
+        });
+        setEmail("");
+        setAddMemberAlert("Successful");
+      } else {
+        setAddMemberAlert("User is already a member.");
+      }
     } else {
-      setAddMemberAlert("User is already a member.");
+      setAddMemberAlert("No user with that email exists");
     }
   }
 

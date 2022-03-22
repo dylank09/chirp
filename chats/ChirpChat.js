@@ -30,9 +30,10 @@ export default function ChirpChat({ name, id, onBackPress }) {
 
   const scrollViewRef = useRef();
 
-  BackHandler.addEventListener("hardwareBackPress", () =>
-    setOptionsOpen(false)
-  );
+  BackHandler.addEventListener("hardwareBackPress", function () {
+    onBackPress();
+    return true;
+  });
 
   const currentUser = auth.currentUser;
   var uid, email;

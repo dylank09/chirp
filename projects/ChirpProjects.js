@@ -26,7 +26,10 @@ export default function ChirpProjects(props) {
   const [projectID, setProjectID] = useState("");
   const [projectName, setProjectName] = useState("");
 
-  BackHandler.addEventListener("hardwareBackPress", backToList);
+  BackHandler.addEventListener("hardwareBackPress", function () {
+    backToList();
+    return true;
+  });
 
   const { email } = auth.currentUser;
   const projectsRef = firestore.collection("projects");

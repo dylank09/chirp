@@ -27,7 +27,10 @@ export default function ChirpGroups() {
   const [chatName, setChatName] = useState("");
   const [search, setSearch] = useState("");
 
-  BackHandler.addEventListener("hardwareBackPress", backToGroups);
+  // BackHandler.addEventListener("hardwareBackPress", function () {
+  //   backToGroups();
+  //   return true;
+  // });
 
   const currentUser = auth.currentUser;
   var email = "";
@@ -61,6 +64,7 @@ export default function ChirpGroups() {
   }
 
   function backToGroups() {
+    console.log("hi i made it");
     setChatClicked(false);
     setCreateClicked(false);
     setChatId(0);

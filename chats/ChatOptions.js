@@ -6,6 +6,7 @@ import {
   ScrollView,
   Alert,
   Platform,
+  BackHandler,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -27,6 +28,11 @@ export default function ChatOptions({
   returnToMain,
 }) {
   const chatRef = firestore.collection("chatGroups").doc(id);
+
+  BackHandler.addEventListener("hardwareBackPress", function () {
+    returnToChat();
+    return true;
+  });
 
   function deleteChat() {
     if (Platform.OS === "web") {
