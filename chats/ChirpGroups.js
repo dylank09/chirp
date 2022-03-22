@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  BackHandler,
+} from "react-native";
 
 import { theme } from "../assets/Theme";
 import ChatPreview from "./ChatPreview";
@@ -19,6 +26,8 @@ export default function ChirpGroups() {
   const [chatId, setChatId] = useState();
   const [chatName, setChatName] = useState("");
   const [search, setSearch] = useState("");
+
+  BackHandler.addEventListener("hardwareBackPress", backToGroups);
 
   const currentUser = auth.currentUser;
   var email = "";

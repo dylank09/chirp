@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     width: "100%",
     resizeMode: "contain",
     shadowColor: "#000",
-    blurRadius: 250,
+    // blurRadius: 250,
     shadowOffset: {
       width: 0,
       height: 2,

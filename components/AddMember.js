@@ -20,7 +20,10 @@ export default function AddMember({ currentMembers, fsRef }) {
   function addMember() {
     setAddMemberAlert("");
 
-    if (!user) {
+    if (validateEmail(email)) {
+      setAddMemberAlert("Email address is invalid");
+    }
+    if (!user && user.length < 1) {
       setAddMemberAlert("No user with that email exists");
       return;
     }
@@ -38,6 +41,14 @@ export default function AddMember({ currentMembers, fsRef }) {
       setAddMemberAlert("User is already a member.");
     }
   }
+
+  const validateEmail = (e) => {
+    return String(e)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
 
   return (
     <View style={styles.container}>

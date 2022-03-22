@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  BackHandler,
+} from "react-native";
 
 import { theme } from "../assets/Theme";
 import CreateButton from "../components/CreateButton";
@@ -18,6 +25,8 @@ export default function ChirpProjects(props) {
   const [createClicked, setCreateClicked] = useState(false);
   const [projectID, setProjectID] = useState("");
   const [projectName, setProjectName] = useState("");
+
+  BackHandler.addEventListener("hardwareBackPress", backToList);
 
   const { email } = auth.currentUser;
   const projectsRef = firestore.collection("projects");

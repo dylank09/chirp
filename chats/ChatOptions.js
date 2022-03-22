@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Alert,
+  Platform,
+} from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from "../assets/Theme";
@@ -22,8 +29,29 @@ export default function ChatOptions({
   const chatRef = firestore.collection("chatGroups").doc(id);
 
   function deleteChat() {
-    chatRef.delete();
-    returnToMain();
+    if (Platform.OS === "web") {
+      chatRef.delete();
+      returnToMain();
+    } else {
+      Alert.alert(
+        "Confirm Delete",
+        "Are you sure you want to delete this chat and all data associated with it?",
+        [
+          {
+            text: "Cancel",
+            style: "cancel",
+          },
+          {
+            text: "Delete",
+            style: "destructive",
+            onPress: () => {
+              chatRef.delete();
+              returnToMain();
+            },
+          },
+        ]
+      );
+    }
   }
 
   return (

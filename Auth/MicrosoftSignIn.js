@@ -1,7 +1,8 @@
-import auth from "../config/FirebaseAuthInit";
+import firebase from "../config/FirebaseInit";
+import "firebase/auth";
 
 export default function MicrosoftSignIn(navigation, next) {
-  var provider = new auth.OAuthProvider("microsoft.com");
+  var provider = new firebase.auth.OAuthProvider("microsoft.com");
   provider.setCustomParameters({
     prompt: "consent",
     tenant: "common",

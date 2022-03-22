@@ -108,7 +108,9 @@ export default function Profile() {
             ></Image>
           ) : (
             <View style={styles.profileImage}>
-              <Text style={styles.profileText}>{user.name.slice(0, 1)}</Text>
+              <Text style={styles.profileText}>
+                {user ? user.name.slice(0, 1) : "F"}
+              </Text>
             </View>
           )}
           <View style={styles.profileInfo}>

@@ -5,6 +5,7 @@ import {
   Text,
   View,
   KeyboardAvoidingView,
+  BackHandler,
 } from "react-native";
 import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 
@@ -29,6 +30,10 @@ export default function ChirpChat({ name, id, onBackPress }) {
 
   const scrollViewRef = useRef();
 
+  BackHandler.addEventListener("hardwareBackPress", () =>
+    setOptionsOpen(false)
+  );
+
   const currentUser = auth.currentUser;
   var uid, email;
   if (currentUser) {
@@ -52,7 +57,7 @@ export default function ChirpChat({ name, id, onBackPress }) {
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         uid,
         email,
-        user: user.name,
+        user: user ? user.name : "",
       });
 
       firestore
