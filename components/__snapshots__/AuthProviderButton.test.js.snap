@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AuthProviderButton /> renders correctly 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "white",
+      "borderRadius": 18,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "margin": 8,
+      "opacity": 1,
+      "paddingBottom": 7,
+      "paddingLeft": 15,
+      "paddingRight": 15,
+      "paddingTop": 7,
+      "width": "70%",
+    }
+  }
+  testID="button"
+>
+  <Image
+    source=""
+    style={
+      Object {
+        "height": 19,
+        "margin": 3,
+        "width": 19,
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "black",
+        "fontWeight": "600",
+        "marginLeft": 5,
+      }
+    }
+  >
+      
+     
+  </Text>
+</View>
+`;

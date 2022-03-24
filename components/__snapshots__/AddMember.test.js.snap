@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddMember /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "marginBottom": 20,
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "alignSelf": "center",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": 15,
+        "fontWeight": "bold",
+        "marginTop": 4,
+      }
+    }
+  >
+    Add member
+  </Text>
+  <View
+    style={
+      Object {
+        "alignSelf": "center",
+        "borderColor": "rgb(193, 73, 83)",
+        "borderRadius": 18,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-around",
+        "margin": 7,
+        "width": "90%",
+      }
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      placeholder="Email"
+      placeholderTextColor="rgb(158, 158, 158)"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "color": "white",
+          "fontSize": 17,
+          "margin": 7,
+          "width": "60%",
+        }
+      }
+      underlineColorAndroid="transparent"
+      value=""
+    />
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "rgb(193, 73, 83)",
+          "borderRadius": 18,
+          "height": undefined,
+          "margin": 10,
+          "opacity": 1,
+          "padding": 10,
+          "width": "25%",
+        }
+      }
+      testID="button"
+    >
+      <Text
+        style={
+          Object {
+            "color": "rgb(255, 255, 255)",
+            "fontSize": 15,
+          }
+        }
+      >
+        Add
+         
+      </Text>
+    </View>
+  </View>
+  <Text
+    style={
+      Object {
+        "color": "rgb(193, 73, 83)",
+        "fontSize": 12,
+        "height": 15,
+        "margin": 0,
+        "paddingLeft": 3,
+        "width": "75%",
+      }
+    }
+  >
+     
+  </Text>
+</View>
+`;

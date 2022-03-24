@@ -85,7 +85,7 @@ exports[`<Login /> renders correctly 1`] = `
       style={
         Object {
           "color": "rgb(193, 73, 83)",
-          "fontSize": 11,
+          "fontSize": 12,
           "height": 15,
           "margin": 0,
           "paddingLeft": 3,
@@ -129,7 +129,7 @@ exports[`<Login /> renders correctly 1`] = `
       style={
         Object {
           "color": "rgb(193, 73, 83)",
-          "fontSize": 11,
+          "fontSize": 12,
           "height": 15,
           "margin": 0,
           "paddingLeft": 3,

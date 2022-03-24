@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     shadowColor: "rgb(15, 15, 12)",
     shadowOffset: { height: 1.5, width: 1.5 },
-    elevation: 2,
+    // elevation: 2,
     shadowRadius: 1,
   },
   heading: {

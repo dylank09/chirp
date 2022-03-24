@@ -47,7 +47,7 @@ exports[`<AuthContainer /> renders correctly 1`] = `
         hideBackButton={false}
         hideShadow={false}
         largeTitleHideShadow={false}
-        title="Login"
+        title="Tutorial"
         titleColor="rgb(28, 28, 30)"
         topInsetEnabled={false}
         translucent={false}
@@ -65,144 +65,102 @@ exports[`<AuthContainer /> renders correctly 1`] = `
           ]
         }
       >
-        <RCTSafeAreaView
-          emulateUnlessSupported={true}
+        <View
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "rgb(76, 76, 71)",
+              "backgroundColor": "rgb(169,169,169)",
               "flex": 1,
               "justifyContent": "space-around",
               "width": "100%",
             }
           }
         >
-          <Image
-            source={1}
-            style={
-              Object {
-                "height": 120,
-                "marginBottom": 15,
-                "padding": 0,
-                "width": 120,
-              }
-            }
-          />
           <Text
             style={
               Object {
-                "color": "rgb(255, 255, 255)",
-                "fontSize": 28,
-                "marginBottom": 15,
+                "color": "rgb(45, 45, 42)",
+                "fontSize": 22,
+                "fontWeight": "bold",
               }
             }
           >
-            Sign In
+            Tutorial
           </Text>
           <View
-            onLayout={[Function]}
             style={
-              Array [
+              Object {
+                "height": "85%",
+                "width": "85%",
+              }
+            }
+            useNativeDriver={true}
+          >
+            <Image
+              onLoadEnd={[Function]}
+              resizeMode="contain"
+              source={1}
+              style={
                 Object {
-                  "alignItems": "center",
-                  "justifyContent": "center",
-                  "marginBottom": 40,
+                  "borderRadius": 30,
+                  "height": "100%",
+                  "resizeMode": "contain",
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 2,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.25,
+                  "shadowRadius": 4,
                   "width": "100%",
-                },
+                }
+              }
+            />
+            <View
+              style={
                 Object {
-                  "paddingBottom": 0,
-                },
-              ]
+                  "bottom": 0,
+                  "left": 0,
+                  "opacity": 1,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "borderRadius": 30,
+                      "height": "100%",
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.25,
+                      "shadowRadius": 4,
+                      "width": "100%",
+                    },
+                    Object {
+                      "backgroundColor": "#eee",
+                    },
+                    undefined,
+                  ]
+                }
+              />
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "justifyContent": "space-around",
+                "width": "100%",
+              }
             }
           >
-            <TextInput
-              allowFontScaling={true}
-              blurOnSubmit={true}
-              multiline={false}
-              onChangeText={[Function]}
-              placeholder="Email"
-              placeholderTextColor="rgb(158, 158, 158)"
-              rejectResponderTermination={true}
-              secureTextEntry={false}
-              selectTextOnFocus={false}
-              selectionColor="rgb(193, 73, 83)"
-              style={
-                Array [
-                  Object {
-                    "borderBottomColor": "rgb(255, 255, 255)",
-                    "borderBottomWidth": 1,
-                    "color": "rgb(255, 255, 255)",
-                    "width": "82%",
-                  },
-                  Object {
-                    "fontSize": 15,
-                    "marginBottom": 4,
-                    "marginTop": 7,
-                    "padding": 5,
-                  },
-                ]
-              }
-              testID="chirpTextBox"
-              underlineColorAndroid="transparent"
-            />
-            <Text
-              style={
-                Object {
-                  "color": "rgb(193, 73, 83)",
-                  "fontSize": 11,
-                  "height": 15,
-                  "margin": 0,
-                  "paddingLeft": 3,
-                  "width": "75%",
-                }
-              }
-            >
-               
-            </Text>
-            <TextInput
-              allowFontScaling={true}
-              blurOnSubmit={true}
-              multiline={false}
-              onChangeText={[Function]}
-              placeholder="Password"
-              placeholderTextColor="rgb(158, 158, 158)"
-              rejectResponderTermination={true}
-              secureTextEntry={true}
-              selectTextOnFocus={true}
-              selectionColor="rgb(193, 73, 83)"
-              style={
-                Array [
-                  Object {
-                    "borderBottomColor": "rgb(255, 255, 255)",
-                    "borderBottomWidth": 1,
-                    "color": "rgb(255, 255, 255)",
-                    "width": "82%",
-                  },
-                  Object {
-                    "fontSize": 15,
-                    "marginBottom": 4,
-                    "marginTop": 7,
-                    "padding": 5,
-                  },
-                ]
-              }
-              testID="chirpTextBox"
-              underlineColorAndroid="transparent"
-            />
-            <Text
-              style={
-                Object {
-                  "color": "rgb(193, 73, 83)",
-                  "fontSize": 11,
-                  "height": 15,
-                  "margin": 0,
-                  "paddingLeft": 3,
-                  "width": "75%",
-                }
-              }
-            >
-               
-            </Text>
             <View
               accessible={true}
               focusable={true}
@@ -222,10 +180,10 @@ exports[`<AuthContainer /> renders correctly 1`] = `
                   "margin": 10,
                   "opacity": 1,
                   "padding": 10,
-                  "width": "40%",
+                  "width": "30%",
                 }
               }
-              testID="loginButton"
+              testID="button"
             >
               <Text
                 style={
@@ -235,91 +193,48 @@ exports[`<AuthContainer /> renders correctly 1`] = `
                   }
                 }
               >
-                Continue
+                Skip
+                 
+              </Text>
+            </View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(193, 73, 83)",
+                  "borderRadius": 18,
+                  "height": undefined,
+                  "margin": 10,
+                  "opacity": 1,
+                  "padding": 10,
+                  "width": "30%",
+                }
+              }
+              testID="button"
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "rgb(255, 255, 255)",
+                    "fontSize": 15,
+                  }
+                }
+              >
+                Next
                  
               </Text>
             </View>
           </View>
-          <Text
-            style={
-              Object {
-                "borderBottomColor": "rgb(255, 255, 255)",
-                "borderBottomWidth": 1,
-                "color": "rgb(255, 255, 255)",
-                "fontSize": 15,
-                "textAlign": "center",
-                "width": "40%",
-              }
-            }
-          >
-            or
-          </Text>
-          <View
-            accessible={true}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "borderRadius": 18,
-                "flexDirection": "row",
-                "justifyContent": "center",
-                "margin": 8,
-                "opacity": 1,
-                "paddingBottom": 7,
-                "paddingLeft": 15,
-                "paddingRight": 15,
-                "paddingTop": 7,
-                "width": "70%",
-              }
-            }
-            testID="googleButton"
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "height": 19,
-                  "margin": 3,
-                  "width": 19,
-                }
-              }
-            />
-            <Text
-              style={
-                Object {
-                  "color": "black",
-                  "fontWeight": "600",
-                  "marginLeft": 5,
-                }
-              }
-            >
-              Sign in with Google
-               
-            </Text>
-          </View>
-          <Text
-            onPress={[Function]}
-            style={
-              Object {
-                "color": "rgb(158, 158, 158)",
-                "fontSize": 15,
-                "marginBottom": 10,
-                "textDecorationLine": "underline",
-              }
-            }
-            testID="navToRegisterButton"
-          >
-            Register new account
-          </Text>
-        </RCTSafeAreaView>
+        </View>
       </View>
     </RNSScreen>
   </RNSScreenStack>

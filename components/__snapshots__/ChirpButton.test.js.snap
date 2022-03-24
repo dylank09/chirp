@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChirpButton /> renders correctly 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgb(193, 73, 83)",
+      "borderRadius": 18,
+      "height": undefined,
+      "margin": 10,
+      "opacity": 1,
+      "padding": 10,
+      "width": undefined,
+    }
+  }
+  testID="button"
+>
+  <Text
+    style={
+      Object {
+        "color": "rgb(255, 255, 255)",
+        "fontSize": 15,
+      }
+    }
+  >
+      
+     
+  </Text>
+</View>
+`;

@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChirpTextBox /> renders correctly 1`] = `
+<TextInput
+  allowFontScaling={true}
+  blurOnSubmit={true}
+  multiline={false}
+  onChangeText={null}
+  placeholder=""
+  placeholderTextColor="rgb(158, 158, 158)"
+  rejectResponderTermination={true}
+  secureTextEntry={false}
+  selectTextOnFocus={false}
+  selectionColor="rgb(193, 73, 83)"
+  style={
+    Array [
+      Object {
+        "borderBottomColor": "rgb(255, 255, 255)",
+        "borderBottomWidth": 1,
+        "color": "rgb(255, 255, 255)",
+        "width": "82%",
+      },
+      Object {
+        "fontSize": 15,
+        "marginBottom": 4,
+        "marginTop": 7,
+        "padding": 5,
+      },
+    ]
+  }
+  testID="chirpTextBox"
+  underlineColorAndroid="transparent"
+/>
+`;

@@ -64,7 +64,6 @@ export default function ChirpGroups() {
   }
 
   function backToGroups() {
-    console.log("hi i made it");
     setChatClicked(false);
     setCreateClicked(false);
     setChatId(0);
