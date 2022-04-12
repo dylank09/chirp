@@ -3,7 +3,7 @@ import "firebase/firestore";
 
 // set up the firebase using the configurations
 const firebaseConfig = {
-  apiKey: "AIzaSyDS6ewZ9HDXhwN8u6qzsXmsijtv-5GFcrM",
+  apiKey: "secret",
   authDomain: "chirp-77b9d.firebaseapp.com",
   databaseURL:
     "https://chirp-77b9d-default-rtdb.europe-west1.firebasedatabase.app",

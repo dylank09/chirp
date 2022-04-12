@@ -13,7 +13,7 @@ import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
 import ChirpButton from "../components/ChirpButton";
 
-export default function Profile() {
+export default function ChirpProfile() {
   const { uid, displayName } = auth.currentUser;
   // get the user's google profile photo URL
   var photoURL = auth.currentUser.photoURL;
