@@ -30,6 +30,8 @@ export default function ChirpChat({ name, id, onBackPress }) {
 
   const scrollViewRef = useRef();
 
+  // here we add event listener for a back press event.
+  // If the event is triggered, we call the function onBackPress.
   BackHandler.addEventListener("hardwareBackPress", function () {
     onBackPress();
     return true;
@@ -42,6 +44,7 @@ export default function ChirpChat({ name, id, onBackPress }) {
     email = currentUser.email;
   }
   const userRef = firestore.collection("users").doc(uid);
+  // similar to useCollectionData hook, this only reads in the single document. works like real time db
   const [user] = useDocumentData(userRef);
 
   const chatRef = firestore.collection("chatGroups").doc(id);
@@ -53,6 +56,8 @@ export default function ChirpChat({ name, id, onBackPress }) {
 
   async function sendText() {
     if (text.length > 0) {
+      // once we have a text with at least one character,
+      // we add the message to the messages collection that exists within the chat document
       await messagesRef.add({
         text: text ? text : "",
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -61,6 +66,9 @@ export default function ChirpChat({ name, id, onBackPress }) {
         user: user ? user.name : "",
       });
 
+      // here we update some fields on the chats document
+      // every member of the chat has not yet seen this message
+      // we put a snippet of the message as the lastMessage preview and update the timestamp
       firestore
         .collection("chatGroups")
         .doc(id)
@@ -70,6 +78,7 @@ export default function ChirpChat({ name, id, onBackPress }) {
           lastMessageTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
         });
 
+      // clear the text box
       setText("");
     }
   }

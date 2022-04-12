@@ -18,14 +18,16 @@ import GoogleSignIn from "./GoogleSignIn";
 import auth from "../config/FirebaseAuthInit";
 
 export default function Login({ navigation }) {
+  // we use useStates so that whenever a state (e.g. email) changes, the componenent re-renders
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   function signInEmailPass() {
+    // we attempt to sign in with email and password provided by user
+    // firebase return different error codes that we use to display custom errors to user
     auth.signInWithEmailAndPassword(email, password).catch((error) => {
-      console.log(error);
       if (error.code == "auth/invalid-email")
         setEmailError("Email address is not valid.");
       else if (error.code == "auth/user-not-found")
@@ -39,6 +41,7 @@ export default function Login({ navigation }) {
   }
 
   function navToRegister() {
+    // use navigation prop (prop is provided automatically when using stack navigator)
     navigation.navigate("Register");
   }
 

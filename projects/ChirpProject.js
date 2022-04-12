@@ -25,6 +25,7 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
   const [project, loading] = useDocumentData(projectRef);
 
   function deleteProject() {
+    // the React Native Alert doesnt work on browsers
     if (Platform.OS === "web") {
       projectRef.delete();
       onBackPress();
@@ -62,19 +63,24 @@ export default function ChirpProject({ name, onBackPress, projectId }) {
   const query = todosRef.orderBy("done", "asc").limit(50);
   const [todos] = useCollectionData(query, { idField: "todoId" });
 
+  // once todos are loaded, sort them with most recent created first
   if (todos) {
     todos.sort(function (a, b) {
       if (a.done) return 1;
       return b.createdAt - a.createdAt;
     });
 
+    // if there is one or more todos
     if (todos[0]) {
+      // and the project's "nextTodo" field doesn't match the first todos description
       if (project.nextTodo !== todos[0].description) {
+        // then we update the projects "nextTodo" to be the newest todo
         projectRef.update({
           nextTodo: todos[0].description,
         });
       }
     } else {
+      // if there is no more todos then put nextTodo to empty
       projectRef.update({
         nextTodo: "",
       });
@@ -217,6 +223,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    // elevation: 5,
+    borderWidth: 1,
+    borderColor: "black",
   },
 });

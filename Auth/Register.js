@@ -18,6 +18,7 @@ import AddUserToDB from "../functions/AddUserToDB";
 import auth from "../config/FirebaseAuthInit";
 
 export default function Register({ navigation }) {
+  // we use useStates so that whenever a state (e.g. email) changes, the componenent re-renders
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,16 +28,17 @@ export default function Register({ navigation }) {
   const [passwordError, setPasswordError] = useState("");
 
   function createUserEmailPass() {
+    // if both validation functions return true it will create the user
     if (validateName() && validatePassword()) {
       auth
         .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
           setEmailError("");
-          // Signed in
+          // Signed in, add user to database
           AddUserToDB(fullName);
         })
         .catch((error) => {
-          console.log(error);
+          // firebase return different error codes that we use to display custom errors to user
           switch (error.code) {
             case "auth/invalid-email":
               setEmailError("Email address is not valid.");
@@ -53,13 +55,17 @@ export default function Register({ navigation }) {
 
   function validatePassword() {
     var check = false;
+    // here we perform 3 checks on the password
     if (password.length < 8) {
       setPasswordError("Password is too short.");
     } else if (!(/[A-Z]/.test(password) && /[0-9]/.test(password))) {
+      // use regex to check if password has capital letter and a number
       setPasswordError("Password must include a capital and a number.");
     } else if (password != confirmPassword) {
+      // password must match the confirm password
       setPasswordError("Passwords don't match.");
     } else {
+      // if all checks fail, we return true and clear any previous error
       setPasswordError("");
       check = true;
     }
@@ -67,6 +73,7 @@ export default function Register({ navigation }) {
   }
 
   function validateName() {
+    // the given name must be longer than 1 character long
     if (fullName.length < 2) {
       setNameError("Name is too short.");
       return false;

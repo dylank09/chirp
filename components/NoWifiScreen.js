@@ -5,6 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { theme } from "../assets/Theme";
 
 export default function NoWifiScreen() {
+  // This screen contains a wifi off icon and help text to inform user they need internet to use the app.
   return (
     <View style={styles.container} testID="loading">
       <MaterialCommunityIcons name="wifi-off" size={65} color="white" />

@@ -2,6 +2,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 import firestore from "../config/FirestoreInit";
 
+// function returns the user object with a given ID
 function GetUser(id) {
   const usersRef = firestore.collection("users");
 

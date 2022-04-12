@@ -40,6 +40,8 @@ export default function CreateProject({ onBackPress }) {
       });
       setProjectId(id);
 
+      // if the createChat button is enabled, create a chat with the same name
+      // and add the current user as a member
       if (createChat) {
         await firestore.collection("chatGroups").add({
           name: name,

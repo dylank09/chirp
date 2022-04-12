@@ -28,8 +28,10 @@ export default function AddMember({ currentMembers, fsRef }) {
     if (user && user.length > 0) {
       let userEmail = user[0].email;
       if (!currentMembers.includes(userEmail)) {
+        // if the list of current members doesn't already include the email...
         let newMembers = currentMembers;
         newMembers.push(userEmail);
+        // add the email to the list and update the firestore document
         fsRef.update({
           members: newMembers,
         });
@@ -43,7 +45,9 @@ export default function AddMember({ currentMembers, fsRef }) {
     }
   }
 
+  // helper function to validate email address structure
   const validateEmail = (e) => {
+    // uses regex
     return String(e)
       .toLowerCase()
       .match(

@@ -10,7 +10,7 @@ import TextAlert from "../components/TextAlert";
 import firebase from "../config/FirebaseInit";
 import Header from "../components/Header";
 
-export default function AddTodo({ todosRef, onBackPress, onSubmit, userRef }) {
+export default function AddTodo({ todosRef, onBackPress, onSubmit }) {
   const [description, setDescription] = useState("");
   const [assignee, setAssignee] = useState("");
   const [creator, setCreator] = useState("");
@@ -31,6 +31,7 @@ export default function AddTodo({ todosRef, onBackPress, onSubmit, userRef }) {
         done: false,
         size: size,
       });
+      // function passed in as a prop to be executed on submit of a to-do add
       onSubmit();
     }
   }

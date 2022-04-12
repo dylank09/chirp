@@ -8,9 +8,11 @@ import Login from "./Login";
 import Register from "./Register";
 import Tutorial from "./Tutorial";
 
+// we use a stack navigator for the auth screens
 const Stack = createNativeStackNavigator();
 
 export default function AuthContainer() {
+  // in each stack screen we hide the phones header that shows user the app name
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator initialRouteName={"Tutorial"}>

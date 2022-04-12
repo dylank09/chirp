@@ -23,10 +23,12 @@ export default function Deadline({ projectId }) {
   var deadlineTime;
 
   if (project) {
+    // once project info is loaded, get the formatted date and time
     deadlineDate = FormatTime(project.deadline.seconds, "date");
     deadlineTime = FormatTime(project.deadline.seconds, "time");
   }
 
+  // onChange function called when dateTimePicker value changes
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === "ios");
@@ -37,6 +39,8 @@ export default function Deadline({ projectId }) {
     }
   };
 
+  // function to update the projects document with the new deadline
+  // updating the database document causes the ChirpProject component to update as it uses the useDocumentData hook
   function setDeadlineDate(currentDate) {
     projectRef.update({
       deadline: firebase.firestore.Timestamp.fromDate(currentDate),

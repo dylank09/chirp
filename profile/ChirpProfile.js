@@ -15,17 +15,21 @@ import ChirpButton from "../components/ChirpButton";
 
 export default function Profile() {
   const { uid, displayName } = auth.currentUser;
+  // get the user's google profile photo URL
   var photoURL = auth.currentUser.photoURL;
 
   const userRef = firestore.collection("users").doc(uid);
   const [user, loading] = useDocumentData(userRef);
 
+  // here we check if there exists a "profileURL" field in the user document
+  // if so, it means that they have uploaded a profile image already
   if (user && user.profileURL) {
     photoURL = user.profileURL;
   }
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
+    // here we launch the image picker
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -33,13 +37,15 @@ export default function Profile() {
       quality: 1,
     });
 
-    console.log(result);
+    // once an image is picked and placed into result, we handle it
     handleImagePicked(result);
   };
 
   const handleImagePicked = async (pickerResult) => {
     try {
+      // ensure the picking wasnt cancelled
       if (!pickerResult.cancelled) {
+        // upload the image to firebase and return the URL it was uploaded to
         const uploadUrl = await uploadImageAsync(pickerResult.uri);
         setUserProfileURL(uploadUrl);
       }
@@ -49,6 +55,7 @@ export default function Profile() {
     }
   };
 
+  // helper method to update (or add) the profileURL field on the users document on firestore
   const setUserProfileURL = (url) => {
     userRef.update({
       profileURL: url,
@@ -56,6 +63,7 @@ export default function Profile() {
   };
 
   async function uploadImageAsync(uri) {
+    // create a blob with a promise uses XHR
     const blob = await new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.onload = function () {
@@ -70,37 +78,30 @@ export default function Profile() {
       xhr.send(null);
     });
 
+    // get the file extension, e.g. png, jpg...
     var fileType = uri.substring(uri.indexOf("/") + 1, uri.indexOf(";"));
 
     var currentTime = Date.now();
-    console.log(currentTime);
 
+    // create a reference on firebase storage. file name is unique since
     var ref = firebase
       .storage()
       .ref()
       .child(currentTime + "." + fileType);
+    // put the blob in the new reference
     await ref.put(blob);
 
-    // Done with the blob, close and release it
-    // blob.close();
-
+    // return the resuting url
     return ref.getDownloadURL();
   }
 
   if (loading) {
     return <LoadingScreen />;
-    // } else if (editClicked) {
-    //   return (
-    //     <EditProfile
-    //       userData={user}
-    //       userRef={userRef}
-    //       onBackPress={() => setEditClicked(false)}
-    //     />
-    //   );
   } else {
     return (
       <View style={styles.container}>
         <View style={styles.profileHeader}>
+          {/* if photoURL null we show the first letter of the user's name instead */}
           {photoURL ? (
             <Image
               style={styles.profileImage}

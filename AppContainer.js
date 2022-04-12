@@ -1,7 +1,6 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import { Dimensions } from "react-native";
 import {
   Ionicons,
   FontAwesome5,
@@ -13,10 +12,9 @@ import { theme } from "./assets/Theme";
 import ChirpProfile from "./profile/ChirpProfile";
 import ChirpProjects from "./projects/ChirpProjects";
 
-const windowWidth = Dimensions.get("window").width;
-
 const bottomTabNavigator = createBottomTabNavigator(
   {
+    // specifying the chat tab and icon to display (changes when tab is active)
     Chat: {
       screen: ChirpGroups,
       navigationOptions: {
@@ -56,6 +54,7 @@ const bottomTabNavigator = createBottomTabNavigator(
     },
   },
   {
+    // configuration for the navigator
     initialRouteName: "Projects",
     tabBarOptions: {
       activeTintColor: theme.colors.hazeText,
@@ -64,12 +63,13 @@ const bottomTabNavigator = createBottomTabNavigator(
       },
       style: {
         backgroundColor: theme.colors.background,
-        width: windowWidth,
+        width: "100%",
       },
     },
   }
 );
 
+// here we create the app container to wrap the root navigator
 const AppContainer = createAppContainer(bottomTabNavigator);
 
 export default AppContainer;

@@ -9,6 +9,7 @@ import tutorial2 from "../assets/tutorial2.png";
 import tutorial3 from "../assets/tutorial3.png";
 
 export default function Tutorial({ navigation }) {
+  // create the image array
   var images = [tutorial1, tutorial2, tutorial3];
 
   var numImages = images.length;
@@ -16,6 +17,7 @@ export default function Tutorial({ navigation }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   function nextPressed() {
+    // when we arent at the end of the image array, add one to the currentIndex state variable
     if (currentIndex < numImages - 1) {
       setCurrentIndex(currentIndex + 1);
     }
@@ -34,12 +36,14 @@ export default function Tutorial({ navigation }) {
           width: "85%",
         }}
       >
+        {/* We set the image source to the current tutorial image */}
         <Image
           style={styles.tutorial}
           source={images[currentIndex]}
           resizeMode="contain"
         ></Image>
       </FadeIn>
+      {/* here we either show Skip and Next button or Exit button on the last image */}
       {currentIndex < numImages - 1 ? (
         <View style={styles.bottomButtons}>
           <ChirpButton onPress={navToRegister} width="30%" text="Skip" />

@@ -5,6 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { theme } from "../assets/Theme";
 
 export default function MemberList({ members, fsRef, admin }) {
+  // helper function to remove member from the list of members
   function deleteMember(member) {
     var newMembers = members.filter((mem) => mem !== member);
     fsRef.update({

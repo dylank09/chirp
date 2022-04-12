@@ -16,6 +16,7 @@ import AddTodo from "./AddTodo";
 export default function TodoList({ todos, todosRef, userRef }) {
   const [createTodo, setCreateTodo] = useState(false);
 
+  // delete todo function with logic for which platform we are using
   function deleteTodo(todoId) {
     if (Platform.OS === "web") {
       todosRef.doc(todoId).delete();

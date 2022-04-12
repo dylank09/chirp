@@ -20,7 +20,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import firestore from "../config/FirestoreInit";
 import auth from "../config/FirebaseAuthInit";
 
-export default function ChirpProjects(props) {
+export default function ChirpProjects() {
   const [projectClicked, setProjectClicked] = useState(false);
   const [createClicked, setCreateClicked] = useState(false);
   const [projectID, setProjectID] = useState("");
@@ -37,6 +37,8 @@ export default function ChirpProjects(props) {
   const [projects] = useCollectionData(query, { idField: "projectId" });
 
   if (projects) {
+    // sort projects list by how soon the deadline is, sooner the deadline the higher on the list
+    // if a project is done, it goes to the bottom of the list
     projects.sort(function (a, b) {
       if (a.done || b.done) return 1;
       var x = a.deadline ? a.deadline.seconds : 0;
