@@ -6,7 +6,7 @@ import auth from "../config/FirebaseAuthInit";
 // if a name is passed in it uses that, otherwise it fetches the name from the auth current user object
 async function AddUserToDB(name) {
   const usersRef = firestore.collection("users");
-  await usersRef.doc(auth.currentUser.uid).update({
+  await usersRef.doc(auth.currentUser.uid).set({
     email: auth.currentUser.email,
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     name: name ? name : auth.currentUser.displayName,

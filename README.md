@@ -20,3 +20,13 @@ Updating firestore document: `ChirpGroups.js`
 How a "back" event is handled: `ChirpChat.js`
 Alert example: `ChirpProject.js`
 Profile image: `ChirpProfile.js`
+
+### How to use
+
+1. Install dependencies with npm
+   `npm install`
+
+2. Start server with npm
+   `npm start`
+
+3. This should open a tab on your browser. On the left side of this page, observe the options available to you. If you wish to open the app in the browser, click web. Otherwise if you have an android emulator open, you can click on the android option.
