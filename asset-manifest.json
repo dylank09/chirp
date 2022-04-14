@@ -1,0 +1,40 @@
+{
+  "files": {
+    "app.js": "/chirp/static/js/app.f1865fc3.chunk.js",
+    "app.js.map": "/chirp/static/js/app.f1865fc3.chunk.js.map",
+    "runtime~app.js": "/chirp/static/js/runtime~app.7c1efbba.js",
+    "runtime~app.js.map": "/chirp/static/js/runtime~app.7c1efbba.js.map",
+    "static/js/2.02c1b0ea.chunk.js": "/chirp/static/js/2.02c1b0ea.chunk.js",
+    "static/js/2.02c1b0ea.chunk.js.map": "/chirp/static/js/2.02c1b0ea.chunk.js.map",
+    "fonts/AntDesign.ttf": "/chirp/./fonts/AntDesign.ttf",
+    "fonts/Entypo.ttf": "/chirp/./fonts/Entypo.ttf",
+    "fonts/Feather.ttf": "/chirp/./fonts/Feather.ttf",
+    "fonts/FontAwesome.ttf": "/chirp/./fonts/FontAwesome.ttf",
+    "fonts/FontAwesome5_Brands.ttf": "/chirp/./fonts/FontAwesome5_Brands.ttf",
+    "fonts/FontAwesome5_Solid.ttf": "/chirp/./fonts/FontAwesome5_Solid.ttf",
+    "fonts/Fontisto.ttf": "/chirp/./fonts/Fontisto.ttf",
+    "fonts/Foundation.ttf": "/chirp/./fonts/Foundation.ttf",
+    "fonts/Ionicons.ttf": "/chirp/./fonts/Ionicons.ttf",
+    "fonts/MaterialCommunityIcons.ttf": "/chirp/./fonts/MaterialCommunityIcons.ttf",
+    "fonts/MaterialIcons.ttf": "/chirp/./fonts/MaterialIcons.ttf",
+    "fonts/SimpleLineIcons.ttf": "/chirp/./fonts/SimpleLineIcons.ttf",
+    "favicon-16.png": "/chirp/favicon-16.png",
+    "favicon-32.png": "/chirp/favicon-32.png",
+    "favicon.ico": "/chirp/favicon.ico",
+    "index.html": "/chirp/index.html",
+    "manifest.json": "/chirp/manifest.json",
+    "serve.json": "/chirp/serve.json",
+    "static/js/2.02c1b0ea.chunk.js.LICENSE.txt": "/chirp/static/js/2.02c1b0ea.chunk.js.LICENSE.txt",
+    "static/media/google-logo.png": "/chirp/static/media/google-logo.6bc7d493.png",
+    "static/media/loading.gif": "/chirp/static/media/loading.0ce002b4.gif",
+    "static/media/logo.png": "/chirp/static/media/logo.dbe9bcb1.png",
+    "static/media/tutorial1.png": "/chirp/static/media/tutorial1.d11ab4f4.png",
+    "static/media/tutorial2.png": "/chirp/static/media/tutorial2.cb9a704d.png",
+    "static/media/tutorial3.png": "/chirp/static/media/tutorial3.a47e84c3.png"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.7c1efbba.js",
+    "static/js/2.02c1b0ea.chunk.js",
+    "static/js/app.f1865fc3.chunk.js"
+  ]
+}
