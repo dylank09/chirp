@@ -4,14 +4,14 @@
 
 _(if you wish to see what the app is like in phone format on your browser, right click on the page and go to inspect, from there click on the phone icon to the top left of the inspector)_
 
-### Description:
+## Description:
 
 This is my Final Year Project to obtain a BSc. Computer Systems at the University of Limerick.
 
 Deadline management application where students can track, manage and communicate with group members about projects in college.
 Users can also track their own personal projects by not adding any members to the project.
 
-### Comments
+## Comments
 
 For comments to help understand the code, please see the following files:
 
@@ -35,7 +35,7 @@ Alert example: `ChirpProject.js`
 
 Profile image: `ChirpProfile.js`
 
-### How to use
+## How to launch
 
 1. Install dependencies with npm
    `npm install`
