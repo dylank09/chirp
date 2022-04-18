@@ -8,6 +8,12 @@
 
 _(if you wish to see what the app is like in phone format on your browser, right click on the page and go to inspect, from there click on the phone icon to the top left of the inspector)_
 
+## Sample User Login Details
+
+**Email:** `tommy@gmail.com`
+
+**Password:** `Tommy123`
+
 ## Description:
 
 This is my Final Year Project to obtain a BSc. Computer Systems at the University of Limerick.
@@ -54,7 +60,7 @@ Profile image: `ChirpProfile.js`
 2. Start server with npm
    `npm start`
 
-3. This should open a tab on your browser. On the left side of this page, observe the options available to you. If you wish to open the app in the browser, click web. Otherwise if you have an android emulator open, you can click on the android option.
+3. This should open a tab on your browser. On the left side of this page, observe the options available to you. If you wish to open the app in the browser, click web. Otherwise if you have an android emulator open, you can click on the android option. It is recommended to open the app in the android emulator for the best experience
 
 ## How to test
 
