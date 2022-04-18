@@ -1,7 +1,9 @@
 # Chirp
 
 [Chirp (web)](https://dylank09.github.io/chirp/)
+
 [Demo Video](https://vimeo.com/showcase/9399953/video/693470978)
+
 [User Testing Google Form](https://forms.gle/yY5wgByFyWvAT4mH6)
 
 _(if you wish to see what the app is like in phone format on your browser, right click on the page and go to inspect, from there click on the phone icon to the top left of the inspector)_
