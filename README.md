@@ -1,6 +1,8 @@
 # Chirp
 
-[Chirp (web)](https://dylank09.github.io/chirp/)
+[Chirp (WEB)](https://dylank09.github.io/chirp/)
+
+[Chirp (APK)](https://ulcampus-my.sharepoint.com/:u:/g/personal/18227023_studentmail_ul_ie/EV5ep_gXZBtOrZra6nS8pLEBhUxMhUn9hFkJQZ5KRNeDyg?e=96D8II)
 
 [Demo Video](https://vimeo.com/showcase/9399953/video/693470978)
 
@@ -11,7 +13,6 @@ _(if you wish to see what the app is like in phone format on your browser, right
 ## Sample User Login Details
 
 **Email:** `tommy@gmail.com`
-
 **Password:** `Tommy123`
 
 ## Description:
@@ -68,3 +69,9 @@ Profile image: `ChirpProfile.js`
 
 1. Run jest test script with
    `npm test`
+
+## APK
+
+Click below to access the Android APK and download it to your Android device.
+
+[Download APK](https://ulcampus-my.sharepoint.com/:u:/g/personal/18227023_studentmail_ul_ie/EV5ep_gXZBtOrZra6nS8pLEBhUxMhUn9hFkJQZ5KRNeDyg?e=96D8II)
